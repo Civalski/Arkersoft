@@ -2,333 +2,352 @@
 <html lang="pt-BR" class="dark">
 
 <head>
-    <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arkersoft TI Solutions</title>
-    <meta name="description" content="Soluções em IA, Desenvolvimento de Software de Ponta e Transformação Digital">
-    <meta name="keywords" content="Inteligência Artificial, Cloud Computing, IoT, DevOps, Dropshipping, Consultoria">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arkersoft TI Solutions</title>
+  <meta name="description" content="Soluções em IA, Desenvolvimento de Software de Ponta e Transformação Digital">
+  <meta name="keywords" content="Inteligência Artificial, Cloud Computing, IoT, DevOps, Dropshipping, Consultoria">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        :root {
-            --soft-purple: rgba(175, 155, 196, 0.4);
-            --border-color: rgba(241, 237, 237, 0.4);
-            --box-shadow-color: rgba(192, 194, 194, 0.3);
-            --typing-border-color: #adadad;
-            --contact-input-bg: rgba(255, 255, 255, 0.05);
-            --contact-input-border: rgba(186, 85, 211, 0.3);
-            --contact-input-focus-border: rgba(186, 85, 211, 0.5);
-            --contact-input-focus-shadow: rgba(186, 85, 211, 0.4);
-            --contact-button-bg: rgba(186, 85, 211, 0.4);
-            --contact-button-hover-bg: rgba(186, 85, 211, 0.6);
-        }
+  <style>
+    :root {
+      --soft-purple: rgba(175, 155, 196, 0.4);
+      --border-color: rgba(241, 237, 237, 0.4);
+      --box-shadow-color: rgba(192, 194, 194, 0.3);
+      --typing-border-color: #adadad;
+      --contact-input-bg: rgba(255, 255, 255, 0.05);
+      --contact-input-border: rgba(186, 85, 211, 0.3);
+      --contact-input-focus-border: rgba(186, 85, 211, 0.5);
+      --contact-input-focus-shadow: rgba(186, 85, 211, 0.4);
+      --contact-button-bg: rgba(186, 85, 211, 0.4);
+      --contact-button-hover-bg: rgba(186, 85, 211, 0.6);
+    }
 
-        /* Estilizações customizadas com roxo suave */
-        .text-shadow {
-            text-shadow: 0 0 40px var(--soft-purple);
-        }
+    /* Estilizações customizadas com roxo suave */
+    .text-shadow {
+      text-shadow: 0 0 40px var(--soft-purple);
+    }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
+    @keyframes typing {
+      from {
+        width: 0;
+      }
 
-            to {
-                width: 100%;
-            }
-        }
+      to {
+        width: 100%;
+      }
+    }
 
-        .glow-border {
-            box-sizing: border-box;
-            border: 2px solid rgba(83, 83, 83, 0.4);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            animation: glow 3s infinite alternate ease-in-out;
-        }
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      }
 
-        .typing {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid var(--typing-border-color);
-            animation: typing 6s steps(40) 1 forwards;
-        }
+      to {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+      }
+    }
 
-        /* Grid de luz com roxo suave */
-        .light-grid {
-            background:
-                linear-gradient(rgba(175, 155, 196, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(175, 155, 196, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
+    @keyframes shine {
+      0% {
+        background-position: 0% 0;
+      }
 
-        /* Glassmorphism para o container de texto */
-        .glass-container {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 100%;
-        }
+      100% {
+        background-position: -200% 0;
+      }
+    }
 
-        .metallic-text {
-            background: linear-gradient(120deg, rgb(253, 253, 253) 0%, rgba(238, 238, 238, 0.979) 50%, rgb(255, 255, 255) 50%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: shine 3s linear infinite;
-        }
+    .glow-border {
+      box-sizing: border-box;
+      border: 2px solid rgba(83, 83, 83, 0.4);
+      animation: glow 3s infinite alternate ease-in-out;
+    }
 
-        @media (max-width: 768px) {
-            .metallic-text {
-                background: none;
-                -webkit-background-clip: unset;
-                background-clip: unset;
-                color: white;
-                animation: none;
-            }
-        }
+    .typing {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid var(--typing-border-color);
+      animation: typing 6s steps(40) 1 forwards;
+    }
 
-        /* Estilo para o formulário de contato */
-        .contact-form-input {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: var(--contact-input-bg);
-            border: 1px solid var(--contact-input-border);
-            border-radius: 0.375rem;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
+    /* Grid de luz com roxo suave */
+    .light-grid {
+      background:
+        linear-gradient(rgba(175, 155, 196, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(175, 155, 196, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
 
-        .contact-form-input:focus {
-            border-color: var(--contact-input-focus-border);
-            box-shadow: 0 0 0 0.25rem var(--contact-input-focus-shadow);
-        }
+    /* Glassmorphism para o container de texto */
+    .glass-container {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 100%;
+    }
 
-        .contact-form-button {
-            width: 100%;
-            background-color: var(--contact-button-bg);
-            color: white;
-            font-weight: bold;
-            padding: 0.75rem;
-            border-radius: 0.375rem;
-            transition: background-color 0.3s;
-        }
+    .metallic-text {
+      background: linear-gradient(120deg, rgb(253, 253, 253) 0%, rgba(238, 238, 238, 0.979) 50%, rgb(255, 255, 255) 50%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 3s linear infinite;
+    }
 
-        .contact-form-button:hover {
-            background-color: var(--contact-button-hover-bg);
-        }
+    @media (max-width: 768px) {
+      .metallic-text {
+        background: none;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        color: white;
+        animation: none;
+      }
+    }
 
-        /* Ajuste de espaçamento */
-        .section-padding {
-            padding: 4rem 2rem;
-        }
+    /* Estilo para o formulário de contato */
+    .contact-form-input {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--contact-input-bg);
+      border: 1px solid var(--contact-input-border);
+      border-radius: 0.375rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
 
-        /* Hierarquia tipográfica */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-bottom: 1rem;
-        }
+    .contact-form-input:focus {
+      border-color: var(--contact-input-focus-border);
+      box-shadow: 0 0 0 0.25rem var(--contact-input-focus-shadow);
+    }
 
-        p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
+    .contact-form-button {
+      width: 100%;
+      background-color: var(--contact-button-bg);
+      color: white;
+      font-weight: bold;
+      padding: 0.75rem;
+      border-radius: 0.375rem;
+      transition: background-color 0.3s;
+    }
 
-        /* Melhorando a legibilidade */
-        body {
-            font-size: 1rem;
-            line-height: 1.75;
-        }
-    </style>
+    .contact-form-button:hover {
+      background-color: var(--contact-button-hover-bg);
+    }
+
+    /* Ajuste de espaçamento */
+    .section-padding {
+      padding: 4rem 2rem;
+    }
+
+    /* Hierarquia tipográfica */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* Melhorando a legibilidade */
+    body {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+  </style>
+
+  <script>
+    // Calcula a altura da viewport e define a variável --vh para uso no CSS.
+    function setVh() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVh();
+    window.addEventListener('resize', setVh);
+  </script>
 </head>
 
 <body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
-    <!-- Grid de luz (fundo) -->
-    <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
+  <!-- Grid de luz (fundo) -->
+  <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
 
-    <!-- Partículas -->
-    <div id="particles-js" class="fixed inset-0 z-0"></div>
+  <!-- Partículas -->
+  <div id="particles-js" class="fixed inset-0 z-0"></div>
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
-        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-            <!-- Nome All-Tech em branco com efeito metálico -->
-            <a href="#" class="text-2xl font-semibold metallic-text flex items-center">
-                Arkersoft <i class="fas fa-globe ml-2 text-purple-600/6"></i>
-            </a>
-            <!-- Botão para menu mobile -->
-            <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <!-- Menu para desktop -->
-            <ul id="menu" class="hidden md:flex space-x-6">
-                <li><a href="#tech" class="relative px-2 py-1 transition-colors hover:text-purple-300">Tecnologias</a>
-                </li>
-                <li><a href="#cases" class="relative px-2 py-1 transition-colors hover:text-purple-300">Dropshipping</a>
-                </li>
-                <li><a href="#contact" class="relative px-2 py-1 transition-colors hover:text-purple-300">Contato</a>
-                </li>
-                <li><a href="#solutions" class="relative px-2 py-1 transition-colors hover:text-purple-300">Preços</a>
-                </li>
-            </ul>
-        </div>
-        <!-- Menu mobile -->
-        <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#tech">Tecnologias</a></li>
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#cases">Dropshipping</a></li>
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#contact">Contato</a></li>
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#solutions">Preços</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section
-        class="relative h-screen flex items-center bg-[radial-gradient(circle_at_center,_rgba(175,155,196,0.1)_0%,transparent_50%)] z-10 overflow-hidden">
-        <!-- Vídeo de fundo com borda para encaixe visual -->
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-2] glow-border">
-            <source src="earth.mp4" type="video/mp4">
-            Seu navegador não suporta vídeos.
-        </video>
-        <!-- Canvas de partículas (opcional) -->
-        <canvas id="particles-canvas" class="absolute inset-0 w-full h-full z-[-1]"></canvas>
-        <!-- Container posicionado no canto inferior esquerdo -->
-        <div class="absolute inset-0 flex items-center justify-center md:justify-start md:items-end z-20">
-            <div class="glass-container text-center md:text-left md:ml-8 md:mb-8">
-                <h1 class="text-7xl md:text-8xl font-extrabold metallic-text mb-4">
-                    Experimente o Futuro.
-                </h1>
-                <p class="text-xl metallic-text">
-                    Transforme seu negocio com as melhores soluções em tecnologia
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack -->
-    <section id="tech" class="section-padding">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Nossos Principais Serviços</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
-                    <div
-                        class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
-                        <i class="fas fa-atom fa-3x mb-3"></i>
-                        <h5 class="text-xl font-semibold mb-2">Criação de Sites</h5>
-                        <p class="text-sm">Desenvolvemos sites modernos, do zero ou de um modelo já existente</p>
-                    </div>
-                </div>
-                <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
-                    <div
-                        class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
-                        <i class="fas fa-robot fa-3x mb-3"></i>
-                        <h5 class="text-xl font-semibold mb-2">Automações e ERP</h5>
-                        <p class="text-sm">Automação de fluxo de trabalho. Reduza esforços desnecessários</p>
-                    </div>
-                </div>
-                <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
-                    <div
-                        class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
-                        <i class="fas fa-cloud fa-3x mb-3"></i>
-                        <h5 class="text-xl font-semibold mb-2">Tratamento de dados</h5>
-                        <p class="text-sm">Análises, limpeza, backup e gerenciamento completo de dados</p>
-                    </div>
-                </div>
-                <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
-                    <div
-                        class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
-                        <i class="fas fa-cogs fa-3x mb-3"></i>
-                        <h5 class="text-xl font-semibold mb-2">SEO & Marketing</h5>
-                        <p class="text-sm">Destaque sua marca na internet. Redirecionamos clientes a você</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Code Demo -->
-    <section class="py-16 bg-[#0a0a12]"></section>
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="rounded-lg shadow-lg overflow-hidden">
-            <div class="bg-[#2d2d44] p-4 flex space-x-2">
-                <div class="w-3 h-3 rounded-full bg-purple-100"></div>
-                <div class="w-3 h-3 rounded-full bg-purple-300"></div>
-                <div class="w-3 h-3 rounded-full bg-purple-500"></div>
-            </div>
-            <div class="p-6 font-mono">
-                <div class="typing">É hora de dar o primeiro passo... </div>
-            </div>
-        </div>
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+      <!-- Nome All-Tech em branco com efeito metálico -->
+      <a href="#" class="text-2xl font-semibold metallic-text flex items-center">
+        Arkersoft <i class="fas fa-globe ml-2 text-purple-600/60"></i>
+      </a>
+      <!-- Botão para menu mobile -->
+      <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Menu para desktop -->
+      <ul id="menu" class="hidden md:flex space-x-6">
+        <li><a href="#tech" class="relative px-2 py-1 transition-colors hover:text-purple-300">Tecnologias</a></li>
+        <li><a href="#cases" class="relative px-2 py-1 transition-colors hover:text-purple-300">Dropshipping</a></li>
+        <li><a href="#contact" class="relative px-2 py-1 transition-colors hover:text-purple-300">Contato</a></li>
+        <li><a href="#solutions" class="relative px-2 py-1 transition-colors hover:text-purple-300">Preços</a></li>
+      </ul>
     </div>
-    </section>
+    <!-- Menu mobile -->
+    <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
+      <li class="px-4 py-2 hover:bg-purple-600"><a href="#tech">Tecnologias</a></li>
+      <li class="px-4 py-2 hover:bg-purple-600"><a href="#cases">Dropshipping</a></li>
+      <li class="px-4 py-2 hover:bg-purple-600"><a href="#contact">Contato</a></li>
+      <li class="px-4 py-2 hover:bg-purple-600"><a href="#solutions">Preços</a></li>
+    </ul>
+  </nav>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <!-- Centralizando o container do formulário -->
-            <div class="flex justify-center">
-                <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300 w-full lg:w-1/2">
-                    <form class="space-y-6 max-w-md mx-auto">
-                        <div>
-                            <input type="text" class="contact-form-input" placeholder="Nome" required>
-                        </div>
-                        <div>
-                            <input type="email" class="contact-form-input" placeholder="Email" required>
-                        </div>
-                        <div>
-                            <textarea class="contact-form-input" rows="5" placeholder="Descreva seu plano..."
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="contact-form-button">
-                            Enviar
-                        </button>
-                    </form>
-                </div>
-            </div>
+  <!-- Hero Section -->
+  <section class="relative" style="min-height: calc(var(--vh, 1vh) * 100);">
+    <!-- Vídeo de fundo com borda para encaixe visual -->
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-2] glow-border">
+      <source src="earth.mp4" type="video/mp4">
+      Seu navegador não suporta vídeos.
+    </video>
+    <!-- Canvas de partículas (opcional) -->
+    <canvas id="particles-canvas" class="absolute inset-0 w-full h-full z-[-1]"></canvas>
+    <!-- Container posicionado no canto inferior esquerdo -->
+    <div class="absolute inset-0 flex items-center justify-center md:justify-start md:items-end z-20">
+      <div class="glass-container text-center md:text-left md:ml-8 md:mb-8">
+        <h1 class="text-7xl md:text-8xl font-extrabold metallic-text mb-4">
+          Experimente o Futuro.
+        </h1>
+        <p class="text-xl metallic-text">
+          Transforme seu negócio com as melhores soluções em tecnologia
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section id="tech" class="section-padding">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Nossos Principais Serviços</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
+          <div class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
+            <i class="fas fa-atom fa-3x mb-3"></i>
+            <h5 class="text-xl font-semibold mb-2">Criação de Sites</h5>
+            <p class="text-sm">Desenvolvemos sites modernos, do zero ou de um modelo já existente</p>
+          </div>
         </div>
-    </section>
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
+          <div class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
+            <i class="fas fa-robot fa-3x mb-3"></i>
+            <h5 class="text-xl font-semibold mb-2">Automações e ERP</h5>
+            <p class="text-sm">Automação de fluxo de trabalho. Reduza esforços desnecessários</p>
+          </div>
+        </div>
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
+          <div class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
+            <i class="fas fa-cloud fa-3x mb-3"></i>
+            <h5 class="text-xl font-semibold mb-2">Tratamento de Dados</h5>
+            <p class="text-sm">Análises, limpeza, backup e gerenciamento completo de dados</p>
+          </div>
+        </div>
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
+          <div class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
+            <i class="fas fa-cogs fa-3x mb-3"></i>
+            <h5 class="text-xl font-semibold mb-2">SEO & Marketing</h5>
+            <p class="text-sm">Destaque sua marca na internet. Redirecionamos clientes a você</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-    <script>
-        // Toggle do menu mobile
-        document.getElementById('menuToggle').addEventListener('click', () => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        });
+  <!-- Interactive Code Demo -->
+  <section class="py-16 bg-[#0a0a12]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-[#2d2d44] p-4 flex space-x-2">
+          <div class="w-3 h-3 rounded-full bg-purple-100"></div>
+          <div class="w-3 h-3 rounded-full bg-purple-300"></div>
+          <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+        </div>
+        <div class="p-6 font-mono">
+          <div class="typing">É hora de dar o primeiro passo... </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Animação de Scroll (Scroll Reveal)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('opacity-0', 'translate-y-8');
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+  <!-- Contact Section -->
+  <section id="contact" class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <!-- Centralizando o container do formulário -->
+      <div class="flex justify-center">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300 w-full lg:w-1/2">
+          <form class="space-y-6 max-w-md mx-auto">
+            <div>
+              <input type="text" class="contact-form-input" placeholder="Nome" required>
+            </div>
+            <div>
+              <input type="email" class="contact-form-input" placeholder="Email" required>
+            </div>
+            <div>
+              <textarea class="contact-form-input" rows="5" placeholder="Descreva seu plano..." required></textarea>
+            </div>
+            <button type="submit" class="contact-form-button">
+              Enviar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var video = document.querySelector('video');
-            video.playbackRate = 0.5;
-        });
-    </script>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    // Toggle do menu mobile
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Animação de Scroll (Scroll Reveal)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var video = document.querySelector('video');
+      video.playbackRate = 0.5;
+    });
+  </script>
 </body>
 
 </html>
