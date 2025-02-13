@@ -33,7 +33,6 @@
             --contact-button-hover-bg: rgba(186, 85, 211, 0.6);
         }
 
-        /* Estilizações customizadas com roxo suave */
         .text-shadow {
             text-shadow: 0 0 40px var(--soft-purple);
         }
@@ -62,7 +61,7 @@
             animation: typing 6s steps(40) 1 forwards;
         }
 
-        /* Grid de luz com roxo suave */
+
         .light-grid {
             background:
                 linear-gradient(rgba(175, 155, 196, 0.05) 1px, transparent 1px),
@@ -150,7 +149,6 @@
             line-height: 1.6;
         }
 
-        /* Melhorando a legibilidade */
         body {
             font-size: 1rem;
             line-height: 1.75;
@@ -159,16 +157,11 @@
 </head>
 
 <body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
-    <!-- Grid de luz (fundo) -->
     <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
-
-    <!-- Partículas -->
-    <div id="particles-js" class="fixed inset-0 z-0"></div>
 
     <!-- Navbar -->
     <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
         <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-            <!-- Nome All-Tech em branco com efeito metálico -->
             <a href="#" class="text-2xl font-semibold metallic-text flex items-center">
                 Arkersoft <i class="fas fa-globe ml-2 text-purple-600/6"></i>
             </a>
@@ -201,18 +194,18 @@
     <section
         class="relative h-screen flex items-center bg-[radial-gradient(circle_at_center,_rgba(175,155,196,0.1)_0%,transparent_50%)] z-10 overflow-hidden">
         <!-- Vídeo de fundo com borda para encaixe visual -->
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-2] glow-border">
-            <source src="earth.mp4" type="video/mp4">
-            Seu navegador não suporta vídeos.
+        <video id="bgVideo" autoplay muted loop playsinline preload="none"
+            class="absolute inset-0 w-full h-full object-cover z-[-2] glow-border" poster="poster.jpg">
+            <!-- O source será injetado via JavaScript -->
         </video>
         <!-- Canvas de partículas (opcional) -->
         <canvas id="particles-canvas" class="absolute inset-0 w-full h-full z-[-1]"></canvas>
         <!-- Container posicionado no canto inferior esquerdo -->
         <div class="absolute inset-0 flex items-center justify-center md:justify-start md:items-end z-20">
             <div class="glass-container text-center md:text-left md:ml-8 md:mb-8">
-            <h1 class="text-6xl md:text-7xl font-extrabold metallic-text mb-4">
-                Experimente o Futuro.
-            </h1>
+                <h1 class="text-6xl md:text-7xl font-extrabold metallic-text mb-4">
+                    Experimente o Futuro.
+                </h1>
                 <p class="text-xl metallic-text">
                     Transforme seu negocio com as melhores soluções em tecnologia
                 </p>
@@ -280,7 +273,6 @@
     <!-- Contact Section -->
     <section id="contact" class="py-16">
         <div class="max-w-7xl mx-auto px-4">
-            <!-- Centralizando o container do formulário -->
             <div class="flex justify-center">
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300 w-full lg:w-1/2">
                     <form class="space-y-6 max-w-md mx-auto">
@@ -325,8 +317,21 @@
         document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
 
         document.addEventListener('DOMContentLoaded', function () {
-            var video = document.querySelector('video');
-            video.playbackRate = 0.5;
+            const bgVideo = document.getElementById('bgVideo');
+            const videoObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const source = document.createElement('source');
+                        source.src = 'earth.mp4';
+                        source.type = 'video/mp4';
+                        bgVideo.appendChild(source);
+                        bgVideo.load();
+                        bgVideo.playbackRate = 0.5;
+                        videoObserver.unobserve(bgVideo);
+                    }
+                });
+            }, { threshold: 0.25 });
+            videoObserver.observe(bgVideo);
         });
     </script>
 </body>
