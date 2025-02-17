@@ -11,9 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
             --soft-purple: rgba(175, 155, 196, 0.4);
@@ -64,7 +64,6 @@
             background-size: 20px 20px;
         }
 
-        /* Glassmorphism para o container de texto */
         .glass-container {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
@@ -84,17 +83,6 @@
             animation: shine 3s linear infinite;
         }
 
-        @media (max-width: 768px) {
-            .metallic-text {
-                background: none;
-                -webkit-background-clip: unset;
-                background-clip: unset;
-                color: white;
-                animation: none;
-            }
-        }
-
-        /* Estilo para o formulário de contato */
         .contact-form-input {
             width: 100%;
             padding: 0.75rem;
@@ -124,12 +112,10 @@
             background-color: var(--contact-button-hover-bg);
         }
 
-        /* Ajuste de espaçamento */
         .section-padding {
             padding: 4rem 2rem;
         }
 
-        /* Hierarquia tipográfica */
         h1,
         h2,
         h3,
@@ -148,12 +134,52 @@
             font-size: 1rem;
             line-height: 1.75;
         }
+
+        .btn-know-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: rgba(186, 85, 211, 0.5);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-know-more:hover {
+            background-color: rgba(186, 85, 211, 0.63);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            border-radius: 20%;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
     </style>
 </head>
 
 <body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
-    <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
 
+    <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
     <!-- Navbar -->
     <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
         <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
@@ -168,20 +194,20 @@
             <ul id="menu" class="hidden md:flex space-x-6">
                 <li><a href="#tech" class="relative px-2 py-1 transition-colors hover:text-purple-300">Tecnologias</a>
                 </li>
-                <li><a href="#cases" class="relative px-2 py-1 transition-colors hover:text-purple-300">Dropshipping</a>
+            <!--   <li><a href="#cases" class="relative px-2 py-1 transition-colors hover:text-purple-300">Dropshipping</a> -->
                 </li>
                 <li><a href="#contact" class="relative px-2 py-1 transition-colors hover:text-purple-300">Contato</a>
                 </li>
-                <li><a href="#solutions" class="relative px-2 py-1 transition-colors hover:text-purple-300">Preços</a>
+            <!--    <li><a href="#solutions" class="relative px-2 py-1 transition-colors hover:text-purple-300">Preços</a> -->
                 </li>
             </ul>
         </div>
         <!-- Menu mobile -->
         <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
             <li class="px-4 py-2 hover:bg-purple-600"><a href="#tech">Tecnologias</a></li>
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#cases">Dropshipping</a></li>
+     <!--   <li class="px-4 py-2 hover:bg-purple-600"><a href="#cases">Dropshipping</a></li> -->
             <li class="px-4 py-2 hover:bg-purple-600"><a href="#contact">Contato</a></li>
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#solutions">Preços</a></li>
+     <!--    <li class="px-4 py-2 hover:bg-purple-600"><a href="#solutions">Preços</a></li> -->
         </ul>
     </nav>
 
@@ -190,7 +216,7 @@
         class="relative h-screen flex items-center bg-[radial-gradient(circle_at_center,_rgba(175,155,196,0.1)_0%,transparent_50%)] z-10 overflow-hidden">
         <!-- Vídeo de fundo com borda para encaixe visual -->
         <video id="bgVideo" autoplay muted loop playsinline preload="none"
-            class="absolute inset-0 w-full h-full object-cover z-[-2] glow-border" poster="poster.jpg">
+            class="absolute inset-0 w-full h-full object-cover z-[-2] glow-border">
         </video>
         <canvas id="particles-canvas" class="absolute inset-0 w-full h-full z-[-1]"></canvas>
         <!-- Container posicionado no canto inferior esquerdo -->
@@ -209,7 +235,7 @@
     <!-- Tech Stack -->
     <section id="tech" class="section-padding">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Principais Serviços</h2>
+            <h2 class="text-3xl font-bold text-center mb-12"></h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
                     <div
@@ -217,14 +243,16 @@
                         <i class="fas fa-atom fa-3x mb-3"></i>
                         <h5 class="text-xl font-semibold mb-2">Criação de Sites</h5>
                         <p class="text-sm">Desenvolvemos sites modernos, do zero ou de um modelo já existente</p>
+                    <!--    <button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
                     </div>
                 </div>
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
                     <div
                         class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
                         <i class="fas fa-robot fa-3x mb-3"></i>
-                        <h5 class="text-xl font-semibold mb-2">Automações e ERP</h5>
+                        <h5 class="text-xl font-semibold mb-2">Automações</h5>
                         <p class="text-sm">Automação de fluxo de trabalho. Reduza esforços desnecessários</p>
+                    <!--<button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
                     </div>
                 </div>
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
@@ -232,15 +260,17 @@
                         class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
                         <i class="fas fa-cloud fa-3x mb-3"></i>
                         <h5 class="text-xl font-semibold mb-2">Tratamento de dados</h5>
-                        <p class="text-sm">Análises, limpeza, backup e gerenciamento completo de dados</p>
+                        <p class="text-sm">Análises BI, ETL, backup e gerenciamento completo de dados</p>
+                    <!--    <button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
                     </div>
                 </div>
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
                     <div
                         class="bg-white/5 border border-purple-200/10 rounded-xl backdrop-blur-md p-6 text-center transform transition duration-300 hover:-translate-y-2 hover:shadow-lg">
                         <i class="fas fa-cogs fa-3x mb-3"></i>
-                        <h5 class="text-xl font-semibold mb-2">SEO & Marketing</h5>
-                        <p class="text-sm">Destaque sua marca na internet. Redirecionamos clientes a você</p>
+                        <h5 class="text-xl font-semibold mb-2">SEO</h5>
+                        <p class="text-sm">Destaque sua presença no universo digital</p>
+                    <!--   <button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
                     </div>
                 </div>
             </div>
@@ -286,6 +316,10 @@
                 </div>
             </div>
         </div>
+        <div id="whatsapp-container" class="whatsapp-container fixed bottom-10 right-20 flex items-center">
+            <a id="whatsapp-icon" href="https://wa.me/+5519998205608" target="_blank" class="whatsapp-button">
+                <img src="logowp.png" alt="WhatsApp">
+            </a>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -297,7 +331,6 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Animação de Scroll (Scroll Reveal)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -314,16 +347,40 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const source = document.createElement('source');
-                        source.src = 'earth.mp4';
+                        source.src = 'techvideo2.mp4';
                         source.type = 'video/mp4';
                         bgVideo.appendChild(source);
                         bgVideo.load();
-                        bgVideo.playbackRate = 0.5;
+                        bgVideo.playbackRate = 1.2;
                         videoObserver.unobserve(bgVideo);
                     }
                 });
             }, { threshold: 0.25 });
             videoObserver.observe(bgVideo);
+        });
+
+        let hasShownExitAlert = false;
+        document.addEventListener("mouseleave", function (e) {
+            if (e.clientY <= 0 && !hasShownExitAlert) {
+                hasShownExitAlert = true;
+                Swal.fire({
+                    title: "Espere...",
+                    icon: "warning",
+                    confirmButtonText: "Ficar no site",
+                    background: "#222",
+                    color: "#fff",
+                    confirmButtonColor: "rgba(186, 85, 211, 0.4)",
+                    html: "Você está <span style='color: red;'>perdendo</span> a oportunidade de fazer sua empresa multiplicar seus <span style='color: #39ff14;'>lucros</span>! Clique no ícone do WhatsApp e descubra como...",
+                    iconColor: "red"
+                });
+            }
+        });
+
+        document.getElementById('whatsapp-message').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                const message = encodeURIComponent(this.value);
+                window.location.href = "https://wa.me/+5519998205608?text=" + message;
+            }
         });
     </script>
 </body>
