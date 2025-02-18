@@ -5,28 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criação de Sites - Arkersoft</title>
+    <title>Arkersoft T.I</title>
     <meta name="description" content="Notícia exclusiva sobre Lorem Ipsum.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --soft-purple: rgba(175, 155, 196, 0.4);
-            --border-color: rgba(241, 237, 237, 0.4);
-            --box-shadow-color: rgba(192, 194, 194, 0.3);
-            --typing-border-color: #adadad;
-            --contact-input-bg: rgba(255, 255, 255, 0.05);
-            --contact-input-border: rgba(186, 85, 211, 0.3);
-            --contact-input-focus-border: rgba(186, 85, 211, 0.5);
-            --contact-input-focus-shadow: rgba(186, 85, 211, 0.4);
-            --contact-button-bg: rgba(186, 85, 211, 0.4);
-            --contact-button-hover-bg: rgba(186, 85, 211, 0.6);
-        }
-
+        html,
         body {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1rem;
             line-height: 1.75;
+            background-color: #0a0a12;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .text-shadow {
@@ -35,8 +28,8 @@
 
         .glow-border {
             box-sizing: border-box;
-            border: 2px solid rgba(83, 83, 83, 0.4);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(186, 85, 211, 0.4);
+            box-shadow: 0 0 15px rgba(190, 190, 190, 0.164);
             animation: glow 3s infinite alternate ease-in-out;
         }
 
@@ -60,10 +53,15 @@
                 linear-gradient(90deg, rgba(175, 155, 196, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
             animation: moveGrid 10s linear infinite;
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .section-padding {
             padding: 4rem 2rem;
+            flex: 1;
         }
 
         p {
@@ -89,79 +87,168 @@
         .btn-know-more:hover {
             background-color: rgba(186, 85, 211, 0.63);
         }
+
+        .blur-text {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(5px);
+            transition: opacity 1s ease, filter 1s ease;
+        }
+
+        .blur-text.visible {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        .section-padding {
+            padding: 4rem 2rem;
+            flex: 1;
+            margin-bottom: 0;
+
+        }
+
+        .prose {
+            margin-bottom: 2rem;
+
+        }
+
+        footer {
+            margin-top: 0;
+            background: transparent;
+            background-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+        }
     </style>
 </head>
 
 <body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
 
-    <div class="fixed inset-0 light-grid pointer-events-none z-0" style="z-index: -1;"></div>
-    <!-- Navbar -->
+    <div class="light-grid"></div>
+
     <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
         <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
             <a href="#" class="text-2xl font-semibold metallic-text flex items-center">
-                Arkersoft <i class="fas fa-globe ml-2 text-purple-600/6"></i> <i class="fas fa-globe ml-2 text-purple-600/6"></i>
+                <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-8 max-w-[150px] mr-2">
             </a>
-            <!-- Botão para menu mobile -->
+
             <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Menu para desktop -->
+
             <ul id="menu" class="hidden md:flex space-x-6">
-                <li><a href="#tech" class="relative px-2 py-1 transition-colors hover:text-purple-300">Tecnologias</a>
+                <li><a href="index.html"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Home</a>
                 </li>
-                <!--   <li><a href="#cases" class="relative px-2 py-1 transition-colors hover:text-purple-300">Dropshipping</a> -->
+                <li><a href="#tech"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Tecnologias</a>
                 </li>
-                <li><a href="#contact" class="relative px-2 py-1 transition-colors hover:text-purple-300">Contato</a>
+                <li><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Preços</a>
                 </li>
-                <!--    <li><a href="#solutions" class="relative px-2 py-1 transition-colors hover:text-purple-300">Preços</a> -->
+                <li><a href="#contact"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Contato</a>
                 </li>
             </ul>
         </div>
-        <!-- Menu mobile -->
         <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#tech">Tecnologias</a></li>
-            <!--   <li class="px-4 py-2 hover:bg-purple-600"><a href="#cases">Dropshipping</a></li> -->
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#contact">Contato</a></li>
-            <!--    <li class="px-4 py-2 hover:bg-purple-600"><a href="#solutions">Preços</a></li> -->
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="index.html">Home</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#tech">Tecnologias</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#contact">Contato</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a
+                    href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0">Preços</a>
+            </li>
         </ul>
     </nav>
 
     <article class="section-padding container mx-auto px-4">
-        <header class="mb-8">
-            <p class="text-gray-300">
-                Publicado em <time datetime="2025-02-17">17 de Fevereiro de 2025</time> por <span class="metallic-text">Alisson Civalski</span>
-            </p>
-        </header>
+        <div class="flex flex-col md:flex-row items-start gap-8">
+            <div class="md:w-full">
+                <section class="prose prose-invert max-w-none">
+                    <h2 class="text-2xl font-semibold mb-4">Por Que Ter um Site Profissional?</h2>
+                    <p style="margin-top: 2rem;">
+                        Ter um site bem desenvolvido não é apenas um detalhe, mas um fator essencial para o sucesso de
+                        qualquer negócio.
+                        Um site profissional transmite credibilidade, melhora sua presença online e ajuda a conquistar
+                        mais clientes.
+                    </p>
 
-        <figure class="mb-8" style="z-index: 999999;">
-            <img src="universo2.png" alt="Profissional trabalhando em um site" id="universo" class="w-full h-auto rounded glow-border">
-            <figcaption class="mt-2 text-gray-400 text-sm text-center">
-                Seu cartão de visitas para o mundo?
-            </figcaption>
-        </figure>
+                    <h2 class="text-xl font-semibold mt-6 mb-4">Sites de Alta Qualidade Feitos para Você</h2>
 
-        <section class="prose prose-invert max-w-none">
-            <p style="margin-top: 2rem;">
-                Mais do que um simples cartão de visitas, um site bem planejado funciona como uma vitrine virtual, disponível 24 horas por dia, 7 dias por semana. Ele possibilita a exibição dos seus produtos e serviços, a divulgação de informações essenciais e a captação de leads mesmo quando a loja física está fechada, ultrapassando barreiras geográficas e alcançando clientes em qualquer lugar.
-            </p>
+                    <p>
+                        <strong>Design Personalizado:</strong> Criamos sites únicos, que combinam com a identidade do
+                        seu negócio e chamam a atenção do seu público.
+                    </p>
+                    <p style="margin-top: 2rem;"></p>
 
-            <p style="margin-top: 2rem;">
-                Investir em um site é, na verdade, apostar na inteligência de mercado. Com o auxílio de ferramentas analíticas, você pode entender o comportamento dos visitantes, refinar suas estratégias de marketing e tomar decisões embasadas que impulsionem o crescimento sustentável do seu negócio.
-            </p>
+                    <p>
+                        <strong>Experiência do Usuário:</strong> Nossos sites são rápidos, intuitivos e adaptáveis para
+                        qualquer dispositivo, proporcionando uma navegação agradável.
+                    </p>
+                    <p style="margin-top: 2rem;"></p>
 
-            <p style="margin-top: 2rem;">
-                Um site de qualidade não apenas reforça a imagem da sua marca, como também transmite profissionalismo e confiança imediata. Pesquisas revelam que mais de 80% dos consumidores recorrem à internet antes de realizar uma compra ou contratar um serviço. Sem uma presença digital robusta, sua empresa pode se tornar invisível para um público valioso. Além disso, fornecedores frequentemente consultam sites para análises e liberação de crédito, tornando-o uma ferramenta crucial para a credibilidade do seu negócio.
-            </p>
-        </section>
+                    <p>
+                        <strong>SEO Otimizado:</strong> Aplicamos estratégias para que seu site seja facilmente
+                        encontrado no Google e atraia mais visitantes.
+                    </p>
+                    <p style="margin-top: 2rem;"></p>
+
+                    <p>
+                        <strong>Segurança e Estabilidade:</strong> Utilizamos tecnologia de ponta para garantir que seu
+                        site funcione sem falhas e esteja sempre protegido.
+                    </p>
+                    <p style="margin-top: 2rem;"></p>
+
+                    <p>
+                        <strong>Suporte Especializado:</strong> Estamos sempre disponíveis para ajudar com atualizações,
+                        melhorias e qualquer necessidade que surgir.
+                    </p>
+                    <p style="margin-top: 2rem;"></p>
+
+                    <p>
+                        Se você quer um site que realmente traga resultados para o seu negócio, entre em contato conosco
+                        e descubra como podemos transformar sua presença online!
+                    </p>
+                    <p style="margin-top: 2rem;"></p>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
+                        class="btn-know-more blur-text">Agende Uma Avaliação Gratuita</a>
+                </section>
+            </div>
+        </div>
     </article>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 border-t border-gray-700">
+    <footer class="border-t border-gray-700">
         <div class="container mx-auto px-4 py-4 text-center">
             <p class="text-gray-400">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
         </div>
     </footer>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const paragraphs = document.querySelectorAll("p");
+        paragraphs.forEach(paragraph => {
+            const text = paragraph.innerText;
+            paragraph.innerHTML = "";
+            text.split(" ").forEach((word, index) => {
+                const span = document.createElement("span");
+                span.classList.add("blur-text");
+                span.style.transitionDelay = `${index * 10}ms`;
+                span.innerText = word;
+                paragraph.appendChild(span);
+                paragraph.appendChild(document.createTextNode(" "));
+            });
+        });
+
+        const spans = document.querySelectorAll(".blur-text");
+        spans.forEach((span, index) => {
+            setTimeout(() => {
+                span.classList.add("visible");
+            }, index * 20);
+        });
+    });
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 </html>

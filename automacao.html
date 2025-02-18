@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkersoft T.I</title>
+    <meta name="description" content="Automação e MVP.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html,
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            line-height: 1.75;
+            background-color: #0a0a12;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-shadow {
+            text-shadow: 0 0 40px var(--soft-purple);
+        }
+
+        .glow-border {
+            box-sizing: border-box;
+            border: 2px solid rgba(186, 85, 211, 0.4);
+            box-shadow: 0 0 15px rgba(190, 190, 190, 0.164);
+            animation: glow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveGrid {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+
+            50% {
+                background-position: 10px 10px, 10px 10px;
+            }
+
+            100% {
+                background-position: 0 0, 0 0;
+            }
+        }
+
+        .light-grid {
+            background:
+                linear-gradient(rgba(175, 155, 196, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(175, 155, 196, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: moveGrid 10s linear infinite;
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .section-padding {
+            padding: 4rem 2rem;
+            flex: 1;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-know-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: rgba(186, 85, 211, 0.5);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-know-more:hover {
+            background-color: rgba(186, 85, 211, 0.63);
+        }
+
+        .blur-text {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(5px);
+            transition: opacity 1s ease, filter 1s ease;
+        }
+
+        .blur-text.visible {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        .section-padding {
+            padding: 4rem 2rem;
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .prose {
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            margin-top: 0;
+            background: transparent;
+            background-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+        }
+    </style>
+</head>
+
+<body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
+
+    <div class="light-grid"></div>
+    <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+            <a href="#" class="text-2xl font-semibold metallic-text flex items-center">
+                <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-8 max-w-[150px] mr-2">
+            </a>
+            <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul id="menu" class="hidden md:flex space-x-6">
+                <li><a href="index.html"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Home</a>
+                </li>
+                <li><a href="#tech"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Tecnologias</a>
+                </li>
+                <li><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Preços</a>
+                </li>
+                <li><a href="#contact"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Contato</a>
+                </li>
+            </ul>
+        </div>
+        <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="index.html">Home</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#tech">Tecnologias</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#contact">Contato</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a
+                    href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0">Preços</a>
+            </li>
+        </ul>
+    </nav>
+
+    <article class="section-padding container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-start gap-8">
+            <div class="md:w-full">
+                <h2 class="text-2xl font-semibold mb-4">Automação e Eficiência nos Negócios</h2>
+                <p style="margin-top: 2rem;">
+                    A implementação de automações reduz drasticamente o tempo gasto em tarefas repetitivas, permitindo
+                    que as equipes
+                    foquem em atividades estratégicas. Além disso, sistemas automatizados minimizam erros humanos e
+                    garantem maior
+                    consistência nos processos.
+                </p>
+
+                <h2 class="text-xl font-semibold mt-6 mb-4">Validação Rápida com MVP</h2>
+                <p>
+                    <strong>Produto Mínimo Viável (MVP):</strong> Criar um MVP é essencial para testar rapidamente uma
+                    ideia no mercado
+                    sem grandes investimentos. Isso permite validar hipóteses, obter feedback real de usuários e
+                    otimizar o produto antes
+                    de escalá-lo.
+                </p>
+                <p style="margin-top: 2rem;"></p>
+
+                <p>
+                    <strong>Redução de Custos:</strong> Empresas que investem em automação conseguem otimizar recursos,
+                    diminuir desperdícios
+                    e aumentar a produtividade. Isso se reflete em operações mais enxutas e eficientes.
+                </p>
+                <p style="margin-top: 2rem;"></p>
+
+                <p>
+                    <strong>Agilidade no Mercado:</strong> No cenário atual, a velocidade de adaptação é crucial.
+                    Estratégias como
+                    desenvolvimento ágil e automações permitem que empresas respondam rapidamente às mudanças e se
+                    destaquem da concorrência.
+                </p>
+                <p style="margin-top: 2rem;"></p>
+
+                <p>
+                    <strong>Escalabilidade:</strong> Negócios que estruturam seus processos com automações desde o
+                    início têm maior facilidade
+                    para crescer sem comprometer a qualidade do serviço.
+                </p>
+                <p style="margin-top: 2rem;"></p>
+
+                <p>
+                    <strong>Tomada de Decisão Baseada em Dados:</strong> Automatizar a coleta e análise de informações
+                    permite decisões
+                    mais embasadas, ajudando empresas a identificarem oportunidades e corrigirem falhas rapidamente.
+                </p>
+                <p style="margin-top: 2rem;"></p>
+
+                <p>
+                    <strong>Conclusão:</strong> Incorporar automações e validar ideias com MVPs são estratégias
+                    fundamentais para
+                    garantir um crescimento sustentável, reduzir custos e aumentar a eficiência operacional em qualquer
+                    negócio.
+                </p>
+                <p style="margin-top: 2rem;"></p>
+                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
+                    class="btn-know-more blur-text">Agende Uma Avaliação Gratuita</a>
+                </section>
+            </div>
+        </div>
+    </article>
+    <footer class="border-t border-gray-700">
+        <div class="container mx-auto px-4 py-4 text-center">
+            <p class="text-gray-400">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const paragraphs = document.querySelectorAll("p");
+        paragraphs.forEach(paragraph => {
+            const text = paragraph.innerText;
+            paragraph.innerHTML = "";
+            text.split(" ").forEach((word, index) => {
+                const span = document.createElement("span");
+                span.classList.add("blur-text");
+                span.style.transitionDelay = `${index * 10}ms`;
+                span.innerText = word;
+                paragraph.appendChild(span);
+                paragraph.appendChild(document.createTextNode(" "));
+            });
+        });
+
+        const spans = document.querySelectorAll(".blur-text");
+        spans.forEach((span, index) => {
+            setTimeout(() => {
+                span.classList.add("visible");
+            }, index * 20);
+        });
+    });
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+</html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arkersoft TI Solutions</title>
+    <title>Arkersoft T.I</title>
     <meta name="description" content="Soluções em IA, Desenvolvimento de Software de Ponta e Transformação Digital">
     <meta name="keywords" content="Inteligência Artificial, Cloud Computing, IoT, DevOps, Dropshipping, Consultoria">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
@@ -54,7 +54,6 @@
             animation: typing 6s steps(40) 1 forwards;
         }
 
-
         @keyframes moveGrid {
             0% {
                 background-position: 0 0, 0 0;
@@ -85,15 +84,6 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 100%;
-        }
-
-        .metallic-text {
-            background: linear-gradient(120deg, rgb(253, 253, 253) 0%, rgba(238, 238, 238, 0.979) 50%, rgb(255, 255, 255) 50%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: shine 3s linear infinite;
         }
 
         .contact-form-input {
@@ -144,6 +134,7 @@
         }
 
         body {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1rem;
             line-height: 1.75;
         }
@@ -186,65 +177,69 @@
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
+
+        footer {
+            margin-top: 0;
+            background: transparent;
+            background-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+        }
     </style>
 </head>
 
 <body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
 
     <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
-    <!-- Navbar -->
     <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
         <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
             <a href="#" class="text-2xl font-semibold metallic-text flex items-center">
-                Arkersoft <i class="fas fa-globe ml-2 text-purple-600/6"></i>
+                <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-8 max-w-[150px] mr-2">
             </a>
-            <!-- Botão para menu mobile -->
             <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Menu para desktop -->
             <ul id="menu" class="hidden md:flex space-x-6">
-                <li><a href="#tech" class="relative px-2 py-1 transition-colors hover:text-purple-300">Tecnologias</a>
+                <li><a href="index.html"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Home</a>
                 </li>
-                <!--   <li><a href="#cases" class="relative px-2 py-1 transition-colors hover:text-purple-300">Dropshipping</a> -->
+                <li><a href="#tech"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Tecnologias</a>
                 </li>
-                <li><a href="#contact" class="relative px-2 py-1 transition-colors hover:text-purple-300">Contato</a>
+                <li><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Preços</a>
                 </li>
-                <!--    <li><a href="#solutions" class="relative px-2 py-1 transition-colors hover:text-purple-300">Preços</a> -->
+                <li><a href="#contact"
+                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Contato</a>
                 </li>
             </ul>
         </div>
-        <!-- Menu mobile -->
         <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#tech">Tecnologias</a></li>
-            <!--   <li class="px-4 py-2 hover:bg-purple-600"><a href="#cases">Dropshipping</a></li> -->
-            <li class="px-4 py-2 hover:bg-purple-600"><a href="#contact">Contato</a></li>
-            <!--    <li class="px-4 py-2 hover:bg-purple-600"><a href="#solutions">Preços</a></li> -->
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="index.html">Home</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#tech">Tecnologias</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#contact">Contato</a></li>
+            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a
+                    href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0">Preços</a>
+            </li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section
         class="relative h-screen flex items-center bg-[radial-gradient(circle_at_center,_rgba(175,155,196,0.1)_0%,transparent_50%)] z-10 overflow-hidden">
-        <!-- Vídeo de fundo com borda para encaixe visual -->
         <video id="bgVideo" autoplay muted loop playsinline preload="none"
             class="absolute inset-0 w-full h-full object-cover z-[-2] glow-border">
         </video>
         <canvas id="particles-canvas" class="absolute inset-0 w-full h-full z-[-1]"></canvas>
-        <!-- Container posicionado no canto inferior esquerdo -->
         <div class="absolute inset-0 flex items-center justify-center md:justify-start md:items-end z-20">
             <div class="glass-container text-center md:text-left md:ml-8 md:mb-8">
                 <h1 class="text-6xl md:text-7xl font-extrabold metallic-text mb-4">
-                    Experimente o Futuro.
+                    Experimente o Futuro
                 </h1>
                 <p class="text-xl metallic-text">
-                    Transforme seu negocio com as melhores soluções em tecnologia
+                    Esteja sempre um passo a frente nas tendências do mundo tecnológico...
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Tech Stack -->
     <section id="tech" class="section-padding">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12"></h2>
@@ -255,7 +250,8 @@
                         <i class="fas fa-atom fa-3x mb-3"></i>
                         <h5 class="text-xl font-semibold mb-2">Criação de Sites</h5>
                         <p class="text-sm">Desenvolvemos sites modernos, do zero ou de um modelo já existente</p>
-                        <!--    <button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
+                        <button class="btn-know-more" onclick="window.location.href='site.html'">Explorar
+                            Mais</button>
                     </div>
                 </div>
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
@@ -264,7 +260,8 @@
                         <i class="fas fa-robot fa-3x mb-3"></i>
                         <h5 class="text-xl font-semibold mb-2">Automações</h5>
                         <p class="text-sm">Automação de fluxo de trabalho. Reduza esforços desnecessários</p>
-                        <!--<button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
+                        <button class="btn-know-more" onclick="window.location.href='automacao.html'">Explorar
+                            Mais</button>
                     </div>
                 </div>
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
@@ -273,7 +270,7 @@
                         <i class="fas fa-cloud fa-3x mb-3"></i>
                         <h5 class="text-xl font-semibold mb-2">Tratamento de dados</h5>
                         <p class="text-sm">Análises BI, ETL, backup e gerenciamento completo de dados</p>
-                        <!--    <button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
+                        <button class="btn-know-more" onclick="window.location.href='dados.html'">Explorar Mais</button>
                     </div>
                 </div>
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300">
@@ -282,14 +279,13 @@
                         <i class="fas fa-cogs fa-3x mb-3"></i>
                         <h5 class="text-xl font-semibold mb-2">SEO</h5>
                         <p class="text-sm">Destaque sua presença no universo digital</p>
-                        <!--   <button class="btn-know-more" onclick="window.location.href='site.html'">Saiba Mais</button> -->
+                        <button class="btn-know-more" onclick="window.location.href='seo.html'">Explore mais</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Code Demo -->
     <section class="py-16 bg-[#0a0a12]"></section>
     <div class="max-w-7xl mx-auto px-4">
         <div class="rounded-lg shadow-lg overflow-hidden">
@@ -305,7 +301,6 @@
     </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-center">
@@ -328,78 +323,81 @@
                 </div>
             </div>
         </div>
-        <div id="whatsapp-container" class="whatsapp-container fixed bottom-10 right-20 flex items-center">
-            <a id="whatsapp-icon" href="https://wa.me/+5519998205608" target="_blank" class="whatsapp-button">
-                <img src="logowp.png" alt="WhatsApp">
-            </a>
+        <div id="whatsapp-container" class="whatsapp-container fixed bottom-10 right-20 flex items-center"></div>
+        <a id="whatsapp-icon" href="https://wa.me/+5519998205608" target="_blank" class="whatsapp-button">
+            <img src="logowp.png" alt="WhatsApp">
+        </a>
     </section>
-    <script>
-        // Toggle do menu mobile
-        document.getElementById('menuToggle').addEventListener('click', () => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('opacity-0', 'translate-y-8');
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const bgVideo = document.getElementById('bgVideo');
-            const videoObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const source = document.createElement('source');
-                        source.src = 'earth.mp4';
-                        source.type = 'video/mp4';
-                        bgVideo.appendChild(source);
-                        bgVideo.load();
-                        bgVideo.playbackRate = 0.45;
-                        videoObserver.unobserve(bgVideo);
-                    }
-                });
-            }, { threshold: 0.25 });
-            videoObserver.observe(bgVideo);
-        });
-
-        let hasShownExitAlert = false;
-        document.addEventListener("mouseleave", function (e) {
-            if (e.clientY <= 0 && !hasShownExitAlert) {
-                hasShownExitAlert = true;
-                Swal.fire({
-                    title: "Espere...",
-                    icon: "warning",
-                    confirmButtonText: "Ficar no site",
-                    background: "#222",
-                    color: "#fff",
-                    confirmButtonColor: "rgba(186, 85, 211, 0.4)",
-                    html: "Você está perdendo a oportunidade de fazer sua empresa multiplicar seus lucros! Clique no ícone do WhatsApp e descubra como...",
-                    iconColor: "red"
-                });
-            }
-        });
-
-        document.getElementById('whatsapp-message').addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                const message = encodeURIComponent(this.value);
-                window.location.href = "https://wa.me/+5519998205608?text=" + message;
-            }
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>  
-    
-    <footer class="bg-gray-800 border-t border-gray-700">
+    <footer class="border-t border-gray-700">
         <div class="container mx-auto px-4 py-4 text-center">
             <p class="text-gray-400">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
         </div>
     </footer>
 </body>
+<script>
+    document.getElementById('menuToggle').addEventListener('click', () => {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0', 'translate-y-8');
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const bgVideo = document.getElementById('bgVideo');
+        const videoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const source = document.createElement('source');
+                    source.src = 'earth.mp4';
+                    source.type = 'video/mp4';
+                    bgVideo.appendChild(source);
+                    bgVideo.load();
+                    bgVideo.playbackRate = 0.45;
+                    videoObserver.unobserve(bgVideo);
+                }
+            });
+        }, { threshold: 0.25 });
+        videoObserver.observe(bgVideo);
+    });
+
+    let hasShownExitAlert = localStorage.getItem('exitAlertShown') === 'true';
+
+    document.addEventListener("mouseleave", function (e) {
+        if (e.clientY <= 0 && !hasShownExitAlert) {
+            hasShownExitAlert = true;
+            localStorage.setItem('exitAlertShown', 'true');
+
+            Swal.fire({
+                title: "Espere...",
+                icon: "warning",
+                confirmButtonText: "Ficar no site",
+                background: "#222",
+                color: "#fff",
+                confirmButtonColor: "rgba(186, 85, 211, 0.4)",
+                html: "Você está perdendo a oportunidade de fazer sua empresa multiplicar seus lucros! Clique no ícone do WhatsApp e descubra como...",
+                iconColor: "red",
+                width: '80%',
+                heightAuto: false
+            });
+        }
+    });
+
+    document.getElementById('whatsapp-message').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            const message = encodeURIComponent(this.value);
+            window.location.href = "https://wa.me/+5519998205608?text=" + message;
+        }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
 </html>
