@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkersoft T.I</title>
     <meta name="description" content="Soluções em IA, Desenvolvimento de Software de Ponta e Transformação Digital">
-    <meta name="keywords" content="Inteligência Artificial, Cloud Computing, IoT, DevOps, Dropshipping, Consultoria">
+    <meta name="keywords" content="Inteligência Artificial, Cloud Computing, IoT, DevOps, Consultoria em T.I">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -307,7 +307,7 @@
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300 w-full lg:w-1/2">
                     <form id="contatoForm" class="space-y-6 max-w-md mx-auto">
                         <div>
-                            <input type="text" name="nome" class="contact-form-input" placeholder="Seu Nome" required>
+                            <input type="text" name="text" class="contact-form-input" placeholder="Seu Nome" required>
                         </div>
                         <div>
                             <input type="email" name="email" class="contact-form-input" placeholder="Seu E-mail" required>
@@ -397,26 +397,46 @@
     });
 </script>
 <script>
-    document.getElementById("contatoForm").addEventListener("submit", async function(e) {
-      e.preventDefault(); 
 
-      const formData = new FormData(this);
-      const data = Object.fromEntries(formData);
+    document.getElementById("contatoForm").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-      try {
-        const response = await fetch("http://localhost:3000/enviar-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-        const mensagem = await response.text();
-        alert(mensagem);
-      } catch (error) {
-        alert("Erro ao enviar o formulário: " + error.message);
-      }
+        const serviceID = "service_ndqg9l3";
+        const templateID = "template_gqsg8un"; 
+
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Sua mensagem foi enviada com sucesso!",
+                    icon: "success",
+                    confirmButtonText: "OK",
+                    background: "#222",
+                    color: "#fff",
+                    confirmButtonColor: "rgba(186, 85, 211, 0.4)",
+                });
+                document.getElementById("contatoForm").reset();
+            }, (err) => {
+                Swal.fire({
+                    title: "Erro!",
+                    text: "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.",
+                    icon: "error",
+                    confirmButtonText: "OK",
+                    background: "#222",
+                    color: "#fff",
+                    confirmButtonColor: "rgba(186, 85, 211, 0.4)",
+                });
+                console.log('FAILED...', err);
+            });
     });
+    
   </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function() {
+        emailjs.init("ZcLVZ_f6Jh1JYA-0D"); 
+    })();
+</script>
 </html>
