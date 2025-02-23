@@ -234,7 +234,7 @@
                     Experimente o Futuro
                 </h1>
                 <p class="text-xl metallic-text">
-                    Esteja sempre um passo a frente nas tendências do mundo tecnológico...
+                    Sempre um passo a frente nas tendências tecnológicas do mundo...
                 </p>
             </div>
         </div>
@@ -279,7 +279,7 @@
                         <i class="fas fa-cogs fa-3x mb-3"></i>
                         <h5 class="text-xl font-semibold mb-2">SEO</h5>
                         <p class="text-sm">Destaque sua presença no universo digital</p>
-                        <button class="btn-know-more" onclick="window.location.href='seo.html'">Explore mais</button>
+                        <button class="btn-know-more" onclick="window.location.href='seo.html'">Explorar mais</button>
                     </div>
                 </div>
             </div>
@@ -305,16 +305,15 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-center">
                 <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-300 w-full lg:w-1/2">
-                    <form class="space-y-6 max-w-md mx-auto">
+                    <form id="contatoForm" class="space-y-6 max-w-md mx-auto">
                         <div>
-                            <input type="text" class="contact-form-input" placeholder="Nome" required>
+                            <input type="text" name="nome" class="contact-form-input" placeholder="Seu Nome" required>
                         </div>
                         <div>
-                            <input type="email" class="contact-form-input" placeholder="Email" required>
+                            <input type="email" name="email" class="contact-form-input" placeholder="Seu E-mail" required>
                         </div>
                         <div>
-                            <textarea class="contact-form-input" rows="5" placeholder="Descreva seu plano..."
-                                required></textarea>
+                            <textarea name="mensagem" class="contact-form-input" rows="5" placeholder="Sua Mensagem" required></textarea>
                         </div>
                         <button type="submit" class="contact-form-button">
                             Enviar
@@ -397,6 +396,26 @@
         }
     });
 </script>
+<script>
+    document.getElementById("contatoForm").addEventListener("submit", async function(e) {
+      e.preventDefault(); 
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      try {
+        const response = await fetch("http://localhost:3000/enviar-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const mensagem = await response.text();
+        alert(mensagem);
+      } catch (error) {
+        alert("Erro ao enviar o formulário: " + error.message);
+      }
+    });
+  </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
