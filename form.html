@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário Dinâmico - Arkersoft</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: #0a0a12;
+    }
+
+    .glass-container {
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      background-color: rgba(17, 25, 40, 0.75);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      background-color: rgba(186, 85, 211, 0.15);
+      border-color: rgba(186, 85, 211, 0.5);
+      box-shadow: 0 0 12px rgba(186, 85, 211, 0.2);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+  <div id="particles-js"></div>
+
+  <div class="glass-container p-6 sm:p-8 max-w-2xl w-full mx-4 shadow-xl">
+    <form id="surveyForm" class="space-y-6">
+      <!-- Pergunta 1 -->
+      <div class="question active fade-in space-y-4" id="q1">
+        <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4">Qual seu meio de transporte preferido?</h3>
+        <div class="space-y-3">
+          <div class="radio-option">
+            <input type="radio" name="q1" value="Carro" id="q1_1" class="hidden">
+            <label for="q1_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Carro
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q1" value="Moto" id="q1_2" class="hidden">
+            <label for="q1_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Moto
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q1" value="Bicicleta" id="q1_3" class="hidden">
+            <label for="q1_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Bicicleta
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q1" value="other" id="q1_4" class="hidden">
+            <label for="q1_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Outro
+              <input type="text" class="other-input mt-3 w-full bg-gray-800/50 rounded px-4 py-2 text-white hidden" 
+                     name="q1_other" placeholder="Especifique">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pergunta 2 -->
+      <div class="question hidden fade-in space-y-4" id="q2">
+        <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4">Qual seu hobby favorito?</h3>
+        <div class="space-y-3">
+          <div class="radio-option">
+            <input type="radio" name="q2" value="Esportes" id="q2_1" class="hidden">
+            <label for="q2_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Esportes
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q2" value="Leitura" id="q2_2" class="hidden">
+            <label for="q2_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Leitura
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q2" value="Viagens" id="q2_3" class="hidden">
+            <label for="q2_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Viagens
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q2" value="other" id="q2_4" class="hidden">
+            <label for="q2_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Outro
+              <input type="text" class="other-input mt-3 w-full bg-gray-800/50 rounded px-4 py-2 text-white hidden" 
+                     name="q2_other" placeholder="Especifique">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pergunta 3 -->
+      <div class="question hidden fade-in space-y-4" id="q3">
+        <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4">Qual tipo de filme você prefere?</h3>
+        <div class="space-y-3">
+          <div class="radio-option">
+            <input type="radio" name="q3" value="Ação" id="q3_1" class="hidden">
+            <label for="q3_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Ação
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q3" value="Comédia" id="q3_2" class="hidden">
+            <label for="q3_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Comédia
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q3" value="Drama" id="q3_3" class="hidden">
+            <label for="q3_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Drama
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q3" value="other" id="q3_4" class="hidden">
+            <label for="q3_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+              Outro
+              <input type="text" class="other-input mt-3 w-full bg-gray-800/50 rounded px-4 py-2 text-white hidden" 
+                     name="q3_other" placeholder="Especifique">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dados de contato -->
+      <div class="contact-info hidden fade-in space-y-4" id="contact">
+        <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4">Deixe seus dados para contato:</h3>
+        <input type="text" name="nome" placeholder="Nome completo" 
+               class="w-full bg-gray-800/50 rounded-lg px-4 py-3 text-white border border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-800 outline-none transition-all">
+        <input type="email" name="email" placeholder="E-mail" 
+               class="w-full bg-gray-800/50 rounded-lg px-4 py-3 text-white border border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-800 outline-none transition-all">
+        <input type="tel" name="telefone" placeholder="Telefone" 
+               class="w-full bg-gray-800/50 rounded-lg px-4 py-3 text-white border border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-800 outline-none transition-all">
+      </div>
+
+      <button type="button" id="nextBtn" 
+              class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-[1.02]">
+        Próxima
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // Configuração das partículas
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#ba55d3' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 250,
+          color: '#ba55d3',
+          opacity: 0.5,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 0.3,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'repulse' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          repulse: { distance: 100, duration: 0.4 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Lógica do formulário
+    let currentQuestion = 1;
+    const totalQuestions = 3;
+    const answers = {};
+
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const otherInput = this.parentElement.querySelector('.other-input');
+        if (otherInput) {
+          otherInput.classList.toggle('hidden', this.value !== 'other');
+          if (this.value === 'other') otherInput.focus();
+        }
+      });
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', function() {
+      const currentQ = document.getElementById(`q${currentQuestion}`);
+      const selected = currentQ.querySelector('input[type="radio"]:checked');
+
+      if (!selected) {
+        alert('Por favor, selecione uma opção!');
+        return;
+      }
+
+      // Salvar resposta
+      answers[`q${currentQuestion}`] = {
+        value: selected.value,
+        other: selected.value === 'other' 
+               ? currentQ.querySelector('.other-input').value 
+               : null
+      };
+
+      // Animação de transição
+      currentQ.classList.remove('active');
+      currentQ.classList.add('hidden');
+
+      if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        const nextQ = document.getElementById(`q${currentQuestion}`);
+        nextQ.classList.remove('hidden');
+        nextQ.classList.add('active', 'fade-in');
+      } else {
+        document.getElementById('contact').classList.remove('hidden');
+        document.getElementById('contact').classList.add('active', 'fade-in');
+        this.textContent = 'Enviar';
+        this.removeEventListener('click', arguments.callee);
+        this.addEventListener('click', submitForm);
+      }
+    });
+
+    function submitForm() {
+      const formData = {
+        ...answers,
+        nome: document.querySelector('input[name="nome"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        telefone: document.querySelector('input[name="telefone"]').value
+      };
+
+      // Simular envio
+      console.log('Dados coletados:', formData);
+      alert('Obrigado por responder!\nSeus dados foram registrados com sucesso.');
+      document.getElementById('surveyForm').reset();
+      window.location.reload();
+    }
+  </script>
+</body>
+</html>
