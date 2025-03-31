@@ -37,6 +37,15 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    /* Estilo para o efeito de hover */
+    .radio-option label {
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .radio-option label:hover {
+        background-color: rgba(186, 85, 211, 0.3); /* Cor de fundo ao passar o mouse */
+        border-color: rgba(186, 85, 211, 0.8); /* Cor da borda ao passar o mouse */
+    }
   </style>
 </head>
 <body class="min-h-screen bg-gray-900 flex items-center justify-center p-4">
@@ -46,29 +55,35 @@
     <form id="surveyForm" class="space-y-6">
       <!-- Pergunta 1 -->
       <div class="question active fade-in space-y-4" id="q1">
-        <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4">Qual seu meio de transporte preferido?</h3>
+        <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4">Qual solução você esta buscando para seu negócio?</h3>
         <div class="space-y-3">
           <div class="radio-option">
-            <input type="radio" name="q1" value="Carro" id="q1_1" class="hidden">
-            <label for="q1_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
-              Carro
+            <input type="radio" name="q1" value="Chatbot I.A" id="q1_1" class="hidden">
+            <label for="q1_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Chatbot I.A - Agentes de inteligência artificial" data-hover-text="Entenda como um Chatbot I.A pode revolucionar seu atendimento ao cliente.">
+              Chatbot I.A - Agentes de inteligência artificial
             </label>
           </div>
           <div class="radio-option">
-            <input type="radio" name="q1" value="Moto" id="q1_2" class="hidden">
-            <label for="q1_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
-              Moto
+            <input type="radio" name="q1" value="Automações" id="q1_2" class="hidden">
+            <label for="q1_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Automações (Aceleração de fluxo de trabalho)" data-hover-text="Descubra como automatizar tarefas e otimizar seu fluxo de trabalho.">
+              Automações (Aceleração de fluxo de trabalho)
             </label>
           </div>
           <div class="radio-option">
-            <input type="radio" name="q1" value="Bicicleta" id="q1_3" class="hidden">
-            <label for="q1_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
-              Bicicleta
+            <input type="radio" name="q1" value="Marketing" id="q1_3" class="hidden">
+            <label for="q1_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Marketing (Tráfego pago e orgânico)" data-hover-text="Explore estratégias de marketing para aumentar sua visibilidade online.">
+              Marketing (Tráfego pago e orgânico)
             </label>
           </div>
           <div class="radio-option">
-            <input type="radio" name="q1" value="other" id="q1_4" class="hidden">
-            <label for="q1_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <input type="radio" name="q1" value="Design" id="q1_4" class="hidden">
+            <label for="q1_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Design (Material para divulgação)" data-hover-text="Crie materiais de divulgação impactantes e profissionais.">
+              Design (Material para divulgação)
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="q1" value="other" id="q1_5" class="hidden">
+            <label for="q1_5" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Outro" data-hover-text="Descreva sua necessidade específica.">
               Outro
               <input type="text" class="other-input mt-3 w-full bg-gray-800/50 rounded px-4 py-2 text-white hidden" 
                      name="q1_other" placeholder="Especifique">
@@ -83,25 +98,25 @@
         <div class="space-y-3">
           <div class="radio-option">
             <input type="radio" name="q2" value="Esportes" id="q2_1" class="hidden">
-            <label for="q2_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q2_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Esportes" data-hover-text="Você gosta de se manter ativo e saudável?">
               Esportes
             </label>
           </div>
           <div class="radio-option">
             <input type="radio" name="q2" value="Leitura" id="q2_2" class="hidden">
-            <label for="q2_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q2_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Leitura" data-hover-text="Você é um amante de livros e conhecimento?">
               Leitura
             </label>
           </div>
           <div class="radio-option">
             <input type="radio" name="q2" value="Viagens" id="q2_3" class="hidden">
-            <label for="q2_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q2_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Viagens" data-hover-text="Você adora explorar novos lugares e culturas?">
               Viagens
             </label>
           </div>
           <div class="radio-option">
             <input type="radio" name="q2" value="other" id="q2_4" class="hidden">
-            <label for="q2_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q2_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Outro" data-hover-text="Conte-nos mais sobre seu hobby!">
               Outro
               <input type="text" class="other-input mt-3 w-full bg-gray-800/50 rounded px-4 py-2 text-white hidden" 
                      name="q2_other" placeholder="Especifique">
@@ -116,25 +131,25 @@
         <div class="space-y-3">
           <div class="radio-option">
             <input type="radio" name="q3" value="Ação" id="q3_1" class="hidden">
-            <label for="q3_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q3_1" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Ação" data-hover-text="Você gosta de filmes cheios de adrenalina?">
               Ação
             </label>
           </div>
           <div class="radio-option">
             <input type="radio" name="q3" value="Comédia" id="q3_2" class="hidden">
-            <label for="q3_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q3_2" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Comédia" data-hover-text="Você prefere filmes que te fazem rir?">
               Comédia
             </label>
           </div>
           <div class="radio-option">
             <input type="radio" name="q3" value="Drama" id="q3_3" class="hidden">
-            <label for="q3_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q3_3" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Drama" data-hover-text="Você se emociona com histórias profundas?">
               Drama
             </label>
           </div>
           <div class="radio-option">
             <input type="radio" name="q3" value="other" id="q3_4" class="hidden">
-            <label for="q3_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white">
+            <label for="q3_4" class="block p-3 sm:p-4 rounded-lg border border-gray-600 cursor-pointer transition-all hover:border-purple-400 text-white" data-original-text="Outro" data-hover-text="Qual outro gênero de filme você gosta?">
               Outro
               <input type="text" class="other-input mt-3 w-full bg-gray-800/50 rounded px-4 py-2 text-white hidden" 
                      name="q3_other" placeholder="Especifique">
@@ -206,6 +221,7 @@
     let currentQuestion = 1;
     const totalQuestions = 3;
     const answers = {};
+    //const ipslumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."; // Texto Ipslum - REMOVIDO
 
     document.querySelectorAll('input[type="radio"]').forEach(radio => {
       radio.addEventListener('change', function() {
@@ -215,6 +231,20 @@
           if (this.value === 'other') otherInput.focus();
         }
       });
+    });
+
+    // Adicionando o efeito de hover
+    document.querySelectorAll('.radio-option label').forEach(label => {
+        const originalText = label.dataset.originalText;
+        const hoverText = label.dataset.hoverText;
+
+        label.addEventListener('mouseover', () => {
+            label.textContent = hoverText;
+        });
+
+        label.addEventListener('mouseout', () => {
+            label.textContent = originalText;
+        });
     });
 
     document.getElementById('nextBtn').addEventListener('click', function() {
@@ -262,9 +292,12 @@
 
       // Simular envio
       console.log('Dados coletados:', formData);
-      alert('Obrigado por responder!\nSeus dados foram registrados com sucesso.');
-      document.getElementById('surveyForm').reset();
-      window.location.reload();
+      //alert('Obrigado por responder!\nSeus dados foram registrados com sucesso.');
+      //document.getElementById('surveyForm').reset();
+      //window.location.reload();
+
+      // Redirecionar para outra página
+      window.location.href = "https://www.arkersoft.com"; // Substitua pelo URL desejado
     }
   </script>
 </body>
