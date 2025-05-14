@@ -7,92 +7,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkersoft T.I</title>
     <meta name="description" content="Preços de sites, softwares e serviços de tecnologia da informação.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        html,
+        :root {
+            --main-bg: #0c0c14;
+            --card-bg: #15151f;
+            --accent-color: #8a2be2;
+            --accent-glow: rgba(138, 43, 226, 0.6);
+            --text-primary: #f8f9fa;
+            --text-secondary: #c7c7d1;
+            --text-accent: #b794f4;
+            --transition-speed: 0.3s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
             line-height: 1.75;
-            background-color: #0a0a12;
+            background-color: var(--main-bg);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        .text-shadow {
-            text-shadow: 0 0 40px var(--soft-purple);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #9c55f6, #6b46c1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.75rem;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(138, 43, 226, 0.15);
         }
 
         .glow-border {
             box-sizing: border-box;
-            border: 2px solid rgba(186, 85, 211, 0.4);
-            box-shadow: 0 0 15px rgba(190, 190, 190, 0.164);
-            animation: glow 3s infinite alternate ease-in-out;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
+            animation: glow 6s infinite alternate ease-in-out;
         }
 
-        @keyframes moveGrid {
+        @keyframes glow {
             0% {
-                background-position: 0 0, 0 0;
+                box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
             }
-
             50% {
-                background-position: 10px 10px, 10px 10px;
+                box-shadow: 0 0 25px rgba(138, 43, 226, 0.5);
             }
-
             100% {
-                background-position: 0 0, 0 0;
+                box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
             }
         }
 
         .light-grid {
             background:
-                linear-gradient(rgba(175, 155, 196, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(175, 155, 196, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-            animation: moveGrid 10s linear infinite;
+                linear-gradient(rgba(138, 43, 226, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(138, 43, 226, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 20s linear infinite;
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: -1;
         }
 
-        .section-padding {
-            padding: 4rem 2rem;
-            flex: 1;
+        @keyframes moveGrid {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+            50% {
+                background-position: 15px 15px, 15px 15px;
+            }
+            100% {
+                background-position: 0 0, 0 0;
+            }
         }
 
-        p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .btn-know-more {
+        .btn {
             display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: rgba(186, 85, 211, 0.5);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all var(--transition-speed) ease;
             text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
         }
 
-        .btn-know-more:hover {
-            background-color: rgba(186, 85, 211, 0.63);
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent-color), #6a3093);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            transform: translateY(-2px);
         }
 
         .blur-text {
             display: inline-block;
             opacity: 0;
             filter: blur(5px);
-            transition: opacity 1s ease, filter 1s ease;
+            transition: opacity 0.8s ease, filter 0.8s ease;
         }
 
         .blur-text.visible {
@@ -100,187 +158,554 @@
             filter: blur(0);
         }
 
-        .section-padding {
-            padding: 4rem 2rem;
-            flex: 1;
-            margin-bottom: 0;
-
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all var(--transition-speed) ease;
         }
 
-        .prose {
-            margin-bottom: 2rem;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all var(--transition-speed) ease;
+            transform: translateX(-50%);
+        }
 
+        .nav-link:hover {
+            color: var(--text-accent);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .price-highlight {
+            display: inline-block;
+            position: relative;
+            color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .price-highlight::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: rgba(138, 43, 226, 0.2);
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .separator {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.5), transparent);
+            margin: 2rem 0;
+        }
+
+        .feature-icon {
+            background: rgba(138, 43, 226, 0.1);
+            color: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
         }
 
         footer {
-            margin-top: 0;
-            background: transparent;
-            background-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+            background-color: rgba(15, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                padding: 1.25rem;
+            }
         }
     </style>
 </head>
 
-<body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
-
+<body class="overflow-x-hidden relative">
     <div class="light-grid"></div>
 
-    <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
-        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-            <a href="https://www.arkersoft.com/index.html"
-                class="text-2xl font-semibold metallic-text flex items-center">
-                <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-8 max-w-[150px] mr-2">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-opacity-80 backdrop-blur-lg border-b border-purple-600/10 z-20" style="background-color: rgba(12, 12, 20, 0.85);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="https://www.arkersoft.com/index.html" class="text-2xl font-bold flex items-center">
+                <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-10 max-w-[150px] mr-2">
+                <span class="gradient-text ml-2 hidden sm:block">Arkersoft</span>
             </a>
 
-            <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
+            <button id="menuToggle" class="lg:hidden focus:outline-none p-2 rounded-md hover:bg-purple-800/20" aria-label="Abrir menu">
+                <i class="fas fa-bars text-lg"></i>
             </button>
 
-            <ul id="menu" class="hidden md:flex space-x-6">
-                <li><a href="index.html"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Home</a>
-                </li>
-                <li><a href="index.html#tech"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Tecnologias</a>
-                </li>
-                <li><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Preços</a>
-                </li>
-                <li><a href="index.html#contact"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Contato</a>
-                </li>
+            <ul id="menu" class="hidden lg:flex space-x-1">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#tech" class="nav-link">Tecnologias</a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="nav-link">Preços</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contato</a></li>
+                <li><a href="#" class="btn btn-primary ml-4"><i class="fas fa-headset mr-2"></i>Suporte</a></li>
             </ul>
         </div>
-        <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="index.html">Home</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#tech">Tecnologias</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#contact">Contato</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a
-                    href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0">Preços</a>
-            </li>
+        <ul id="mobileMenu" class="lg:hidden hidden border-t border-purple-200/10" style="background-color: rgba(12, 12, 20, 0.95);">
+            <li class="border-b border-purple-900/20"><a href="index.html" class="block px-4 py-3 hover:bg-purple-800/20 transition-colors"><i class="fas fa-home mr-2 text-purple-400"></i>Home</a></li>
+            <li class="border-b border-purple-900/20"><a href="#tech" class="block px-4 py-3 hover:bg-purple-800/20 transition-colors"><i class="fas fa-microchip mr-2 text-purple-400"></i>Tecnologias</a></li>
+            <li class="border-b border-purple-900/20"><a href="#contact" class="block px-4 py-3 hover:bg-purple-800/20 transition-colors"><i class="fas fa-envelope mr-2 text-purple-400"></i>Contato</a></li>
+            <li class="border-b border-purple-900/20"><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="block px-4 py-3 hover:bg-purple-800/20 transition-colors"><i class="fas fa-tag mr-2 text-purple-400"></i>Preços</a></li>
+            <li class="px-4 py-3"><a href="#" class="block py-2 px-4 text-center rounded-md bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 transition-colors"><i class="fas fa-headset mr-2"></i>Suporte</a></li>
         </ul>
     </nav>
 
-    <article class="section-padding container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-start gap-8">
-            <div class="md:w-full">
-                <section class="prose prose-invert max-w-none">
-                    <h2 class="text-2xl font-semibold mb-4">Preços podem ser relativos...</h2>
-                    <p style="margin-top: 2rem;">
-                        Os preços variam muito conforme a complexidade do projeto, quantidade de usuários e dados,
-                        funcionalidades especiais, tempo
-                        de desenvolvimento, entre outros fatores.
-                    </p>
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+                <span class="gradient-text">Soluções Digitais</span> para seu Negócio
+            </h1>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                Desenvolvemos tecnologias personalizadas que atendem às necessidades específicas da sua empresa
+            </p>
+        </div>
+    </header>
 
-                    <h2 class="text-xl font-semibold mt-6 mb-4">Uma média de preços para os serviços mais requisitados:
-                    </h2>
+    <!-- Main Content -->
+    <article class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 gradient-text text-center">Tabela de Preços</h2>
+            <p class="text-center text-lg text-gray-300 max-w-3xl mx-auto mb-10">
+                Os valores apresentados são aproximados e podem variar conforme a complexidade do seu projeto
+            </p>
+        </div>
 
-                    <p>
-                        <strong>Desenvolvimento de Sites:</strong> Um site essêncial personalizado, código puro com design exclusivo,
-                        otimizado para buscas, alta velocidade de navegação, pode custar a partir de R$ 289,90 + R$ 39,90/mês para hospedagem, manutenção e
-                        garantia de funcionamento 24/7. Sites mais complexos, como e-commerces, podem custar a partir de
-                        R$ 1490,00 + R$ 89,90/mês para até 1000 usuários cadastrados.
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <!-- Site Development -->
+            <div class="card glow-border">
+                <div class="flex items-center mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Desenvolvimento de Sites</h3>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Sites personalizados com design exclusivo, código puro, otimização para buscas e alta velocidade de navegação.
+                </p>
+                <div class="separator"></div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Site Essencial</h4>
+                    <p class="text-gray-300 flex items-baseline">
+                        A partir de <span class="text-xl font-bold ml-2 text-white">R$ 289,90</span>
+                        <span class="ml-2 text-sm text-gray-400">+ R$ 39,90/mês</span>
                     </p>
-                    <p><strong>Média de prazo para produção:</strong> 2 dias a até 4 semanas.</p>
-                    <p style="margin-top: 2rem;"></p>
+                    <p class="text-sm text-gray-400 mt-1">Inclui hospedagem, manutenção e funcionamento 24/7</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">E-commerce</h4>
+                    <p class="text-gray-300 flex items-baseline">
+                        A partir de <span class="text-xl font-bold ml-2 text-white">R$ 1.490,00</span>
+                        <span class="ml-2 text-sm text-gray-400">+ R$ 89,90/mês</span>
+                    </p>
+                    <p class="text-sm text-gray-400 mt-1">Para até 1000 usuários cadastrados</p>
+                </div>
+                <div class="mt-6">
+                    <p class="text-sm flex items-center mb-4">
+                        <i class="fas fa-clock text-purple-400 mr-2"></i>
+                        <span class="font-semibold">Prazo médio:</span>
+                        <span class="ml-2">2 dias a 4 semanas</span>
+                    </p>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="btn btn-primary w-full">
+                        <i class="fab fa-whatsapp mr-2"></i>Solicitar orçamento
+                    </a>
+                </div>
+            </div>
 
-                    <p>
-                        <strong>Softwares MVP:</strong> Produto mínimo viável (Minimum Viable Product) para automação de
-                        tarefas
-                        repetitivas, resolução de problemas específicos, fragmentos de sistemas de gerenciamento
-                        empresarial, aceleração de processos, geração de relatórios,
-                        ferramentas personalizadas, integração de sistemas com inteligência artificial, chatbots e muito
-                        mais, podem
-                        custar a partir de R$ 489,90. Os valores podem aumentar conforme a complexidade.
+            <!-- Software MVP -->
+            <div class="card glow-border">
+                <div class="flex items-center mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Softwares MVP</h3>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Produto mínimo viável para automação de tarefas, resolução de problemas específicos e integração com IA.
+                </p>
+                <div class="separator"></div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Software Básico</h4>
+                    <p class="text-gray-300 flex items-baseline">
+                        A partir de <span class="text-xl font-bold ml-2 text-white">R$ 489,90</span>
                     </p>
-                    <p><strong>Média de prazo para produção:</strong> 5 dias a até 12 semanas.</p>
-                    <p style="margin-top: 2rem;"></p>
+                    <p class="text-sm text-gray-400 mt-1">Automação de tarefas e resolução de problemas específicos</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Software Avançado</h4>
+                    <p class="text-gray-300">
+                        Valores personalizados conforme complexidade
+                    </p>
+                    <p class="text-sm text-gray-400 mt-1">Integração com IA, chatbots e automação avançada</p>
+                </div>
+                <div class="mt-6">
+                    <p class="text-sm flex items-center mb-4">
+                        <i class="fas fa-clock text-purple-400 mr-2"></i>
+                        <span class="font-semibold">Prazo médio:</span>
+                        <span class="ml-2">5 dias a 12 semanas</span>
+                    </p>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="btn btn-primary w-full">
+                        <i class="fab fa-whatsapp mr-2"></i>Solicitar orçamento
+                    </a>
+                </div>
+            </div>
 
-                    <p>
-                        <strong>Otimização de Buscas (SEO):</strong> Uma otimização completa para destacar sua presença digital em todas as
-                        plataformas, incluindo Google Business, Maps, plugins SEO, HTML e redes sociais, podem custar a
-                        partir de R$ 389,90. Manutenções periódicas são recomendadas para acompanhar as tendências do
-                        mercado e mudanças nos algoritmos de busca.
+            <!-- SEO -->
+            <div class="card glow-border">
+                <div class="flex items-center mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Otimização de Buscas (SEO)</h3>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Otimização completa para destacar sua presença digital em todas as plataformas.
+                </p>
+                <div class="separator"></div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Pacote Completo</h4>
+                    <p class="text-gray-300 flex items-baseline">
+                        A partir de <span class="text-xl font-bold ml-2 text-white">R$ 389,90</span>
                     </p>
-                    <p><strong>Média de prazo para implementação:</strong> 2 dias a até 1 semana.</p>
-                    <p style="margin-top: 2rem;"></p>
+                    <p class="text-sm text-gray-400 mt-1">Inclui Google Business, Maps, plugins SEO e redes sociais</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Manutenção Periódica</h4>
+                    <p class="text-gray-300">
+                        Valores personalizados conforme necessidade
+                    </p>
+                    <p class="text-sm text-gray-400 mt-1">Acompanhamento de tendências e mudanças de algoritmos</p>
+                </div>
+                <div class="mt-6">
+                    <p class="text-sm flex items-center mb-4">
+                        <i class="fas fa-clock text-purple-400 mr-2"></i>
+                        <span class="font-semibold">Prazo médio:</span>
+                        <span class="ml-2">2 dias a 1 semana</span>
+                    </p>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="btn btn-primary w-full">
+                        <i class="fab fa-whatsapp mr-2"></i>Solicitar orçamento
+                    </a>
+                </div>
+            </div>
 
-                    <p>
-                        <strong>Tratamento de Dados:</strong> Análise de dados e criação de relatórios de BI otimizados
-                        com IA podem custar a partir de R$ 789,90 para matrizes bidimensionais com até um milhão de
-                        linhas e 10 colunas. Backups custam a partir de R$ 39,90/mês para 100GB de dados,
-                        garantindo segurança com dupla camada de proteção.
+            <!-- Data Treatment -->
+            <div class="card glow-border">
+                <div class="flex items-center mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Tratamento de Dados</h3>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Análise de dados e criação de relatórios de BI otimizados com Inteligência Artificial.
+                </p>
+                <div class="separator"></div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Análise de Dados</h4>
+                    <p class="text-gray-300 flex items-baseline">
+                        A partir de <span class="text-xl font-bold ml-2 text-white">R$ 789,90</span>
                     </p>
-                    <p><strong>Média de prazo para implementação:</strong> 2 dias a até 4 semanas.</p>
-                    <p style="margin-top: 2rem;"></p>
+                    <p class="text-sm text-gray-400 mt-1">Para matrizes bidimensionais com até 1M linhas e 10 colunas</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Backups</h4>
+                    <p class="text-gray-300 flex items-baseline">
+                        A partir de <span class="text-xl font-bold ml-2 text-white">R$ 39,90</span><span class="ml-1 text-sm text-gray-400">/mês</span>
+                    </p>
+                    <p class="text-sm text-gray-400 mt-1">Para 100GB de dados com dupla camada de proteção</p>
+                </div>
+                <div class="mt-6">
+                    <p class="text-sm flex items-center mb-4">
+                        <i class="fas fa-clock text-purple-400 mr-2"></i>
+                        <span class="font-semibold">Prazo médio:</span>
+                        <span class="ml-2">2 dias a 4 semanas</span>
+                    </p>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="btn btn-primary w-full">
+                        <i class="fab fa-whatsapp mr-2"></i>Solicitar orçamento
+                    </a>
+                </div>
+            </div>
 
-                    <p>
-                        <strong>Implementação de Sistemas de Gestão:</strong> Soluções completas para controle de
-                        estoque, registro de orçamentos, ordens de serviço, geração de notas fiscais integradas ao
-                        SEFAZ, ERP, SGE, SGV, PDV e etc. Esses sistemas são personalizados para atender às necessidades
-                        específicas de cada
-                        cliente, garantindo funcionalidades avançadas, integração com outros sistemas e suporte
-                        contínuo. Os preços começam a partir de R$ 3989,90, com mensalidades variáveis conforme o uso.
+            <!-- Management Systems -->
+            <div class="card glow-border">
+                <div class="flex items-center mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Sistemas de Gestão</h3>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Soluções completas para controle de estoque, orçamentos, notas fiscais e gerenciamento empresarial.
+                </p>
+                <div class="separator"></div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Sistema Completo</h4>
+                    <p class="text-gray-300 flex items-baseline">
+                        A partir de <span class="text-xl font-bold ml-2 text-white">R$ 3.989,90</span>
                     </p>
-                    <p><strong>Média de prazo para implementação:</strong> 4 semanas a até 6 meses.</p>
-                    <p style="margin-top: 2rem;"></p>
+                    <p class="text-sm text-gray-400 mt-1">Mensalidades variáveis conforme uso</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Funcionalidades</h4>
+                    <p class="text-sm text-gray-300 mt-1">
+                        <i class="fas fa-check text-purple-400 mr-2"></i>Controle de estoque
+                    </p>
+                    <p class="text-sm text-gray-300 mt-1">
+                        <i class="fas fa-check text-purple-400 mr-2"></i>Emissão de notas fiscais
+                    </p>
+                    <p class="text-sm text-gray-300 mt-1">
+                        <i class="fas fa-check text-purple-400 mr-2"></i>Ordens de serviço
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <p class="text-sm flex items-center mb-4">
+                        <i class="fas fa-clock text-purple-400 mr-2"></i>
+                        <span class="font-semibold">Prazo médio:</span>
+                        <span class="ml-2">4 semanas a 6 meses</span>
+                    </p>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="btn btn-primary w-full">
+                        <i class="fab fa-whatsapp mr-2"></i>Solicitar orçamento
+                    </a>
+                </div>
+            </div>
 
-                    <p>
-                        <strong>Suporte Especializado:</strong> Estamos sempre disponíveis para ajudar com atualizações,
-                        melhorias e qualquer necessidade que surgir. Clientes que já contrataram algum de nossos
-                        serviços, tem acesso a descontos exclusivos e avisos sobre oportunidades, brindes como lead´s
-                        segmentados e créditos bonús para utilizar em trafégo pago e impulsionar ao máximo sua marca!
+            <!-- Support -->
+            <div class="card glow-border">
+                <div class="flex items-center mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Suporte Especializado</h3>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Sempre disponíveis para ajudar com atualizações, melhorias e qualquer necessidade que surgir.
+                </p>
+                <div class="separator"></div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Benefícios para Clientes</h4>
+                    <p class="text-sm text-gray-300 mt-2">
+                        <i class="fas fa-gift text-purple-400 mr-2"></i>Descontos exclusivos
                     </p>
-                    <p><strong>Média de prazo para produção:</strong> Sob demanda.</p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        Utilizamos tecnologias modernas e ágeis, entregando serviços em prazos expressos com garantia de
-                        funcionamento integral, suporte especializado e resolução de qualquer problema técnologico.
-                        Os valores apresentados são aproximados, pois cada projeto é único e pode ter necessidades
-                        diferentes.
+                    <p class="text-sm text-gray-300 mt-1">
+                        <i class="fas fa-gift text-purple-400 mr-2"></i>Leads segmentados
                     </p>
-                    <p style="margin-top: 2rem;"></p>
-                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
-                        target="_blank" class="btn-know-more blur-text">Faça um orçamento gratuito agora!</a>
-                </section>
+                    <p class="text-sm text-gray-300 mt-1">
+                        <i class="fas fa-gift text-purple-400 mr-2"></i>Créditos para tráfego pago
+                    </p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Disponibilidade</h4>
+                    <p class="text-sm text-gray-300 mt-1">
+                        <i class="fas fa-clock text-purple-400 mr-2"></i>Sob demanda
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="btn btn-primary w-full">
+                        <i class="fab fa-whatsapp mr-2"></i>Falar com especialista
+                    </a>
+                </div>
             </div>
         </div>
+
+        <div class="card glow-border p-8 text-center">
+            <h3 class="text-2xl font-bold mb-4">Tecnologias Modernas e Ágeis</h3>
+            <p class="text-gray-300 mb-6">
+                Entregamos serviços em prazos expressos com garantia de funcionamento integral, suporte especializado e resolução de qualquer problema tecnológico.
+            </p>
+            <p class="text-gray-300 mb-8">
+                Os valores apresentados são aproximados, pois cada projeto é único e pode ter necessidades diferentes.
+            </p>
+            <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="btn btn-primary inline-flex items-center px-8">
+                <i class="fab fa-whatsapp mr-2 text-lg"></i>Faça um orçamento gratuito agora!
+            </a>
+        </div>
     </article>
-    <footer class="border-t border-gray-700">
-        <div class="container mx-auto px-4 py-4 text-center">
-            <p class="text-gray-400">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
+
+    <!-- CTA Section -->
+    <section class="py-16 relative overflow-hidden">
+        <div class="absolute inset-0 z-0" style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(15, 15, 25, 0.1) 100%);"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-4">Pronto para transformar seu negócio?</h2>
+                <p class="text-lg text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Entre em contato conosco hoje e descubra como podemos ajudar a impulsionar seu empreendimento com soluções tecnológicas personalizadas.
+                </p>
+                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" class="btn btn-primary px-8 py-3 text-lg">
+                    <i class="fab fa-whatsapp mr-2"></i>Iniciar Conversa
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-purple-900/30 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-8 max-w-[120px] mr-3">
+                    <div>
+                        <p class="text-gray-400">&copy; 2025 Arkersoft.</p>
+                        <p class="text-sm text-gray-500">Todos os direitos reservados</p>
+                    </div>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-purple-900/20">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Sobre Nós</h4>
+                        <p class="text-gray-400 text-sm">
+                            Oferecemos soluções tecnológicas personalizadas para empresas de todos os portes, sempre buscando excelência e inovação.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="index.html" class="text-gray-400 hover:text-purple-400 transition-colors text-sm">Home</a></li>
+                            <li><a href="#tech" class="text-gray-400 hover:text-purple-400 transition-colors text-sm">Tecnologias</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-purple-400 transition-colors text-sm">Contato</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors text-sm">Termos de Uso</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-map-marker-alt mr-3 text-purple-400"></i>
+                                São Paulo, Brasil
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-phone mr-3 text-purple-400"></i>
+                                +55 19 99820-5608
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-envelope mr-3 text-purple-400"></i>
+                                contato@arkersoft.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const paragraphs = document.querySelectorAll("p");
-        paragraphs.forEach(paragraph => {
-            const text = paragraph.innerText;
-            paragraph.innerHTML = "";
-            text.split(" ").forEach((word, index) => {
-                const span = document.createElement("span");
-                span.classList.add("blur-text");
-                span.style.transitionDelay = `${index * 10}ms`;
-                span.innerText = word;
-                paragraph.appendChild(span);
-                paragraph.appendChild(document.createTextNode(" "));
+
+    <script>
+        // Blur text animation
+        document.addEventListener("DOMContentLoaded", function () {
+            // Handle mobile menu toggle
+            document.getElementById('menuToggle').addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Intersection Observer for animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add animation for cards
+                        if (entry.target.classList.contains('card')) {
+                            setTimeout(() => {
+                                entry.target.style.opacity = '1';
+                                entry.target.style.transform = 'translateY(0)';
+                            }, 100);
+                        }
+                        
+                        // Add animation for text elements
+                        const textElements = entry.target.querySelectorAll('p, h1, h2, h3, h4, .btn');
+                        textElements.forEach((el, index) => {
+                            setTimeout(() => {
+                                el.classList.add('visible');
+                            }, index * 100);
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            // Observe cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Observe sections
+            document.querySelectorAll('section, header').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Add visible class to all text elements with blur-text class
+            document.querySelectorAll('.blur-text').forEach((el, index) => {
+                el.style.transitionDelay = `${index * 50}ms`;
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, 300 + index * 50);
             });
         });
-
-        const spans = document.querySelectorAll(".blur-text");
-        spans.forEach((span, index) => {
-            setTimeout(() => {
-                span.classList.add("visible");
-            }, index * 20);
+        
+        // Add parallax effect on scroll
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const lightGrid = document.querySelector('.light-grid');
+            if (lightGrid) {
+                lightGrid.style.transform = `translateY(${scrollY * 0.05}px)`;
+            }
         });
-    });
-
-    document.getElementById('menuToggle').addEventListener('click', () => {
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+        
+        // Add smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
 </html>

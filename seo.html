@@ -5,261 +5,677 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arkersoft T.I</title>
-    <meta name="description" content="SEO - Serach-Engine-Optimization">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Arkersoft - Serviços de SEO</title>
+    <meta name="description" content="Serviços profissionais de SEO (Search Engine Optimization) para aumentar a visibilidade do seu negócio">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0a0a12',
+                            800: '#12121d',
+                            700: '#1a1a28'
+                        },
+                        accent: {
+                            primary: '#8a2be2',
+                            secondary: '#ba55d3',
+                            light: '#d8bfd8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif']
+                    },
+                    keyframes: {
+                        pulse: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.7 }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    animation: {
+                        pulse: 'pulse 3s infinite',
+                        float: 'float 6s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        html,
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            line-height: 1.75;
             background-color: #0a0a12;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(138, 43, 226, 0.05) 0%, transparent 70%),
+                radial-gradient(circle at 80% 80%, rgba(186, 85, 211, 0.03) 0%, transparent 60%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        .text-shadow {
-            text-shadow: 0 0 40px var(--soft-purple);
+        .nav-link {
+            position: relative;
         }
 
-        .glow-border {
-            box-sizing: border-box;
-            border: 2px solid rgba(186, 85, 211, 0.4);
-            box-shadow: 0 0 15px rgba(190, 190, 190, 0.164);
-            animation: glow 3s infinite alternate ease-in-out;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #ba55d3;
+            transition: width 0.3s ease;
         }
 
-        @keyframes moveGrid {
-            0% {
-                background-position: 0 0, 0 0;
-            }
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-            50% {
-                background-position: 10px 10px, 10px 10px;
-            }
+        .gradient-border {
+            position: relative;
+            border-radius: 0.5rem;
+            background: #12121d;
+        }
 
-            100% {
-                background-position: 0 0, 0 0;
-            }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 0.6rem;
+            padding: 2px;
+            background: linear-gradient(45deg, #8a2be2, #ba55d3, #8a2be2);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.7;
+            z-index: -1;
         }
 
         .light-grid {
             background:
-                linear-gradient(rgba(175, 155, 196, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(175, 155, 196, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-            animation: moveGrid 10s linear infinite;
+                linear-gradient(rgba(175, 155, 196, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(175, 155, 196, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 20s linear infinite;
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: -1;
         }
 
-        .section-padding {
-            padding: 4rem 2rem;
-            flex: 1;
+        @keyframes moveGrid {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 30px 30px, 30px 30px; }
         }
 
-        p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .btn-know-more {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: rgba(186, 85, 211, 0.5);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-know-more:hover {
-            background-color: rgba(186, 85, 211, 0.63);
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(138, 43, 226, 0.2);
         }
 
         .blur-text {
             display: inline-block;
             opacity: 0;
-            filter: blur(5px);
-            transition: opacity 1s ease, filter 1s ease;
+            filter: blur(10px);
+            transform: translateY(10px);
+            transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
         .blur-text.visible {
             opacity: 1;
             filter: blur(0);
+            transform: translateY(0);
         }
 
-        .section-padding {
-            padding: 4rem 2rem;
-            flex: 1;
-            margin-bottom: 0;
+        .btn-primary {
+            background: linear-gradient(45deg, #8a2be2, #ba55d3);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .prose {
-            margin-bottom: 2rem;
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ba55d3, #8a2be2);
+            transition: left 0.3s ease;
+            z-index: -1;
         }
 
-        footer {
-            margin-top: 0;
-            background: transparent;
-            background-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            transform: translateY(-2px);
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(186, 85, 211, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(186, 85, 211, 0.6); }
         }
     </style>
 </head>
 
-<body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
-
+<body class="text-gray-200 overflow-x-hidden font-sans relative">
     <div class="light-grid"></div>
-    <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
-        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-            <a href="https://www.arkersoft.com/index.html" class="text-2xl font-semibold metallic-text flex items-center">
-                <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-8 max-w-[150px] mr-2">
+
+    <!-- Barra de navegação -->
+    <nav class="fixed top-0 w-full backdrop-blur-lg bg-dark-900/90 border-b border-purple-900/30 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+            <a href="https://www.arkersoft.com/index.html" class="text-2xl font-semibold flex items-center space-x-2">
+                <img src="arkerlg.png" alt="Logo Arkersoft" class="h-auto w-auto max-h-10 max-w-[150px]">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-accent-secondary hidden md:inline-block">Arkersoft</span>
             </a>
-            <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
+            
+            <button id="menuToggle" class="lg:hidden focus:outline-none p-2 rounded-full hover:bg-purple-900/20 transition" aria-label="Abrir menu">
                 <i class="fas fa-bars"></i>
             </button>
-            <ul id="menu" class="hidden md:flex space-x-6">
-                <li><a href="index.html"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Home</a>
-                </li>
-                <li><a href="#tech"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Tecnologias</a>
-                </li>
-                <li><a href="preco.html"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Preços</a>
-                </li>
-                <li><a href="#contact"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Contato</a>
+            
+            <ul class="hidden lg:flex items-center space-x-8">
+                <li><a href="index.html" class="nav-link py-2 hover:text-accent-light transition-colors">Home</a></li>
+                <li><a href="#services" class="nav-link py-2 hover:text-accent-light transition-colors">Serviços</a></li>
+                <li><a href="preco.html" class="nav-link py-2 hover:text-accent-light transition-colors">Preços</a></li>
+                <li><a href="#contact" class="nav-link py-2 hover:text-accent-light transition-colors">Contato</a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="btn-primary px-5 py-2 rounded-full font-medium text-white inline-flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Fale Conosco
+                </a></li>
+            </ul>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="lg:hidden hidden bg-dark-800 border-t border-purple-900/20 shadow-lg">
+            <ul class="py-2">
+                <li><a href="index.html" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Home</a></li>
+                <li><a href="#services" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Serviços</a></li>
+                <li><a href="preco.html" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Preços</a></li>
+                <li><a href="#contact" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Contato</a></li>
+                <li class="px-6 py-3">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="btn-primary w-full block text-center px-4 py-3 rounded-lg font-medium text-white">
+                        <i class="fab fa-whatsapp mr-2"></i> Fale Conosco
+                    </a>
                 </li>
             </ul>
         </div>
-        <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="index.html">Home</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#tech">Tecnologias</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#contact">Contato</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a
-                    href="preco.html">Preços</a>
-            </li>
-        </ul>
     </nav>
 
-    <article class="section-padding container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-start gap-8">
-            <div class="md:w-full">
-                <section class="prose prose-invert max-w-none">
-                    <h2 class="text-2xl font-semibold mb-4">O Poder do SEO para o seu Negócio</h2>
-                    <p style="margin-top: 2rem;">
-                        SEO, ou Search-Engine-Optimization, é um conjunto de técnicas que visam melhorar o
-                        posicionamento do seu site nos resultados de pesquisa do Google e outros buscadores. Um bom SEO
-                        significa mais visibilidade, mais tráfego qualificado e, consequentemente, mais oportunidades de
-                        negócio.
-                    </p>
-
-                    <h2 class="text-xl font-semibold mt-6 mb-4">Nossos Serviços de SEO</h2>
-
-                    <p>
-                        <strong>Pesquisa de Palavras-chave:</strong> Identificamos os termos mais estratégicos para o
-                        seu negócio,
-                        garantindo que seu site seja encontrado pelos clientes certos. Utilizamos ferramentas avançadas
-                        para
-                        definir as melhores palavras-chave e otimizar seu conteúdo.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>On-Page:</strong> Otimizamos cada detalhe do seu site, desde títulos e descrições
-                        até estrutura
-                        de URLs e usabilidade, garantindo uma navegação intuitiva e uma experiência otimizada para os
-                        usuários.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>Off-Page:</strong> Aumentamos a autoridade do seu site com estratégias de link
-                        building,
-                        marketing de conteúdo e presença ativa nas redes sociais, fortalecendo sua reputação digital.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>Técnico:</strong> Garantimos que seu site esteja rápido, responsivo e seguro, além
-                        de bem estruturado
-                        para os mecanismos de busca. Implementamos sitemaps XML, otimizações de código e melhores
-                        práticas de indexação.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>Criação de Conteúdo Estratégico:</strong> Desenvolvemos conteúdos ricos e relevantes,
-                        como artigos, guias e
-                        materiais educativos, que aumentam a autoridade do seu site e engajam o público-alvo.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>Monitoramento e Relatórios:</strong> Acompanhamos o desempenho do seu site com
-                        ferramentas como Google Analytics
-                        e Search Console, fornecendo relatórios detalhados e estratégias de otimização contínua.
-                    </p>
-
-                    <p style="margin-top: 2rem;">
-                        Quer impulsionar o seu negócio com SEO profissional? <strong>Entre em contato agora
-                            mesmo</strong> e descubra como
-                        podemos ajudar você a alcançar os melhores resultados!
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
-                        target="_blank" class="btn-know-more blur-text">Agende Uma Avaliação Gratuita</a>
-                </section>
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-accent-secondary">SEO Profissional</span> 
+                <br class="md:hidden">para seu Negócio
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Aumente sua visibilidade online e alcance mais clientes com estratégias 
+                avançadas de otimização para motores de busca
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#services" class="btn-primary px-8 py-4 rounded-lg font-semibold text-lg inline-block">
+                    Conheça Nossos Serviços
+                </a>
+                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="px-8 py-4 rounded-lg font-semibold text-lg inline-block border-2 border-accent-secondary hover:bg-accent-secondary/10 transition">
+                    Fale com um Especialista
+                </a>
             </div>
         </div>
-    </article>
-    <footer class="border-t border-gray-700">
-        <div class="container mx-auto px-4 py-4 text-center">
-            <p class="text-gray-400">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
+    </header>
+
+    <!-- Introdução SEO -->
+    <section class="py-16 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="gradient-border p-8 md:p-10">
+                <h2 class="text-3xl font-bold mb-6 text-center">O Poder do SEO para o seu Negócio</h2>
+                <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                    SEO, ou Search Engine Optimization, é um conjunto de técnicas que visam melhorar o
+                    posicionamento do seu site nos resultados de pesquisa do Google e outros buscadores. Um bom SEO
+                    significa mais visibilidade, mais tráfego qualificado e, consequentemente, mais oportunidades de
+                    negócio.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center bg-accent-secondary/20">
+                            <i class="fas fa-chart-line text-accent-secondary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Aumento de Tráfego</h3>
+                        <p class="text-gray-400">Mais visitantes qualificados para o seu site</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center bg-accent-secondary/20">
+                            <i class="fas fa-trophy text-accent-secondary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Melhor Posicionamento</h3>
+                        <p class="text-gray-400">Apareça nas primeiras posições do Google</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center bg-accent-secondary/20">
+                            <i class="fas fa-dollar-sign text-accent-secondary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Mais Conversões</h3>
+                        <p class="text-gray-400">Transforme visitantes em clientes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços de SEO -->
+    <section id="services" class="py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Nossos Serviços de SEO</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Oferecemos soluções completas em SEO para impulsionar o seu negócio online
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="service-card gradient-border p-6 flex flex-col">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-accent-primary/20 mb-4">
+                            <i class="fas fa-search text-accent-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Pesquisa de Palavras-chave</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Identificamos os termos mais estratégicos para o seu negócio,
+                            garantindo que seu site seja encontrado pelos clientes certos. Utilizamos ferramentas avançadas
+                            para definir as melhores palavras-chave e otimizar seu conteúdo.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#contact" class="text-accent-secondary font-medium inline-flex items-center hover:text-accent-light transition-colors">
+                            Saiba mais <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Serviço 2 -->
+                <div class="service-card gradient-border p-6 flex flex-col">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-accent-primary/20 mb-4">
+                            <i class="fas fa-file-code text-accent-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">SEO On-Page</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Otimizamos cada detalhe do seu site, desde títulos e descrições
+                            até estrutura de URLs e usabilidade, garantindo uma navegação intuitiva e uma experiência 
+                            otimizada para os usuários.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#contact" class="text-accent-secondary font-medium inline-flex items-center hover:text-accent-light transition-colors">
+                            Saiba mais <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Serviço 3 -->
+                <div class="service-card gradient-border p-6 flex flex-col">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-accent-primary/20 mb-4">
+                            <i class="fas fa-link text-accent-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">SEO Off-Page</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Aumentamos a autoridade do seu site com estratégias de link
+                            building, marketing de conteúdo e presença ativa nas redes sociais, fortalecendo sua 
+                            reputação digital.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#contact" class="text-accent-secondary font-medium inline-flex items-center hover:text-accent-light transition-colors">
+                            Saiba mais <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Serviço 4 -->
+                <div class="service-card gradient-border p-6 flex flex-col">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-accent-primary/20 mb-4">
+                            <i class="fas fa-cogs text-accent-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">SEO Técnico</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Garantimos que seu site esteja rápido, responsivo e seguro, além
+                            de bem estruturado para os mecanismos de busca. Implementamos sitemaps XML, otimizações de 
+                            código e melhores práticas de indexação.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#contact" class="text-accent-secondary font-medium inline-flex items-center hover:text-accent-light transition-colors">
+                            Saiba mais <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Serviço 5 -->
+                <div class="service-card gradient-border p-6 flex flex-col">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-accent-primary/20 mb-4">
+                            <i class="fas fa-pen-fancy text-accent-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Criação de Conteúdo</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Desenvolvemos conteúdos ricos e relevantes, como artigos, guias e
+                            materiais educativos, que aumentam a autoridade do seu site e engajam o público-alvo
+                            de forma efetiva.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#contact" class="text-accent-secondary font-medium inline-flex items-center hover:text-accent-light transition-colors">
+                            Saiba mais <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Serviço 6 -->
+                <div class="service-card gradient-border p-6 flex flex-col">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-accent-primary/20 mb-4">
+                            <i class="fas fa-chart-bar text-accent-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Monitoramento e Relatórios</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Acompanhamos o desempenho do seu site com ferramentas como Google Analytics
+                            e Search Console, fornecendo relatórios detalhados e estratégias de otimização contínua
+                            para o seu negócio.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#contact" class="text-accent-secondary font-medium inline-flex items-center hover:text-accent-light transition-colors">
+                            Saiba mais <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-6">
+        <div class="max-w-6xl mx-auto bg-gradient-to-r from-purple-900/20 to-indigo-900/20 rounded-2xl p-10">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-6">Pronto para Impulsionar o seu Negócio?</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                    Agende uma avaliação gratuita com nossos especialistas e descubra como o SEO 
+                    pode transformar a presença digital da sua empresa.
+                </p>
+                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="btn-primary px-10 py-4 rounded-lg font-semibold text-xl inline-flex items-center">
+                    <i class="fab fa-whatsapp mr-3"></i> Agende Uma Avaliação Gratuita
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 bg-dark-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Entre em Contato</h2>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Estamos prontos para ajudar sua empresa a alcançar melhores resultados. 
+                        Fale conosco e descubra como podemos impulsionar seu negócio com SEO profissional.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-accent-secondary/20 mr-4">
+                                <i class="fas fa-envelope text-accent-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">Email</h3>
+                                <a href="mailto:contato@arkersoft.com" class="text-gray-300 hover:text-accent-light transition-colors">contato@arkersoft.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-accent-secondary/20 mr-4">
+                                <i class="fas fa-phone text-accent-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">Telefone</h3>
+                                <a href="tel:+5519998205608" class="text-gray-300 hover:text-accent-light transition-colors">(19) 99820-5608</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-accent-secondary/20 mr-4">
+                                <i class="fab fa-whatsapp text-accent-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">WhatsApp</h3>
+                                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="text-gray-300 hover:text-accent-light transition-colors">(19) 99820-5608</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gradient-border p-8">
+                    <h3 class="text-xl font-semibold mb-6">Envie uma Mensagem</h3>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Nome</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-dark-900 border border-gray-700 focus:border-accent-primary focus:ring focus:ring-accent-primary/20 focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-dark-900 border border-gray-700 focus:border-accent-primary focus:ring focus:ring-accent-primary/20 focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-dark-900 border border-gray-700 focus:border-accent-primary focus:ring focus:ring-accent-primary/20 focus:outline-none transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary py-3 rounded-lg font-medium">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div>
+                    <a href="https://www.arkersoft.com/index.html" class="inline-block mb-6">
+                        <img src="arkerlg.png" alt="Logo Arkersoft" class="h-auto w-auto max-h-10 max-w-[150px]">
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Soluções de marketing digital e desenvolvimento web para empresas de todos os portes.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-secondary/20 transition-colors">
+                            <i class="fab fa-facebook-f text-gray-300"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-secondary/20 transition-colors">
+                            <i class="fab fa-instagram text-gray-300"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-secondary/20 transition-colors">
+                            <i class="fab fa-linkedin-in text-gray-300"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-5">Serviços</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Desenvolvimento Web</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Otimização SEO</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Marketing Digital</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Social Media</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-5">Links Úteis</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-accent-light transition-colors">Home</a></li>
+                        <li><a href="preco.html" class="text-gray-400 hover:text-accent-light transition-colors">Preços</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Blog</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-accent-light transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-5">Contato</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-3 text-accent-secondary"></i>
+                            <span>Campinas, SP - Brasil</span>
+                        </li>
+                        <li>
+                            <a href="tel:+5519998205608" class="flex items-center text-gray-400 hover:text-accent-light transition-colors">
+                                <i class="fas fa-phone mr-3 text-accent-secondary"></i>
+                                <span>(19) 99820-5608</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:contato@arkersoft.com" class="flex items-center text-gray-400 hover:text-accent-light transition-colors">
+                                <i class="fas fa-envelope mr-3 text-accent-secondary"></i>
+                                <span>contato@arkersoft.com</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const paragraphs = document.querySelectorAll("p");
-        paragraphs.forEach(paragraph => {
-            const text = paragraph.innerText;
-            paragraph.innerHTML = "";
-            text.split(" ").forEach((word, index) => {
-                const span = document.createElement("span");
-                span.classList.add("blur-text");
-                span.style.transitionDelay = `${index * 10}ms`;
-                span.innerText = word;
-                paragraph.appendChild(span);
-                paragraph.appendChild(document.createTextNode(" "));
+
+    <!-- Scripts -->
+    <script>
+        // Menu Toggle
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navbar = document.getElementById('navbar');
+            
+            // Menu Mobile
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Navbar Scroll Effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.add('shadow-lg');
+                    navbar.classList.add('bg-dark-900/95');
+                } else {
+                    navbar.classList.remove('py-2');
+                    navbar.classList.remove('shadow-lg');
+                    navbar.classList.remove('bg-dark-900/95');
+                }
+            });
+            
+            // Text Animation
+            const animateElements = () => {
+                const elements = document.querySelectorAll('p, h1, h2, h3, .btn-primary, .service-card');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (entry.target.tagName.toLowerCase() === 'p') {
+                                // Animate paragraph text word by word
+                                const text = entry.target.innerText;
+                                entry.target.innerHTML = "";
+                                
+                                text.split(" ").forEach((word, index) => {
+                                    const span = document.createElement("span");
+                                    span.classList.add("blur-text");
+                                    span.style.transitionDelay = `${index * 30}ms`;
+                                    span.innerText = word;
+                                    entry.target.appendChild(span);
+                                    entry.target.appendChild(document.createTextNode(" "));
+                                });
+                                
+                                // Make words visible
+                                setTimeout(() => {
+                                    entry.target.querySelectorAll('.blur-text').forEach(span => {
+                                        span.classList.add('visible');
+                                    });
+                                }, 100);
+                            } else {
+                                // Animate other elements with a simple fade in
+                                entry.target.classList.add('animate-in');
+                                entry.target.style.opacity = "0";
+                                entry.target.style.transform = "translateY(20px)";
+                                
+                                setTimeout(() => {
+                                    entry.target.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+                                    entry.target.style.opacity = "1";
+                                    entry.target.style.transform = "translateY(0)";
+                                }, 100);
+                            }
+                            
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                elements.forEach(element => {
+                    observer.observe(element);
+                });
+            };
+            
+            // Run animations
+            setTimeout(animateElements, 500);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
             });
         });
-
-        const spans = document.querySelectorAll(".blur-text");
-        spans.forEach((span, index) => {
-            setTimeout(() => {
-                span.classList.add("visible");
-            }, index * 20);
-        });
-    });
-
-    document.getElementById('menuToggle').addEventListener('click', () => {
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+    </script>
+</body>
 </html>

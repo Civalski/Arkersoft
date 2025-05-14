@@ -6,249 +6,1060 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkersoft T.I</title>
-    <meta name="description" content="Desenvolvimento de sites">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Desenvolvimento de sites profissionais com alto desempenho">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        html,
+        :root {
+            /* Variáveis de cor do index.html para consistência */
+            --primary-color: rgba(139, 92, 246, 1);
+            --primary-color-light: rgba(139, 92, 246, 0.6);
+            --primary-color-dark: rgba(124, 58, 237, 1);
+            --secondary-color: rgba(168, 85, 247, 1);
+            --accent-color: rgba(216, 180, 254, 1);
+            --dark-bg: #0a0a12;
+            --dark-surface: rgba(30, 30, 46, 0.8); /* Do index.html, pode ser ajustado se necessário para o conteúdo de site.html */
+            --border-color: rgba(139, 92, 246, 0.3);
+            --text-color: #f8f8ff;
+            --text-color-secondary: rgba(209, 213, 219, 1);
+            --box-shadow-color: rgba(139, 92, 246, 0.3);
+            --transition-speed: 0.3s;
+
+            /* Variáveis antigas de site.html (manter se usadas em outras partes do site.html não afetadas pelo header/footer) */
+            /* Se não forem mais usadas, podem ser removidas */
+             --primary: #8A2BE2; /* Exemplo: Mantida se usada em .card, .btn-primary etc. */
+             --primary-light: #9D4EDD;
+             --primary-dark: #6A0DAD;
+             --accent: #FF6B6B;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            line-height: 1.75;
-            background-color: #0a0a12;
+            background-color: var(--dark-bg);
+            color: var(--text-color); /* Atualizado para usar variável do index.html */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        .text-shadow {
-            text-shadow: 0 0 40px var(--soft-purple);
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2) 0%, rgba(106, 13, 173, 0.1) 100%);
         }
 
-        .glow-border {
-            box-sizing: border-box;
-            border: 2px solid rgba(186, 85, 211, 0.4);
-            box-shadow: 0 0 15px rgba(190, 190, 190, 0.164);
-            animation: glow 3s infinite alternate ease-in-out;
+        .card {
+            background: rgba(19, 19, 31, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(138, 43, 226, 0.5);
+            border-color: rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px -10px rgba(138, 43, 226, 0.7);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Estilos do navbar do index.html */
+        .navbar-link {
+            position: relative;
+        }
+
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        .grid-background {
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(138, 43, 226, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(138, 43, 226, 0.05) 1px, transparent 1px);
+            animation: moveGrid 20s linear infinite;
+        }
+
+        .glow {
+            box-shadow: 0 0 25px 5px rgba(138, 43, 226, 0.3);
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 15px 5px rgba(138, 43, 226, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 30px 10px rgba(138, 43, 226, 0.4);
+            }
         }
 
         @keyframes moveGrid {
             0% {
-                background-position: 0 0, 0 0;
+                background-position: 0 0;
             }
-
-            50% {
-                background-position: 10px 10px, 10px 10px;
-            }
-
             100% {
-                background-position: 0 0, 0 0;
+                background-position: 30px 30px;
             }
         }
 
-        .light-grid {
-            background:
-                linear-gradient(rgba(175, 155, 196, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(175, 155, 196, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-            animation: moveGrid 10s linear infinite;
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .section-padding {
-            padding: 4rem 2rem;
-            flex: 1;
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .btn-know-more {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: rgba(186, 85, 211, 0.5);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-know-more:hover {
-            background-color: rgba(186, 85, 211, 0.63);
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 10px 25px -10px rgba(138, 43, 226, 0.6);
         }
 
         .blur-text {
-            display: inline-block;
             opacity: 0;
             filter: blur(5px);
-            transition: opacity 1s ease, filter 1s ease;
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
         .blur-text.visible {
             opacity: 1;
             filter: blur(0);
+            transform: translateY(0);
         }
 
-        .section-padding {
-            padding: 4rem 2rem;
-            flex: 1;
-            margin-bottom: 0;
-
+        .testimonial {
+            background: rgba(19, 19, 31, 0.8);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
         }
 
-        .prose {
-            margin-bottom: 2rem;
-
+        .social-icon {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        footer {
-            margin-top: 0;
-            background: transparent;
-            background-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+        .social-icon:hover {
+            color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        /* Partículas de fundo com animação */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.5);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Estilos para o formulário de contato/newsletter do footer do index.html */
+        .contact-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--box-shadow-color);
+        }
+
+        .gradient-button {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gradient-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: inherit;
+        }
+
+        .gradient-button:hover::before {
+            opacity: 1;
+        }
+
+        .gradient-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-dark);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
     </style>
 </head>
 
-<body class="bg-[#0a0a12] text-white overflow-x-hidden font-['Space Grotesk',sans-serif] relative">
+<body class="relative">
+    <!-- Background com grade e partículas -->
+    <div class="fixed inset-0 grid-background pointer-events-none"></div>
+    <div id="particles-container" class="fixed inset-0 pointer-events-none"></div>
 
-    <div class="light-grid"></div>
-
-    <nav class="fixed top-0 w-full bg-[#0a0a12] backdrop-blur-lg border-b border-purple-600/10 z-20">
-        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-            <a href="https://www.arkersoft.com/index.html" class="text-2xl font-semibold metallic-text flex items-center">
-                <img src="arkerlg.png" alt="Logo" class="h-auto w-auto max-h-8 max-w-[150px] mr-2">
-            </a>
-
-            <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <ul id="menu" class="hidden md:flex space-x-6">
-                <li><a href="index.html"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Home</a>
-                </li>
-                <li><a href="#tech"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Tecnologias</a>
-                </li>
-                <li><a href="preco.html"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Preços</a>
-                </li>
-                <li><a href="#contact"
-                        class="relative px-2 py-1 transition-colors hover:text-[rgba(216,191,216,0.8)]">Contato</a>
-                </li>
-            </ul>
-        </div>
-        <ul id="mobileMenu" class="md:hidden hidden bg-[#0a0a12] border-t border-purple-200/10">
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="index.html">Home</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#tech">Tecnologias</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a href="#contact">Contato</a></li>
-            <li class="px-4 py-2 hover:bg-[rgba(186,85,211,0.5)]"><a
-                    href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0">Preços</a>
-            </li>
-        </ul>
-    </nav>
-
-    <article class="section-padding container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-start gap-8">
-            <div class="md:w-full">
-                <section class="prose prose-invert max-w-none">
-                    <h2 class="text-2xl font-semibold mb-4">Por Que Ter um Site Profissional?</h2>
-                    <p style="margin-top: 2rem;">
-                        Ter um site bem desenvolvido não é apenas um detalhe, mas um fator essencial para o sucesso de
-                        qualquer negócio.
-                        Um site profissional transmite credibilidade, melhora sua presença online e ajuda a conquistar
-                        mais clientes.
-                    </p>
-
-                    <h2 class="text-xl font-semibold mt-6 mb-4">Sites de Alta Qualidade Feitos para Você</h2>
-
-                    <p>
-                        <strong>Design Personalizado:</strong> Criamos sites únicos, que combinam com a identidade do
-                        seu negócio e chamam a atenção do seu público.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>Experiência do Usuário:</strong> Nossos sites são rápidos, intuitivos e adaptáveis para
-                        qualquer dispositivo, proporcionando uma navegação agradável.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>SEO Otimizado:</strong> Aplicamos estratégias para que seu site seja facilmente
-                        encontrado no Google e atraia mais visitantes.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>Segurança e Estabilidade:</strong> Utilizamos tecnologia de ponta para garantir que seu
-                        site funcione sem falhas e esteja sempre protegido.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        <strong>Suporte Especializado:</strong> Estamos sempre disponíveis para ajudar com atualizações,
-                        melhorias e qualquer necessidade que surgir.
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-
-                    <p>
-                        Se você quer um site que realmente traga resultados para o seu negócio, entre em contato conosco
-                        e descubra como podemos transformar sua presença online!
-                    </p>
-                    <p style="margin-top: 2rem;"></p>
-                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0"
-                        target="_blank" class="btn-know-more blur-text">Agende Uma Avaliação Gratuita</a>
-                </section>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-purple-500/10 z-20" id="navbar"> <!-- Adicionado id="navbar" -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center">
+                    <span class="ml-2 text-3xl font-semibold text-gradient">Arkersoft</span>
+                </a>
+                
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-8">
+                        <a href="#home" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Home</a>
+                        <a href="#services" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Serviços</a>
+                        <a href="#about" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Sobre</a>
+                        <a href="#testimonials" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Depoimentos</a>
+                        <a href="preco.html" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Preços</a>
+                        <a href="#contact" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Contato</a>
+                    </div>
+                </div>
+                
+                <div class="flex md:hidden">
+                    <button id="menuToggle" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </article>
-    <footer class="border-t border-gray-700">
-        <div class="container mx-auto px-4 py-4 text-center">
-            <p class="text-gray-400">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
+        
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-dark-surface backdrop-blur-lg border-t border-purple-500/10">
+                <a href="#home" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#services" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Serviços</a>
+                <a href="#about" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
+                <a href="#testimonials" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Depoimentos</a>
+                <a href="preco.html" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Preços</a>
+                <a href="#contact" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 px-6 hero-gradient">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
+                    <h1 class="text-4xl lg:text-5xl font-bold mb-6">
+                        <span class="text-gradient">Transforme</span> sua presença online com sites profissionais
+                    </h1>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Desenvolvemos sites modernos, rápidos e otimizados para SEO que convertem visitantes em clientes. Seu negócio merece uma presença digital que impressiona.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#servicos" class="btn-primary">
+                            <i class="fas fa-rocket mr-2"></i>Nossos Serviços
+                        </a>
+                        <a href="#contact" class="border border-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-500/20 transition-all font-medium">
+                            <i class="fas fa-envelope mr-2"></i>Entre em Contato
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-75 glow"></div>
+                        <img src="/api/placeholder/540/400" alt="Desenvolvimento Web" class="relative rounded-lg w-full max-w-md object-cover z-10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Por Que Ter um Site Section -->
+    <section id="why" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Por Que Ter um <span class="text-gradient">Site Profissional?</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card p-6">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Credibilidade</h3>
+                    <p class="text-gray-300">
+                        Um site bem projetado transmite profissionalismo e confiança, essenciais para conquistar novos clientes no mundo digital.
+                    </p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card p-6">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Visibilidade 24/7</h3>
+                    <p class="text-gray-300">
+                        Seu negócio disponível para clientes em potencial a qualquer hora, aumentando significativamente seu alcance.
+                    </p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card p-6">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Mais Vendas</h3>
+                    <p class="text-gray-300">
+                        Sites estratégicos geram leads qualificados e convertem visitantes em clientes, expandindo seu faturamento.
+                    </p>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card p-6">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">SEO Otimizado</h3>
+                    <p class="text-gray-300">
+                        Apareça nos primeiros resultados de busca do Google e atraia mais visitantes orgânicos para seu negócio.
+                    </p>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="card p-6">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Responsividade</h3>
+                    <p class="text-gray-300">
+                        Experiência perfeita em todos os dispositivos, essencial hoje com a maioria dos acessos via smartphones.
+                    </p>
+                </div>
+                
+                <!-- Card 6 -->
+                <div class="card p-6">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Alta Performance</h3>
+                    <p class="text-gray-300">
+                        Sites rápidos retêm visitantes e melhoram sua classificação nos mecanismos de busca.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossos Serviços -->
+    <section id="servicos" class="py-20 px-6 bg-[#0d0d17]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Sites de <span class="text-gradient">Alta Qualidade</span> Feitos para Você</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+                    Nossa equipe especializada desenvolve soluções digitais personalizadas que atendem às necessidades específicas do seu negócio.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Design Personalizado -->
+                <div class="flex items-start space-x-4">
+                    <div class="shrink-0 bg-purple-500/20 rounded-lg p-3 border border-purple-500/30">
+                        <i class="fas fa-paint-brush text-2xl text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Design Personalizado</h3>
+                        <p class="text-gray-300">
+                            Criamos sites únicos, que combinam com a identidade do seu negócio e chamam a atenção do seu público. Cada elemento visual é cuidadosamente planejado para refletir seus valores e diferenciais.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Experiência do Usuário -->
+                <div class="flex items-start space-x-4">
+                    <div class="shrink-0 bg-purple-500/20 rounded-lg p-3 border border-purple-500/30">
+                        <i class="fas fa-users text-2xl text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Experiência do Usuário</h3>
+                        <p class="text-gray-300">
+                            Nossos sites são rápidos, intuitivos e adaptáveis para qualquer dispositivo, proporcionando uma navegação agradável. A usabilidade é prioridade para garantir que seus visitantes encontrem facilmente o que procuram.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- SEO Otimizado -->
+                <div class="flex items-start space-x-4">
+                    <div class="shrink-0 bg-purple-500/20 rounded-lg p-3 border border-purple-500/30">
+                        <i class="fas fa-search-plus text-2xl text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">SEO Otimizado</h3>
+                        <p class="text-gray-300">
+                            Aplicamos estratégias para que seu site seja facilmente encontrado no Google e atraia mais visitantes. Implementamos as melhores práticas de SEO para melhorar seu posicionamento e visibilidade online.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Segurança e Estabilidade -->
+                <div class="flex items-start space-x-4">
+                    <div class="shrink-0 bg-purple-500/20 rounded-lg p-3 border border-purple-500/30">
+                        <i class="fas fa-shield-alt text-2xl text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Segurança e Estabilidade</h3>
+                        <p class="text-gray-300">
+                            Utilizamos tecnologia de ponta para garantir que seu site funcione sem falhas e esteja sempre protegido. Implementamos certificados SSL e medidas de segurança avançadas para proteger seus dados e de seus clientes.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Suporte Especializado -->
+                <div class="flex items-start space-x-4">
+                    <div class="shrink-0 bg-purple-500/20 rounded-lg p-3 border border-purple-500/30">
+                        <i class="fas fa-headset text-2xl text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Suporte Especializado</h3>
+                        <p class="text-gray-300">
+                            Estamos sempre disponíveis para ajudar com atualizações, melhorias e qualquer necessidade que surgir. Nossa equipe oferece suporte contínuo para garantir o melhor desempenho do seu site.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Integrações Avançadas -->
+                <div class="flex items-start space-x-4">
+                    <div class="shrink-0 bg-purple-500/20 rounded-lg p-3 border border-purple-500/30">
+                        <i class="fas fa-plug text-2xl text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Integrações Avançadas</h3>
+                        <p class="text-gray-300">
+                            Integramos seu site com as principais ferramentas de marketing, vendas e pagamentos, criando um ecossistema digital completo para impulsionar seus resultados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608" class="btn-primary text-lg px-8 py-4">
+                    <i class="fas fa-calendar-check mr-2"></i>Agende Uma Avaliação Gratuita
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologias Section -->
+    <section id="tech" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Tecnologias <span class="text-gradient">Modernas</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+                    Utilizamos as tecnologias mais avançadas do mercado para entregar sites de alta performance.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                <!-- Tech icons -->
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/10 w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-html5 text-orange-500 text-3xl"></i>
+                    </div>
+                    <span class="text-center">HTML5</span>
+                </div>
+                
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/10 w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-css3-alt text-blue-500 text-3xl"></i>
+                    </div>
+                    <span class="text-center">CSS3</span>
+                </div>
+                
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/10 w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-js text-yellow-400 text-3xl"></i>
+                    </div>
+                    <span class="text-center">JavaScript</span>
+                </div>
+                
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/10 w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-react text-blue-400 text-3xl"></i>
+                    </div>
+                    <span class="text-center">React</span>
+                </div>
+                
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/10 w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-node-js text-green-500 text-3xl"></i>
+                    </div>
+                    <span class="text-center">Node.js</span>
+                </div>
+                
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/10 w-20 h-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-wordpress text-blue-300 text-3xl"></i>
+                    </div>
+                    <span class="text-center">WordPress</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="py-20 px-6 bg-[#0d0d17]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">O Que Nossos <span class="text-gradient">Clientes Dizem</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        "A Arkersoft transformou completamente nossa presença online. O site ficou moderno, rápido e as conversões aumentaram em mais de 40% no primeiro mês."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">R</div>
+                        <div>
+                            <h4 class="font-medium">Ricardo Oliveira</h4>
+                            <p class="text-sm text-gray-400">Empresário, São Paulo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        "Profissionalismo e pontualidade impressionantes. O site ultrapassou nossas expectativas e o suporte pós-lançamento é excelente."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">M</div>
+                        <div>
+                            <h4 class="font-medium">Marina Costa</h4>
+                            <p class="text-sm text-gray-400">Diretora de Marketing, Rio de Janeiro</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        "Desde que lançamos o novo site, as vendas online cresceram 65%. O design é incrível e a otimização para celulares trouxe muito mais clientes."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">C</div>
+                        <div>
+                            <h4 class="font-medium">Carlos Mendes</h4>
+                            <p class="text-sm text-gray-400">Proprietário de E-commerce, Campinas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="btn-primary">
+                    <i class="fas fa-comments mr-2"></i>Seja o Próximo Case de Sucesso
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-24 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 to-indigo-900/40 z-0"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Pronto para <span class="text-gradient">Transformar</span> sua Presença Digital?</h2>
+                <p class="text-xl text-gray-300 mb-10">
+                    Se você quer um site que realmente traga resultados para o seu negócio, este é o momento de agir. Nós temos a solução perfeita para você.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608" class="btn-primary text-lg px-8 py-4">
+                        <i class="fab fa-whatsapp mr-2"></i>Agende Uma Avaliação Gratuita
+                    </a>
+                    <a href="preco.html" class="border-2 border-white/30 hover:border-purple-500 text-white px-8 py-4 rounded-lg hover:bg-purple-500/20 transition-all font-medium text-lg">
+                        <i class="fas fa-tag mr-2"></i>Ver Planos e Preços
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contact" class="py-20 px-6 bg-[#0d0d17]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Fale <span class="text-gradient">Conosco</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
+                    Estamos prontos para te atender e desenvolver a melhor solução para o seu negócio. Entre em contato!
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Formulário de Contato -->
+                <div class="card p-8">
+                    <h3 class="text-2xl font-semibold mb-6">Envie sua Mensagem</h3>
+                    <form>
+                        <div class="mb-6">
+                            <label class="block text-gray-300 mb-2" for="name">Nome Completo</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="Seu nome">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-300 mb-2" for="email">E-mail</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="seu@email.com">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-300 mb-2" for="phone">Telefone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="(00) 00000-0000">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-300 mb-2" for="message">Mensagem</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="Como podemos ajudar?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full py-4">
+                            <i class="fas fa-paper-plane mr-2"></i>Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Informações de Contato -->
+                <div>
+                    <div class="card p-8 mb-8">
+                        <h3 class="text-2xl font-semibold mb-6">Informações de Contato</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="shrink-0 bg-purple-500/20 rounded-full p-3">
+                                    <i class="fas fa-phone text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Telefone</h4>
+                                    <p class="text-gray-300">(19) 99820-5608</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="shrink-0 bg-purple-500/20 rounded-full p-3">
+                                    <i class="fas fa-envelope text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">E-mail</h4>
+                                    <p class="text-gray-300">contato@arkersoft.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="shrink-0 bg-purple-500/20 rounded-full p-3">
+                                    <i class="fas fa-map-marker-alt text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Endereço</h4>
+                                    <p class="text-gray-300">São Paulo, SP - Brasil</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-8">
+                        <h3 class="text-2xl font-semibold mb-6">Horário de Atendimento</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between">
+                                <span>Segunda - Sexta:</span>
+                                <span class="text-gray-300">08:00 - 18:00</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Sábado:</span>
+                                <span class="text-gray-300">09:00 - 13:00</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Domingo:</span>
+                                <span class="text-gray-300">Fechado</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Perguntas <span class="text-gradient">Frequentes</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- FAQ Item 1 -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Quanto tempo leva para desenvolver um site?</h3>
+                    <p class="text-gray-300">
+                        O prazo médio para desenvolvimento varia de 2 a 6 semanas, dependendo da complexidade do projeto. Sites institucionais simples podem ficar prontos em 2 semanas, enquanto e-commerces e plataformas mais complexas podem levar até 8 semanas.
+                    </p>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Quais informações preciso fornecer para iniciar o projeto?</h3>
+                    <p class="text-gray-300">
+                        Precisamos de informações sobre sua empresa, público-alvo, objetivos do site, preferências de design, conteúdo (textos e imagens) e exemplos de sites que você gosta. Durante nossa reunião inicial, guiaremos você em todo o processo.
+                    </p>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Vocês oferecem hospedagem e domínio?</h3>
+                    <p class="text-gray-300">
+                        Sim, oferecemos soluções completas que incluem hospedagem de alta performance e registro de domínio. Nossos pacotes de hospedagem são otimizados para garantir velocidade e segurança ao seu site.
+                    </p>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-3">O site será responsivo para dispositivos móveis?</h3>
+                    <p class="text-gray-300">
+                        Absolutamente! Todos os nossos sites são desenvolvidos com design responsivo, garantindo uma experiência perfeita em todos os dispositivos - computadores, tablets e smartphones.
+                    </p>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Oferecem manutenção após a entrega do site?</h3>
+                    <p class="text-gray-300">
+                        Sim, temos planos de manutenção mensal que incluem atualizações de segurança, backup, pequenas alterações de conteúdo e suporte técnico. Garantimos que seu site permaneça atualizado e funcionando perfeitamente.
+                    </p>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Como funciona o processo de pagamento?</h3>
+                    <p class="text-gray-300">
+                        Trabalhamos com um modelo de 50% de entrada para iniciar o projeto e 50% na entrega final. Para projetos maiores, podemos criar um cronograma de pagamentos conforme as etapas são concluídas.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-lg text-gray-300 mb-6">
+                    Não encontrou sua pergunta? Entre em contato conosco!
+                </p>
+                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608" class="btn-primary">
+                    <i class="fab fa-whatsapp mr-2"></i>Fale com um Especialista
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0a12] border-t border-purple-500/10">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <span class="ml-2 text-2xl font-semibold text-gradient">Arkersoft</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Transformando ideias em realidade, aplicando técnologia de ponta.</p>
+                    <!-- Adicione aqui os ícones de redes sociais se desejar, seguindo o padrão do index.html -->
+                     <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center border border-purple-400/50 hover:bg-purple-500/20 transition-all">
+                            <i class="fab fa-instagram text-purple-400"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center border border-purple-400/50 hover:bg-purple-500/20 transition-all">
+                            <i class="fab fa-facebook-f text-purple-400"></i>
+                        </a>
+                        <!-- Adicione outros ícones como LinkedIn, Github se necessário -->
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Links Rápidos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-purple-400 transition-colors">Home</a></li>
+                        <li><a href="#servicos" class="text-gray-400 hover:text-purple-400 transition-colors">Serviços</a></li>
+                        <li><a href="#why" class="text-gray-400 hover:text-purple-400 transition-colors">Por que ter um Site</a></li>
+                        <li><a href="#tech" class="text-gray-400 hover:text-purple-400 transition-colors">Tecnologias</a></li>
+                        <li><a href="preco.html" class="text-gray-400 hover:text-purple-400 transition-colors">Preços</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-purple-400 transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Nossos Serviços</h3>
+                    <ul class="space-y-3">
+                        <li><a href="site.html" class="text-gray-400 hover:text-white transition-colors">Criação de Sites</a></li>
+                        <li><a href="automacao.html" class="text-gray-400 hover:text-white transition-colors">Automações</a></li> <!-- Exemplo, ajustar links -->
+                        <li><a href="dados.html" class="text-gray-400 hover:text-white transition-colors">Tratamento de Dados</a></li> <!-- Exemplo, ajustar links -->
+                        <li><a href="seo.html" class="text-gray-400 hover:text-white transition-colors">SEO</a></li> <!-- Exemplo, ajustar links -->
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Inscreva-se para receber nossas novidades e conteúdo exclusivo</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Seu e-mail" class="contact-input w-full px-4 py-2 rounded-lg focus:outline-none text-sm">
+                        <button type="submit" class="gradient-button w-full py-2 rounded-lg text-sm font-medium">
+                            Inscrever-se
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm">&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
+                    <div class="mt-4 md:mt-0">
+                        <ul class="flex space-x-6">
+                            <li><a href="#" class="text-gray-500 hover:text-gray-300 transition-colors">Termos de Uso</a></li>
+                            <li><a href="#" class="text-gray-500 hover:text-gray-300 transition-colors">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const paragraphs = document.querySelectorAll("p");
-        paragraphs.forEach(paragraph => {
-            const text = paragraph.innerText;
-            paragraph.innerHTML = "";
-            text.split(" ").forEach((word, index) => {
-                const span = document.createElement("span");
-                span.classList.add("blur-text");
-                span.style.transitionDelay = `${index * 10}ms`;
-                span.innerText = word;
-                paragraph.appendChild(span);
-                paragraph.appendChild(document.createTextNode(" "));
+
+    <script>
+        // Efeito de revelação ao rolar
+        document.addEventListener("DOMContentLoaded", function () {
+            // Animação do texto com fade-in
+            const paragraphs = document.querySelectorAll("p:not(footer p)");
+            paragraphs.forEach(paragraph => {
+                const text = paragraph.innerText;
+                paragraph.innerHTML = "";
+                text.split(" ").forEach((word, index) => {
+                    const span = document.createElement("span");
+                    span.classList.add("blur-text");
+                    span.style.transitionDelay = `${index * 10}ms`;
+                    span.innerText = word;
+                    paragraph.appendChild(span);
+                    paragraph.appendChild(document.createTextNode(" "));
+                });
             });
+
+            // Mostrar elementos quando entram na viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const blurElements = entry.target.querySelectorAll(".blur-text");
+                        blurElements.forEach((el, index) => {
+                            setTimeout(() => {
+                                el.classList.add("visible");
+                            }, index * 20);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll("p, h2, h3, .card").forEach(el => {
+                observer.observe(el);
+            });
+
+            // Navegação móvel
+            document.getElementById('menuToggle').addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Efeito de scroll para navegação
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === "#") return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Ajustado o offset para o novo header
+                            behavior: 'smooth'
+                        });
+                        
+                        // Fechar menu móvel se estiver aberto
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                });
+            });
+
+            // Navbar com sombra ao scroll
+            const navbar = document.getElementById('navbar');
+            if (navbar) { // Adicionada verificação para evitar erro se navbar não for encontrado
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add('shadow-lg', 'bg-[#0a0a12]/90'); // --dark-bg é #0a0a12
+                    } else {
+                        navbar.classList.remove('shadow-lg', 'bg-[#0a0a12]/90');
+                    }
+                }
+            )};
+
+            // Animação de partículas
+            createParticles();
         });
 
-        const spans = document.querySelectorAll(".blur-text");
-        spans.forEach((span, index) => {
-            setTimeout(() => {
-                span.classList.add("visible");
-            }, index * 20);
-        });
-    });
+        // Criar partículas animadas
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Características aleatórias
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const opacity = Math.random() * 0.3 + 0.1;
+                const animDuration = Math.random() * 15 + 10;
+                const animDelay = Math.random() * 5;
+                
+                // Aplicar estilos
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.opacity = opacity;
+                
+                // Animação
+                particle.style.animation = `float ${animDuration}s infinite ease-in-out ${animDelay}s`;
+                particle.style.transform = `translateY(0)`;
+                
+                // Adicionar ao container
+                container.appendChild(particle);
+            }
+        }
 
-    document.getElementById('menuToggle').addEventListener('click', () => {
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+        // Keyframes para animação das partículas
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            @keyframes float {
+                0% { transform: translate(0, 0); }
+                50% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px); }
+                100% { transform: translate(0, 0); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
 </html>
