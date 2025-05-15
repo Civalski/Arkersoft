@@ -98,6 +98,9 @@
             -webkit-mask: 
                 linear-gradient(#fff 0 0) content-box, 
                 linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             opacity: 0.7;
@@ -184,42 +187,39 @@
     <div class="light-grid"></div>
 
     <!-- Barra de navegação -->
-    <nav class="fixed top-0 w-full backdrop-blur-lg bg-dark-900/90 border-b border-purple-900/30 z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
-            <a href="https://www.arkersoft.com/index.html" class="text-2xl font-semibold flex items-center space-x-2">
-                <img src="arkerlg.png" alt="Logo Arkersoft" class="h-auto w-auto max-h-10 max-w-[150px]">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-accent-secondary hidden md:inline-block">Arkersoft</span>
-            </a>
-            
-            <button id="menuToggle" class="lg:hidden focus:outline-none p-2 rounded-full hover:bg-purple-900/20 transition" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="hidden lg:flex items-center space-x-8">
-                <li><a href="index.html" class="nav-link py-2 hover:text-accent-light transition-colors">Home</a></li>
-                <li><a href="#services" class="nav-link py-2 hover:text-accent-light transition-colors">Serviços</a></li>
-                <li><a href="preco.html" class="nav-link py-2 hover:text-accent-light transition-colors">Preços</a></li>
-                <li><a href="#contact" class="nav-link py-2 hover:text-accent-light transition-colors">Contato</a></li>
-                <li><a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="btn-primary px-5 py-2 rounded-full font-medium text-white inline-flex items-center">
-                    <i class="fab fa-whatsapp mr-2"></i> Fale Conosco
-                </a></li>
-            </ul>
+    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-purple-500/10 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center">
+                    <img src="arkerlogo1.png" alt="Arkersoft Logo" class="h-8">
+                </a>
+                
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-8">
+                        <a href="#home" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Home</a>
+                        <a href="preco.html" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Preços</a>
+                        <a href="#contact" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Contato</a>
+                    </div>
+                </div>
+                
+                <div class="flex md:hidden">
+                    <button id="menuToggle" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-
-        <!-- Menu Mobile -->
-        <div id="mobileMenu" class="lg:hidden hidden bg-dark-800 border-t border-purple-900/20 shadow-lg">
-            <ul class="py-2">
-                <li><a href="index.html" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Home</a></li>
-                <li><a href="#services" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Serviços</a></li>
-                <li><a href="preco.html" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Preços</a></li>
-                <li><a href="#contact" class="block px-6 py-3 hover:bg-purple-900/20 transition-colors">Contato</a></li>
-                <li class="px-6 py-3">
-                    <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="btn-primary w-full block text-center px-4 py-3 rounded-lg font-medium text-white">
-                        <i class="fab fa-whatsapp mr-2"></i> Fale Conosco
-                    </a>
-                </li>
-            </ul>
-        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-dark-surface backdrop-blur-lg border-t border-purple-500/10">
+                <a href="#home" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="preco.html" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Preços</a>
+                <a href="#contact" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Contato</a>
+            </div>
+       </div>
     </nav>
 
     <!-- Hero Section -->
@@ -462,13 +462,6 @@
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-accent-secondary/20 mr-4">
-                                <i class="fab fa-whatsapp text-accent-secondary"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold mb-1">WhatsApp</h3>
-                                <a href="https://api.whatsapp.com/send/?phone=%2B5519998205608&text&type=phone_number&app_absent=0" target="_blank" class="text-gray-300 hover:text-accent-light transition-colors">(19) 99820-5608</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -500,10 +493,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 <div>
                     <a href="https://www.arkersoft.com/index.html" class="inline-block mb-6">
-                        <img src="arkerlg.png" alt="Logo Arkersoft" class="h-auto w-auto max-h-10 max-w-[150px]">
+                        <img src="arkerlogo1.png" alt="Logo Arkersoft" class="h-auto w-auto max-h-10 max-w-[150px]">
                     </a>
                     <p class="text-gray-400 mb-6">
-                        Soluções de marketing digital e desenvolvimento web para empresas de todos os portes.
+                        Soluções de marketing e desenvolvimento web para empresas de todos os portes.
                     </p>
                     <div class="flex space-x-4">
                         <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-secondary/20 transition-colors">
@@ -511,9 +504,6 @@
                         </a>
                         <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-secondary/20 transition-colors">
                             <i class="fab fa-instagram text-gray-300"></i>
-                        </a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-secondary/20 transition-colors">
-                            <i class="fab fa-linkedin-in text-gray-300"></i>
                         </a>
                     </div>
                 </div>
@@ -523,8 +513,8 @@
                     <ul class="space-y-3">
                         <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Desenvolvimento Web</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Otimização SEO</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Marketing Digital</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Social Media</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Marketing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Design</a></li>
                     </ul>
                 </div>
                 
@@ -533,7 +523,6 @@
                     <ul class="space-y-3">
                         <li><a href="index.html" class="text-gray-400 hover:text-accent-light transition-colors">Home</a></li>
                         <li><a href="preco.html" class="text-gray-400 hover:text-accent-light transition-colors">Preços</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-accent-light transition-colors">Blog</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-accent-light transition-colors">Contato</a></li>
                     </ul>
                 </div>
@@ -554,7 +543,7 @@
                         <li>
                             <a href="mailto:contato@arkersoft.com" class="flex items-center text-gray-400 hover:text-accent-light transition-colors">
                                 <i class="fas fa-envelope mr-3 text-accent-secondary"></i>
-                                <span>contato@arkersoft.com</span>
+                                <span>arkersoft@arkersoft.com</span>
                             </a>
                         </li>
                     </ul>
