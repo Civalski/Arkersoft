@@ -1,525 +1,169 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark scroll-smooth">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preços - Arkersoft</title>
-    <meta name="description" content="Orçamentos personalizados para soluções em IA, Desenvolvimento de Software e Transformação Digital">
-    <meta name="keywords" content="Preços, Orçamentos, Inteligência Artificial, Cloud Computing, IoT, DevOps, Consultoria em T.I">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Gerador de Clientes B2B - Arkersoft</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'purple-dark': '#1a0a2e',
+                        'purple-medium': '#16213e',
+                        'purple-light': '#7b2cbf',
+                        'purple-accent': '#9d4edd',
+                        'purple-gradient': '#c77dff'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: rgba(139, 92, 246, 1);
-            --primary-color-light: rgba(139, 92, 246, 0.6);
-            --primary-color-dark: rgba(124, 58, 237, 1);
-            --secondary-color: rgba(168, 85, 247, 1);
-            --accent-color: rgba(216, 180, 254, 1);
-            --dark-bg: #0a0a12;
-            --dark-surface: rgba(30, 30, 46, 0.8);
-            --border-color: rgba(139, 92, 246, 0.3);
-            --text-color: #f8f8ff;
-            --text-color-secondary: rgba(209, 213, 219, 1);
-            --box-shadow-color: rgba(139, 92, 246, 0.3);
-            --transition-speed: 0.3s;
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f0f23 100%);
         }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-            scroll-behavior: smooth;
+        .purple-gradient {
+            background: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 50%, #c77dff 100%);
         }
-
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+        }
         .text-gradient {
-            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            background: linear-gradient(135deg, #9d4edd, #c77dff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .glass-card {
-            background: rgba(30, 30, 46, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
         }
-
-        .glass-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.25);
+        .pulse-animation {
+            animation: pulse 2s infinite;
         }
-
-        .neon-border {
-            position: relative;
-            border-radius: 0.75rem;
-            overflow: hidden;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-
-        .neon-border::before {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
-            background-size: 400% 400%;
-            z-index: -1;
-            animation: glowing 8s linear infinite;
-            border-radius: 0.75rem;
+        .number-counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #c77dff;
         }
-
-        @keyframes glowing {
-            0% {
-                background-position: 0 0;
-            }
-            50% {
-                background-position: 400% 0;
-            }
-            100% {
-                background-position: 0 0;
-            }
-        }
-
-        .card-icon {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
         .light-grid {
-            background: 
+            background:
                 linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
             background-size: 20px 20px;
             animation: moveGrid 20s linear infinite;
         }
-
         @keyframes moveGrid {
-            0% {
-                background-position: 0 0, 0 0;
-            }
-            50% {
-                background-position: 10px 10px, 10px 10px;
-            }
-            100% {
-                background-position: 0 0, 0 0;
-            }
-        }
-
-        .gradient-button {
-            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .gradient-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: inherit;
-        }
-
-        .gradient-button:hover::before {
-            opacity: 1;
-        }
-
-        .gradient-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-        }
-
-        .typing {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid var(--primary-color);
-            animation: typing 6s steps(40) 1 forwards, blink 1s infinite;
-            max-width: fit-content;
-        }
-
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                border-color: transparent;
-            }
-            50% {
-                border-color: var(--primary-color);
-            }
-        }
-
-        .contact-input {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .contact-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px var(--box-shadow-color);
-        }
-
-        .animate-fadeIn {
-            opacity: 0;
-            animation: fadeIn 0.5s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .scroll-reveal {
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .navbar-link {
-            position: relative;
-        }
-
-        .navbar-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            transition: width 0.3s ease;
-        }
-
-        .navbar-link:hover::after {
-            width: 100%;
-        }
-
-        .whatsapp-button {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
-        }
-
-        .loading-screen {
-            background: var(--dark-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading-logo {
-            position: relative;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: scale(1.05);
-            }
-        }
-
-        .price-card {
-            background: rgba(30, 30, 46, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .price-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(139, 92, 246, 0) 0%, 
-                rgba(139, 92, 246, 0.1) 50%, 
-                rgba(139, 92, 246, 0) 100%);
-            transition: left 0.5s ease-in-out;
-        }
-
-        .price-card:hover::before {
-            left: 100%;
-        }
-
-        .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-        }
-
-        .feature-item {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .feature-item::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .custom-quote-form {
-            background: rgba(15, 15, 25, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
+            0% { background-position: 0 0, 0 0; }
+            50% { background-position: 10px 10px, 10px 10px; }
+            100% { background-position: 0 0, 0 0; }
         }
     </style>
 </head>
-
-<body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen fixed inset-0 z-50 flex flex-col gap-4">
-        <div class="loading-logo text-6xl font-bold">
-            <span class="text-gradient">A</span><span class="text-white">rkersoft</span>
-        </div>
-        <div class="mt-4">
-            <div class="w-48 h-1 bg-gray-800 rounded-full overflow-hidden">
-                <div id="progress-bar" class="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style="width: 0%"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
+<body class="bg-[#0a0a12] text-white">
+    <!-- Efeito de Grade (light-grid) como em index.html -->
     <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-purple-500/10 z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="flex items-center">
-                    <span class="ml-2 text-3xl font-semibold text-gradient">Arkersoft</span>
+    <!-- Header -->
+    <header class="backdrop-blur-md border-b border-purple-light/20 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center"> <!-- Link para a página inicial, ajuste o href se necessário -->
+                    <img src="arkerlogo1.png" alt="Arkersoft Logo" class="h-8 w-auto">
                 </a>
-                
-                <div class="hidden md:block">
-                    <div class="flex items-center space-x-8">
-                        <a href="index.html#home" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Home</a>
-                        <a href="index.html#services" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Serviços</a>
-                        <a href="index.html#about" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Sobre</a>
-                        <a href="index.html#testimonials" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Depoimentos</a>
-                        <a href="preco.html" class="navbar-link text-white font-bold px-1 py-2 text-sm">Preços</a>
-                        <a href="index.html#contact" class="navbar-link text-gray-300 hover:text-white px-1 py-2 text-sm font-medium">Contato</a>
-                    </div>
-                </div>
-                
-                <div class="flex md:hidden">
-                    <button id="menuToggle" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#produto" class="text-gray-300 hover:text-purple-accent transition-colors">Produto</a>
+                    <a href="#recursos" class="text-gray-300 hover:text-purple-accent transition-colors">Recursos</a>
+                    <a href="#preco" class="text-gray-300 hover:text-purple-accent transition-colors">Preço</a>
+                    <a href="#contato" class="text-gray-300 hover:text-purple-accent transition-colors">Contato</a>
+                </nav>
+                <button class="md:hidden text-white">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobileMenu" class="md:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-dark-surface backdrop-blur-lg border-t border-purple-500/10">
-                <a href="index.html#home" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="index.html#services" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Serviços</a>
-                <a href="index.html#about" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
-                <a href="index.html#testimonials" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Depoimentos</a>
-                <a href="preco.html" class="bg-purple-500/20 text-white block px-3 py-2 rounded-md text-base font-medium">Preços</a>
-                <a href="index.html#contact" class="text-gray-300 hover:bg-purple-500/20 block px-3 py-2 rounded-md text-base font-medium">Contato</a>
-            </div>
-        </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-16 relative overflow-hidden">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 opacity-0 translate-y-8 scroll-reveal">
-                    <span class="text-gradient">Investimento Personalizado</span> para seu Projeto
-                </h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-8 opacity-0 translate-y-8 scroll-reveal">
-                    Cada projeto é único e merece um orçamento sob medida para suas necessidades específicas.
-                </p>
-                <div class="opacity-0 translate-y-8 scroll-reveal">
-                    <a href="#custom-quote" class="gradient-button inline-block px-8 py-4 rounded-lg font-semibold text-lg">
-                        Solicitar Orçamento
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="relative py-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-dark/50 to-transparent"></div>
+        <div class="container mx-auto px-6 relative">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
+                            <span class="text-gradient">60+ Milhões</span><br>
+                            de Clientes Potenciais
+                        </h1>
+                        <p class="text-xl text-gray-300 leading-relaxed">
+                            O mais completo gerador de clientes B2B do Brasil. Automatize sua prospecção e multiplique suas vendas com dados de contato e informações de todas as empresas brasileiras.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="purple-gradient text-white font-bold py-4 px-8 rounded-lg hover-glow transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-download mr-2"></i>
+                            Baixar Agora - R$ 39,90
+                        </button>
+                        <button class="border-2 border-purple-accent text-purple-accent font-bold py-4 px-8 rounded-lg hover:bg-purple-accent hover:text-white transition-all duration-300">
+                            <i class="fas fa-play mr-2"></i>
+                            Ver Demonstração
+                        </button>
+                    </div>
 
-    <!-- Pricing Philosophy -->
-    <section class="py-16 bg-gray-900/30">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 opacity-0 translate-y-8 scroll-reveal">
-                        Nossa <span class="text-gradient">Filosofia de Preços</span>
-                    </h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="glass-card p-8 opacity-0 translate-y-8 scroll-reveal">
-                        <div class="text-4xl card-icon mb-4">
-                            <i class="fas fa-handshake"></i>
+                    <div class="flex items-center gap-6 text-sm text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Windows & Linux</span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-4">Transparência Total</h3>
-                        <p class="text-gray-300">
-                            Acreditamos em relações transparentes. Nossos orçamentos detalham cada aspecto do projeto, 
-                            sem surpresas ou custos ocultos. Você saberá exatamente pelo que está pagando.
-                        </p>
-                    </div>
-                    
-                    <div class="glass-card p-8 opacity-0 translate-y-8 scroll-reveal">
-                        <div class="text-4xl card-icon mb-4">
-                            <i class="fas fa-bullseye"></i>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-shield-alt text-blue-400"></i>
+                            <span>100% Seguro</span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-4">Valor Real</h3>
-                        <p class="text-gray-300">
-                            Não cobramos pelo que você não precisa. Analisamos profundamente suas necessidades 
-                            para oferecer soluções que maximizam seu investimento e geram resultados concretos.
-                        </p>
-                    </div>
-                    
-                    <div class="glass-card p-8 opacity-0 translate-y-8 scroll-reveal">
-                        <div class="text-4xl card-icon mb-4">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-clock text-yellow-400"></i>
+                            <span>Constante atualizações</span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-4">Investimento Estratégico</h3>
-                        <p class="text-gray-300">
-                            Vemos cada projeto como um investimento, não como um gasto. Nossa prioridade 
-                            é garantir que cada real investido retorne multiplicado para seu negócio.
-                        </p>
-                    </div>
-                    
-                    <div class="glass-card p-8 opacity-0 translate-y-8 scroll-reveal">
-                        <div class="text-4xl card-icon mb-4">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-4">Parceria de Longo Prazo</h3>
-                        <p class="text-gray-300">
-                            Nossos preços refletem nosso compromisso com relacionamentos duradouros. Não queremos apenas um 
-                            projeto, mas construir uma parceria que ajude seu negócio a crescer continuamente.
-                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Why Custom Pricing -->
-    <section class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 opacity-0 translate-y-8 scroll-reveal">
-                        Por Que <span class="text-gradient">Preços Personalizados?</span>
-                    </h2>
-                    <p class="text-lg text-gray-300 opacity-0 translate-y-8 scroll-reveal">
-                        Entendemos que cada projeto tem suas particularidades e desafios únicos
-                    </p>
-                    <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto mt-6"></div>
-                </div>
-                
-                <div class="bg-gray-900/30 rounded-2xl p-8 opacity-0 translate-y-8 scroll-reveal">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-6 text-gradient">Evitamos:</h3>
-                            <ul class="space-y-4">
-                                <li class="flex items-start">
-                                    <div class="text-red-500 mr-3 text-xl"><i class="fas fa-times-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Pacotes pré-definidos</span> que incluem funcionalidades que você não precisa
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="text-red-500 mr-3 text-xl"><i class="fas fa-times-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Soluções genéricas</span> que não atendem às necessidades específicas do seu negócio
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="text-red-500 mr-3 text-xl"><i class="fas fa-times-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Surpresas desagradáveis</span> com custos adicionais no meio do projeto
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="text-red-500 mr-3 text-xl"><i class="fas fa-times-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Orçamentos inflados</span> com recursos desnecessários para seu objetivo
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-6 text-gradient">Oferecemos:</h3>
-                            <ul class="space-y-4">
-                                <li class="flex items-start">
-                                    <div class="text-green-500 mr-3 text-xl"><i class="fas fa-check-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Análise detalhada</span> das necessidades específicas do seu negócio
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="text-green-500 mr-3 text-xl"><i class="fas fa-check-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Soluções sob medida</span> que se alinham aos seus objetivos estratégicos
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="text-green-500 mr-3 text-xl"><i class="fas fa-check-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Planejamento financeiro claro</span> com todas as etapas e custos detalhados
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="text-green-500 mr-3 text-xl"><i class="fas fa-check-circle"></i></div>
-                                    <div>
-                                        <span class="font-medium">Flexibilidade</span> para ajustar o escopo e orçamento conforme suas possibilidades
-                                    </div>
-                                </li>
-                            </ul>
+                <div class="relative">
+                    <div class="bg-purple-medium/30 backdrop-blur-md rounded-2xl p-8 border border-purple-light/20">
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold">Recursos poderosos com infinitas aplicações</h3>
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                    <div class="text-2xl font-bold text-purple-accent">+60 Milhões</div>
+                                    <div class="text-sm text-gray-400">Empresas</div>
+                                </div>
+                                <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                    <div class="text-2xl font-bold text-green-400">100%</div>
+                                    <div class="text-sm text-gray-400">Testado e válidado</div>
+                                </div>
+                                <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                    <div class="text-2xl font-bold text-yellow-400">Rápido</div>
+                                    <div class="text-sm text-gray-400">Geração de leads em segundos</div>
+                                </div>
+                                <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                    <div class="text-2xl font-bold text-blue-400">Atualizado</div>
+                                    <div class="text-sm text-gray-400">Última atualização 04/06/2025</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -527,221 +171,124 @@
         </div>
     </section>
 
-    <!-- Service Categories -->
-    <section class="py-16 bg-gray-900/30">
-        <div class="container mx-auto px-4">
+    <!-- Recursos Section -->
+    <section id="recursos" class="py-20 bg-purple-medium/30">
+        <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 opacity-0 translate-y-8 scroll-reveal">
-                    <span class="text-gradient">Categorias de Serviço</span>
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Recursos Exclusivos</span>
                 </h2>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto opacity-0 translate-y-8 scroll-reveal">
-                    Nossos orçamentos personalizados são desenvolvidos com base nas seguintes categorias de serviço
-                </p>
-                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto mt-6"></div>
+                <p class="text-xl text-gray-300">Tudo que você precisa para automatizar sua prospecção</p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Categoria 1 -->
-                <div class="price-card rounded-xl p-6 opacity-0 translate-y-8 scroll-reveal">
-                    <div class="text-4xl card-icon mb-4">
-                        <i class="fas fa-laptop-code"></i>
+                <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                    <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Desenvolvimento Web</h3>
-                    <ul class="space-y-3 mb-6">
-                        <li class="feature-item">Sites Institucionais</li>
-                        <li class="feature-item">Lojas Virtuais</li>
-                        <li class="feature-item">Landing Pages</li>
-                        <li class="feature-item">Aplicações Web Personalizadas</li>
-                        <li class="feature-item">Painéis Administrativos</li>
+                    <h3 class="text-xl font-bold mb-4">Banco de Dados Completo</h3>
+                    <p class="text-gray-300 mb-4">Mais de 60 milhões de empresas brasileiras com dados atualizados e verificados constantemente.</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>CNPJ e Razão Social</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Contatos e Telefones</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Endereços Completos</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Segmento de Atuação</li>
                     </ul>
-                    <p class="text-sm text-gray-400 mb-6">
-                        Preços baseados na complexidade, número de páginas, integrações e funcionalidades específicas.
-                    </p>
-                    <a href="#custom-quote" class="gradient-button w-full py-3 rounded-lg text-center block font-medium">
-                        Solicitar Orçamento
-                    </a>
                 </div>
-                
-                <!-- Categoria 2 -->
-                <div class="price-card rounded-xl p-6 opacity-0 translate-y-8 scroll-reveal">
-                    <div class="text-4xl card-icon mb-4">
-                        <i class="fas fa-robot"></i>
+
+                <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                    <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-filter text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Automação & IA</h3>
-                    <ul class="space-y-3 mb-6">
-                        <li class="feature-item">Automação de Processos</li>
-                        <li class="feature-item">Chatbots Inteligentes</li>
-                        <li class="feature-item">Sistemas de Recomendação</li>
-                        <li class="feature-item">Análise Preditiva</li>
-                        <li class="feature-item">Integração com APIs</li>
+                    <h3 class="text-xl font-bold mb-4">Filtros Inteligentes</h3>
+                    <p class="text-gray-300 mb-4">Interface intuitiva para filtrar exatamente o tipo de cliente que você procura.</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Por Cidade/Estado</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Por Segmento</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Por Porte da Empresa</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Por Faturamento</li>
                     </ul>
-                    <p class="text-sm text-gray-400 mb-6">
-                        Preços determinados pelo escopo da automação, complexidade dos algoritmos e volume de dados.
-                    </p>
-                    <a href="#custom-quote" class="gradient-button w-full py-3 rounded-lg text-center block font-medium">
-                        Solicitar Orçamento
-                    </a>
                 </div>
-                
-                <!-- Categoria 3 -->
-                <div class="price-card rounded-xl p-6 opacity-0 translate-y-8 scroll-reveal">
-                    <div class="text-4xl card-icon mb-4">
-                        <i class="fas fa-chart-pie"></i>
+
+                <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                    <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-file-excel text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Dados & Análise</h3>
-                    <ul class="space-y-3 mb-6">
-                        <li class="feature-item">Tratamento de Dados</li>
-                        <li class="feature-item">Business Intelligence</li>
-                        <li class="feature-item">Dashboards Interativos</li>
-                        <li class="feature-item">ETL e Data Warehousing</li>
-                        <li class="feature-item">Big Data Solutions</li>
+                    <h3 class="text-xl font-bold mb-4">Relatórios Automatizados</h3>
+                    <p class="text-gray-300 mb-4">Gere relatórios em Excel com milhares de leads organizados e prontos para uso.</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Exportação em Excel</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Formatação Profissional</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Dados Organizados</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Pronto para CRM</li>
                     </ul>
-                    <p class="text-sm text-gray-400 mb-6">
-                        Preços baseados na quantidade e complexidade dos dados, análises necessárias e relatórios.
-                    </p>
-                    <a href="#custom-quote" class="gradient-button w-full py-3 rounded-lg text-center block font-medium">
-                        Solicitar Orçamento
-                    </a>
-                </div>
-                
-                <!-- Categoria 4 -->
-                <div class="price-card rounded-xl p-6 opacity-0 translate-y-8 scroll-reveal">
-                    <div class="text-4xl card-icon mb-4">
-                        <i class="fas fa- cloud"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Cloud & Hospedagem</h3>
-                    <ul class="space-y-3 mb-6">
-                        <li class="feature-item">Migração para Nuvem</li>
-                        <li class="feature-item">Configuração de Servidores</li>
-                        <li class="feature-item">CDN e Otimização</li>
-                        <li class="feature-item">Balanceamento de Carga</li>
-                        <li class="feature-item">Monitoramento 24/7</li>
-                    </ul>
-                    <p class="text-sm text-gray-400 mb-6">
-                        Preços com base na infraestrutura necessária, tráfego esperado e requisitos de segurança.
-                    </p>
-                    <a href="#custom-quote" class="gradient-button w-full py-3 rounded-lg text-center block font-medium">
-                        Solicitar Orçamento
-                    </a>
-                </div>
-                
-                <!-- Categoria 5 -->
-                <div class="price-card rounded-xl p-6 opacity-0 translate-y-8 scroll-reveal">
-                    <div class="text-4xl card-icon mb-4">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Desenvolvimento Mobile</h3>
-                    <ul class="space-y-3 mb-6">
-                        <li class="feature-item">Apps iOS e Android</li>
-                        <li class="feature-item">Aplicações Híbridas</li>
-                        <li class="feature-item">WebApps Responsivos</li>
-                        <li class="feature-item">PWAs</li>
-                        <li class="feature-item">Manutenção e Atualizações</li>
-                    </ul>
-                    <p class="text-sm text-gray-400 mb-6">
-                        Preços definidos pela complexidade do app, plataformas suportadas e recursos interativos.
-                    </p>
-                    <a href="#custom-quote" class="gradient-button w-full py-3 rounded-lg text-center block font-medium">
-                        Solicitar Orçamento
-                    </a>
-                </div>
-                
-                <!-- Categoria 6 -->
-                <div class="price-card rounded-xl p-6 opacity-0 translate-y-8 scroll-reveal">
-                    <div class="text-4xl card-icon mb-4">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Segurança Digital</h3>
-                    <ul class="space-y-3 mb-6">
-                        <li class="feature-item">Auditorias de Segurança</li>
-                        <li class="feature-item">Proteção contra Invasões</li>
-                        <li class="feature-item">Conformidade com LGPD</li>
-                        <li class="feature-item">Criptografia de Dados</li>
-                        <li class="feature-item">Backups Automatizados</li>
-                    </ul>
-                    <p class="text-sm text-gray-400 mb-6">
-                        Preços baseados no nível de proteção, volume de dados e requisitos regulatórios.
-                    </p>
-                    <a href="#custom-quote" class="gradient-button w-full py-3 rounded-lg text-center block font-medium">
-                        Solicitar Orçamento
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 opacity-0 translate-y-8 scroll-reveal">
-                        Nosso <span class="text-gradient">Processo</span>
-                    </h2>
-                    <p class="text-lg text-gray-300 opacity-0 translate-y-8 scroll-reveal">
-                        Um orçamento personalizado desenvolvido em etapas transparentes
-                    </p>
-                    <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto mt-6"></div>
+    <!-- Bônus Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Bônus Exclusivos</span>
+                </h2>
+                <p class="text-xl text-gray-300">Receba de brinde ferramentas para alavancar seus resultados.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="bg-purple-medium/30 backdrop-blur-md rounded-2xl p-8 border border-purple-light/20">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fab fa-whatsapp text-xl text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Automatizador de WhatsApp</h3>
+                                <p class="text-gray-300 mb-4">Envie mensagens em massa de forma automatizada e inteligente.</p>
+                                <div class="text-sm text-purple-accent font-semibold">Valor: R$ 29,90 - GRÁTIS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-medium/30 backdrop-blur-md rounded-2xl p-8 border border-purple-light/20">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-book text-xl text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Manual de Prospecção Infalível</h3>
+                                <p class="text-gray-300 mb-4">Técnica secreta para obter até 30x mais respostas e maximizar seus resultados.</p>
+                                <div class="text-sm text-purple-accent font-semibold">Valor: R$ 19,90 - GRÁTIS</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="space-y-12">
-                    <!-- Step 1 -->
-                    <div class="flex flex-col md:flex-row gap-6 items-center opacity-0 translate-y-8 scroll-reveal">
-                        <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 flex items-center justify-center flex-shrink-0">
-                            <span class="text-3xl font-bold text-white">1</span>
+
+                <div class="bg-purple-dark/30 rounded-2xl p-8 border border-purple-light/20 text-center">
+                    <h3 class="text-2xl font-bold mb-6">Valor Total do Pacote</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span>Software Gerador de Clientes</span>
+                            <span class="text-purple-accent font-bold">R$ 39,90</span>
                         </div>
-                        <div class="flex-1 bg-gray-900/30 p-6 rounded-xl">
-                            <h3 class="text-2xl font-semibold mb-3">Consulta Inicial</h3>
-                            <p class="text-gray-300">
-                                Realizamos uma reunião detalhada para entender profundamente seu negócio, 
-                                objetivos, desafios e expectativas. Esta fase é crucial para alinharmos 
-                                nossa visão com suas necessidades reais.
-                            </p>
+                        <div class="flex justify-between items-center">
+                            <span>Automatizador WhatsApp</span>
+                            <span class="text-purple-accent font-bold">R$ 29,90</span>
                         </div>
-                    </div>
-                    
-                    <!-- Step 2 -->
-                    <div class="flex flex-col md:flex-row gap-6 items-center opacity-0 translate-y-8 scroll-reveal">
-                        <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 flex items-center justify-center flex-shrink-0">
-                            <span class="text-3xl font-bold text-white">2</span>
+                        <div class="flex justify-between items-center">
+                            <span>Manual de Prospecção</span>
+                            <span class="text-purple-accent font-bold">R$ 19,90</span>
                         </div>
-                        <div class="flex-1 bg-gray-900/30 p-6 rounded-xl">
-                            <h3 class="text-2xl font-semibold mb-3">Análise Técnica</h3>
-                            <p class="text-gray-300">
-                                Nossa equipe estuda a viabilidade técnica, identifica possíveis desafios 
-                                e explora as melhores soluções tecnológicas para seu projeto, sempre 
-                                considerando escalabilidade e futuro crescimento.
-                            </p>
+                        <hr class="border-purple-light/20">
+                        <div class="flex justify-between items-center text-lg">
+                            <span>Valor Total</span>
+                            <span class="line-through text-gray-400">R$ 89,70</span>
                         </div>
-                    </div>
-                    
-                    <!-- Step 3 -->
-                    <div class="flex flex-col md:flex-row gap-6 items-center opacity-0 translate-y-8 scroll-reveal">
-                        <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 flex items-center justify-center flex-shrink-0">
-                            <span class="text-3xl font-bold text-white">3</span>
-                        </div>
-                        <div class="flex-1 bg-gray-900/30 p-6 rounded-xl">
-                            <h3 class="text-2xl font-semibold mb-3">Proposta Detalhada</h3>
-                            <p class="text-gray-300">
-                                Apresentamos um orçamento completo com escopo do projeto, 
-                                cronograma, entregas, tecnologias recomendadas e investimento 
-                                necessário, tudo explicado de forma transparente e acessível.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 4 -->
-                    <div class="flex flex-col md:flex-row gap-6 items-center opacity-0 translate-y-8 scroll-reveal">
-                        <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 flex items-center justify-center flex-shrink-0">
-                            <span class="text-3xl font-bold text-white">4</span>
-                        </div>
-                        <div class="flex-1 bg-gray-900/30 p-6 rounded-xl">
-                            <h3 class="text-2xl font-semibold mb-3">Refinamento</h3>
-                            <p class="text-gray-300">
-                                Discutimos a proposta, ajustamos conforme seu feedback e 
-                                flexibilizamos o escopo se necessário para adequar o projeto ao 
-                                seu orçamento, sempre garantindo a qualidade da solução final.
-                            </p>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gradient mb-2">R$ 39,90</div>
+                            <div class="text-sm text-gray-400">Economize R$ 49,80</div>
                         </div>
                     </div>
                 </div>
@@ -749,351 +296,206 @@
         </div>
     </section>
 
-    <!-- Custom Quote Section -->
-    <section id="custom-quote" class="py-16 bg-gray-900/30">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 opacity-0 translate-y-8 scroll-reveal">
-                        Solicite seu <span class="text-gradient">Orçamento</span>
-                    </h2>
-                    <p class="text-lg text-gray-300 opacity-0 translate-y-8 scroll-reveal">
-                        Preencha o formulário abaixo para iniciarmos uma conversa sobre seu projeto
-                    </p>
-                    <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto mt-6"></div>
+    <!-- Estatísticas -->
+    <section class="py-20 bg-purple-medium/30">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="number-counter pulse-animation">60M+</div>
+                    <div class="text-gray-300">Empresas Cadastradas</div>
                 </div>
-                
-                <div class="neon-border opacity-0 translate-y-8 scroll-reveal">
-                    <form id="quoteForm" class="custom-quote-form rounded-xl p-8">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-gray-300 mb-2">Nome</label>
-                                <input type="text" id="name" class="contact-input w-full px-4 py-3 rounded-lg" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-300 mb-2">Email</label>
-                                <input type="email" id="email" class="contact-input w-full px-4 py-3 rounded-lg" required>
-                            </div>
-                            <div>
-                                <label for="phone" class="block text-gray-300 mb-2">Telefone</label>
-                                <input type="tel" id="phone" class="contact-input w-full px-4 py-3 rounded-lg" required>
-                            </div>
-                            <div>
-                                <label for="company" class="block text-gray-300 mb-2">Empresa</label>
-                                <input type="text" id="company" class="contact-input w-full px-4 py-3 rounded-lg">
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <label for="projectType" class="block text-gray-300 mb-2">Tipo de Projeto</label>
-                            <select id="projectType" class="contact-input w-full px-4 py-3 rounded-lg bg-transparent">
-                                <option value="" class="bg-gray-800">Selecione uma opção</option>
-                                <option value="web" class="bg-gray-800">Desenvolvimento Web</option>
-                                <option value="automation" class="bg-gray-800">Automação & IA</option>
-                                <option value="data" class="bg-gray-800">Dados & Análise</option>
-                                <option value="cloud" class="bg-gray-800">Cloud & Hospedagem</option>
-                                <option value="mobile" class="bg-gray-800">Desenvolvimento Mobile</option>
-                                <option value="security" class="bg-gray-800">Segurança Digital</option>
-                                <option value="other" class="bg-gray-800">Outro (especifique)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <label for="budget" class="block text-gray-300 mb-2">Orçamento Estimado</label>
-                            <select id="budget" class="contact-input w-full px-4 py-3 rounded-lg bg-transparent">
-                                <option value="" class="bg-gray-800">Selecione uma faixa</option>
-                                <option value="less10k" class="bg-gray-800">Menos de R$ 10.000</option>
-                                <option value="10k-25k" class="bg-gray-800">R$ 10.000 - R$ 25.000</option>
-                                <option value="25k-50k" class="bg-gray-800">R$ 25.000 - R$ 50.000</option>
-                                <option value="50k-100k" class="bg-gray-800">R$ 50.000 - R$ 100.000</option>
-                                <option value="more100k" class="bg-gray-800">Mais de R$ 100.000</option>
-                                <option value="undefined" class="bg-gray-800">Ainda não definido</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <label for="timeline" class="block text-gray-300 mb-2">Prazo Desejado</label>
-                            <select id="timeline" class="contact-input w-full px-4 py-3 rounded-lg bg-transparent">
-                                <option value="" class="bg-gray-800">Selecione um prazo</option>
-                                <option value="urgent" class="bg-gray-800">Urgente (menos de 1 mês)</option>
-                                <option value="1-3months" class="bg-gray-800">1-3 meses</option>
-                                <option value="3-6months" class="bg-gray-800">3-6 meses</option>
-                                <option value="6months+" class="bg-gray-800">Mais de 6 meses</option>
-                                <option value="flexible" class="bg-gray-800">Flexível</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <label for="description" class="block text-gray-300 mb-2">Descrição do Projeto</label>
-                            <textarea id="description" rows="6" class="contact-input w-full px-4 py-3 rounded-lg" required></textarea>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <button type="submit" class="gradient-button w-full py-4 rounded-lg text-center block font-semibold text-lg">
-                                Enviar Solicitação
-                            </button>
-                        </div>
-                    </form>
+                <div>
+                    <div class="number-counter pulse-animation">27</div>
+                    <div class="text-gray-300">Estados Cobertos</div>
                 </div>
-                
-                <div class="mt-12 text-center opacity-0 translate-y-8 scroll-reveal">
-                    <p class="text-gray-300 mb-6">Prefere uma conversa direta?</p>
-                    <a href="https://wa.me/5511900000000" target="_blank" class="whatsapp-button inline-flex items-center px-6 py-3 rounded-lg font-medium text-white">
-                        <i class="fab fa-whatsapp text-xl mr-2"></i>
-                        Fale Conosco pelo WhatsApp
-                    </a>
+                <div>
+                    <div class="number-counter pulse-animation">5.570</div>
+                    <div class="text-gray-300">Municípios</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 opacity-0 translate-y-8 scroll-reveal">
-                        Perguntas <span class="text-gradient">Frequentes</span>
-                    </h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto"></div>
-                </div>
-                
-                <div class="space-y-6">
-                    <!-- FAQ Item 1 -->
-                    <div class="glass-card p-6 opacity-0 translate-y-8 scroll-reveal">
-                        <button class="faq-question w-full flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-left">Como é definido o valor do meu projeto?</h3>
-                            <span class="text-purple-500 transform transition-transform duration-300"><i class="fas fa-chevron-down"></i></span>
-                        </button>
-                        <div class="faq-answer mt-4 text-gray-300 hidden">
-                            <p>O valor é calculado com base em diversos fatores: escopo do projeto, complexidade técnica, 
-                            prazo de entrega, recursos necessários, profissionais envolvidos e integrações requeridas. 
-                            Após nossa análise detalhada, apresentamos um orçamento totalmente transparente com o 
-                            detalhamento de cada aspecto do investimento.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Item 2 -->
-                    <div class="glass-card p-6 opacity-0 translate-y-8 scroll-reveal">
-                        <button class="faq-question w-full flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-left">Quais formas de pagamento vocês aceitam?</h3>
-                            <span class="text-purple-500 transform transition-transform duration-300"><i class="fas fa-chevron-down"></i></span>
-                        </button>
-                        <div class="faq-answer mt-4 text-gray-300 hidden">
-                            <p>Oferecemos diversas opções de pagamento: cartão de crédito (possibilidade de parcelamento), 
-                            boleto bancário, transferência PIX e depósito bancário. Em projetos maiores, trabalhamos com um 
-                            cronograma de pagamentos dividido em etapas, alinhado com as entregas do projeto.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Item 3 -->
-                    <div class="glass-card p-6 opacity-0 translate-y-8 scroll-reveal">
-                        <button class="faq-question w-full flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-left">Quanto tempo leva para recebermos uma proposta?</h3>
-                            <span class="text-purple-500 transform transition-transform duration-300"><i class="fas fa-chevron-down"></i></span>
-                        </button>
-                        <div class="faq-answer mt-4 text-gray-300 hidden">
-                            <p>Após nossa reunião inicial de levantamento de requisitos, geralmente apresentamos uma proposta 
-                            detalhada em até 3-5 dias úteis. Para projetos de alta complexidade, esse prazo pode estender-se 
-                            para 7-10 dias úteis para garantirmos uma análise minuciosa e um orçamento preciso.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Item 4 -->
-                    <div class="glass-card p-6 opacity-0 translate-y-8 scroll-reveal">
-                        <button class="faq-question w-full flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-left">E se meu orçamento for menor que o proposto?</h3>
-                            <span class="text-purple-500 transform transition-transform duration-300"><i class="fas fa-chevron-down"></i></span>
-                        </button>
-                        <div class="faq-answer mt-4 text-gray-300 hidden">
-                            <p>Somos flexíveis! Se o orçamento proposto estiver acima das suas possibilidades, trabalhamos 
-                            juntos para encontrar alternativas, como dividir o projeto em fases, ajustar o escopo ou 
-                            encontrar soluções mais econômicas que ainda atendam seus objetivos principais.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Item 5 -->
-                    <div class="glass-card p-6 opacity-0 translate-y-8 scroll-reveal">
-                        <button class="faq-question w-full flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-left">Vocês oferecem suporte após a entrega do projeto?</h3>
-                            <span class="text-purple-500 transform transition-transform duration-300"><i class="fas fa-chevron-down"></i></span>
-                        </button>
-                        <div class="faq-answer mt-4 text-gray-300 hidden">
-                            <p>Sim! Todos os nossos projetos incluem um período de garantia e suporte após a entrega (geralmente 
-                            3 meses). Além disso, oferecemos planos de manutenção contínua e suporte técnico que podem ser 
-                            contratados separadamente, garantindo que sua solução permaneça atualizada e funcionando perfeitamente.</p>
-                        </div>
-                    </div>
+                <div>
+                    <div class="number-counter pulse-animation">99,9%</div>
+                    <div class="text-gray-300">Precisão dos Dados</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-gray-900/30">
-        <div class="container mx-auto px-4">
+    <section id="preco" class="py-20">
+        <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 opacity-0 translate-y-8 scroll-reveal">
-                    Pronto para <span class="text-gradient">transformar</span> sua ideia em realidade?
+                <h2 class="text-4xl font-bold mb-6">
+                    <span class="text-gradient">Transforme Sua Prospecção Hoje</span>
                 </h2>
-                <p class="text-lg text-gray-300 mb-8 opacity-0 translate-y-8 scroll-reveal">
-                    Dê o primeiro passo para o sucesso do seu projeto digital. Nossa equipe está ansiosa para entender 
-                    suas necessidades e desenvolver a solução perfeita.
+                <p class="text-xl text-gray-300 mb-8">
+                    O investimento com o melhor custo x benefício para sua empresa.
                 </p>
-                <div class="opacity-0 translate-y-8 scroll-reveal">
-                    <a href="#custom-quote" class="gradient-button inline-block px-8 py-4 rounded-lg font-semibold text-lg">
-                        Solicitar Orçamento Agora
-                    </a>
+                
+                <div class="bg-purple-dark/50 rounded-2xl p-8 border border-purple-light/20 mb-8">
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <i class="fas fa-shield-alt text-3xl text-green-400 mb-3"></i>
+                            <h4 class="font-bold mb-2">Garantia de 7 Dias</h4>
+                            <p class="text-sm text-gray-400">Satisfação garantida ou seu dinheiro de volta</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-headset text-3xl text-blue-400 mb-3"></i>
+                            <h4 class="font-bold mb-2">Suporte Prioritário</h4>
+                            <p class="text-sm text-gray-400">Suporte para utilização</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-sync-alt text-3xl text-purple-accent mb-3"></i>
+                            <h4 class="font-bold mb-2">Atualizações Recorrentes</h4>
+                            <p class="text-sm text-gray-400">Constantes melhorias</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="purple-gradient text-white font-bold py-6 px-12 rounded-xl text-xl hover-glow transition-all duration-300 transform hover:scale-105 mb-6">
+                    <i class="fas fa-download mr-3"></i>
+                    Baixar Agora por apenas R$ 39,90
+                </button>
+
+                <div class="text-sm text-gray-400 space-y-1">
+                    <p><i class="fas fa-lock mr-2"></i>Compra 100% Segura com Mercado Pago</p>
+                    <p><i class="fas fa-credit-card mr-2"></i>Pix, Cartão ou Boleto</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900/50 py-12">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-4 gap-8">
-                    <!-- Company Info -->
-                    <div>
-                        <div class="text-3xl font-bold mb-4">
-                            <span class="text-gradient">A</span><span class="text-white">rkersoft</span>
+    <footer class="bg-purple-dark border-t border-purple-light/20 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple-light to-purple-accent rounded-lg flex items-center justify-center">
+                            <i class="fas fa-code text-white text-sm"></i>
                         </div>
-                        <p class="text-gray-400 mb-4">
-                            Transformando ideias em soluções digitais inovadoras desde 2015.
-                        </p>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </div>
+                        <span class="text-xl font-bold text-gradient">Arkersoft</span>
                     </div>
-                    
-                    <!-- Quick Links -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Links Rápidos</h3>
-                        <ul class="space-y-2">
-                            <li><a href="index.html#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                            <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Serviços</a></li>
-                            <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors">Sobre</a></li>
-                            <li><a href="preco.html" class="text-gray-400 hover:text-white transition-colors">Preços</a></li>
-                            <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition-colors">Contato</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Services -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Serviços</h3>
-                        <ul class="space-y-2">
-                            <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Desenvolvimento Web</a></li>
-                            <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Inteligência Artificial</a></li>
-                            <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Desenvolvimento Mobile</a></li>
-                            <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Cloud Computing</a></li>
-                            <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Análise de Dados</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Contact -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Contato</h3>
-                        <ul class="space-y-2 text-gray-400">
-                            <li class="flex items-start">
-                                <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
-                                <span>Av. Paulista, 1000, São Paulo - SP</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-phone mt-1 mr-2"></i>
-                                <span>+55 (11) 9000-0000</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-envelope mt-1 mr-2"></i>
-                                <span>contato@arkersoft.com</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Transformando ideias em realidade desde 2016. Soluções tecnológicas que impulsionam seu negócio.
+                    </p>
                 </div>
                 
-                <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-                    <p>&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Produto</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Funcionalidades</a></li>
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Demonstração</a></li>
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Preços</a></li>
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Suporte</a></li>
+                    </ul>
                 </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Contato</a></li>
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-purple-accent transition-colors">Privacidade</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contato</h4>
+                    <div class="space-y-2 text-sm text-gray-400">
+                        <p><i class="fas fa-envelope mr-2"></i>arkersoft@arkersoft.com</p>
+                        <p><i class="fas fa-phone mr-2"></i>+55 (19) 99820-5608</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>Campinas, SP</p>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-accent transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-accent transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-accent transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-purple-light/20 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2025 Arkersoft. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/5511900000000" target="_blank" class="whatsapp-button fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center rounded-full z-20">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-
-    <!-- Scripts -->
     <script>
-        // Loading Screen
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const progressBar = document.getElementById('progress-bar');
-            let progress = 0;
-            
-            const interval = setInterval(() => {
-                progress += 5;
-                progressBar.style.width = `${progress}%`;
+        // Smooth scrolling para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animação de contadores
+        function animateCounters() {
+            const counters = document.querySelectorAll('.number-counter');
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                const isPercent = target.includes('%');
+                const isPlus = target.includes('+');
+                let num = parseInt(target.replace(/[^\d]/g, ''));
                 
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                            animateElements();
-                        }, 500);
-                    }, 500);
+                if (target.includes('M')) num = num * 1000000;
+                if (target.includes('K')) num = num * 1000;
+                
+                let current = 0;
+                const increment = num / 100;
+                
+                const updateCounter = () => {
+                    if (current < num) {
+                        current += increment;
+                        let display = Math.floor(current);
+                        
+                        if (target.includes('M')) {
+                            display = (display / 1000000).toFixed(0) + 'M';
+                        } else if (target.includes('K')) {
+                            display = (display / 1000).toFixed(0) + 'K';
+                        }
+                        
+                        if (isPercent) display += '%';
+                        if (isPlus) display += '+';
+                        
+                        counter.innerText = display;
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Iniciar animação quando a seção de estatísticas estiver visível
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
                 }
-            }, 50);
-        });
-        
-        // Mobile Menu Toggle
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-        
-        // FAQ Accordions
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const answer = button.nextElementSibling;
-                const icon = button.querySelector('i');
-                
-                answer.classList.toggle('hidden');
-                icon.classList.toggle('rotate-180');
             });
         });
-        
-        // Quote Form Submission
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simulate form submission
-            Swal.fire({
-                title: 'Solicitação Enviada!',
-                text: 'Recebemos seu pedido de orçamento. Nossa equipe entrará em contato em até 24 horas úteis.',
-                icon: 'success',
-                confirmButtonText: 'Entendi',
-                confirmButtonColor: '#8b5cf6'
-            }).then(() => {
-                this.reset();
-            });
+
+        observer.observe(document.querySelector('.number-counter').closest('section'));
+
+        // Efeito parallax suave no hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('section');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
-        
-        // Scroll Animation
-        function animateElements() {
-            const elements = document.querySelectorAll('.scroll-reveal');
-            
-            function checkScroll() {
-                elements.forEach(element => {
+    </script>
+</body>
+</html>

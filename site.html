@@ -9,6 +9,7 @@
     <meta name="description" content="Desenvolvimento de sites profissionais com alto desempenho">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -286,8 +287,8 @@
     <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-purple-500/10 z-20" id="navbar"> <!-- Adicionado id="navbar" -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="#" class="flex items-center">
-                    <span class="ml-2 text-3xl font-semibold text-gradient">Arkersoft</span>
+                <a href="index.html" class="flex items-center">
+                    <img src="arkerlogo1.png" alt="Arkersoft Logo" class="h-8 w-auto">
                 </a>
                 
                 <div class="hidden md:block">
@@ -347,7 +348,6 @@
                 <div class="lg:w-1/2 flex justify-center lg:justify-end">
                     <div class="relative">
                         <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-75 glow"></div>
-                        <img src="/api/placeholder/540/400" alt="Desenvolvimento Web" class="relative rounded-lg w-full max-w-md object-cover z-10">
                     </div>
                 </div>
             </div>
@@ -712,27 +712,33 @@
                 <!-- Formulário de Contato -->
                 <div class="card p-8">
                     <h3 class="text-2xl font-semibold mb-6">Envie sua Mensagem</h3>
-                    <form>
+                    <form id="contactFormSite">
                         <div class="mb-6">
                             <label class="block text-gray-300 mb-2" for="name">Nome Completo</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="Seu nome">
+                            <input type="text" id="name" name="text" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="Seu nome" required>
                         </div>
                         
                         <div class="mb-6">
                             <label class="block text-gray-300 mb-2" for="email">E-mail</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="seu@email.com">
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="seu@email.com" required>
                         </div>
                         
                         <div class="mb-6">
                             <label class="block text-gray-300 mb-2" for="phone">Telefone</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="(00) 00000-0000">
+                            <input type="tel" id="phone" name="user_phone" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="(00) 00000-0000"> 
+                            <!-- Nota: o template 'template_gqsg8un' pode não estar configurado para usar 'user_phone'. Se não estiver, este campo será ignorado. -->
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-gray-300 mb-2" for="assunto">Assunto</label>
+                            <input type="text" id="assunto" name="assunto" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="Assunto da mensagem" required>
                         </div>
                         
                         <div class="mb-6">
                             <label class="block text-gray-300 mb-2" for="message">Mensagem</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="Como podemos ajudar?"></textarea>
+                            <textarea id="message" name="mensagem" rows="5" class="w-full px-4 py-3 bg-[#1a1a2e] border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-all" placeholder="Como podemos ajudar?" required></textarea>
                         </div>
-                        
+
                         <button type="submit" class="btn-primary w-full py-4">
                             <i class="fas fa-paper-plane mr-2"></i>Enviar Mensagem
                         </button>
@@ -937,6 +943,7 @@
         </div>
     </footer>
 
+    <!-- EmailJS e sua inicialização foram removidos -->
     <script>
         // Efeito de revelação ao rolar
         document.addEventListener("DOMContentLoaded", function () {
@@ -1014,52 +1021,11 @@
 
             // Animação de partículas
             createParticles();
+
+            // A lógica de envio do formulário de contato foi removida.
+            const contactFormSite = document.getElementById("contactFormSite");
         });
 
-        // Criar partículas animadas
-        function createParticles() {
-            const container = document.getElementById('particles-container');
-            const particleCount = 30;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Características aleatórias
-                const size = Math.random() * 5 + 2;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const opacity = Math.random() * 0.3 + 0.1;
-                const animDuration = Math.random() * 15 + 10;
-                const animDelay = Math.random() * 5;
-                
-                // Aplicar estilos
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.opacity = opacity;
-                
-                // Animação
-                particle.style.animation = `float ${animDuration}s infinite ease-in-out ${animDelay}s`;
-                particle.style.transform = `translateY(0)`;
-                
-                // Adicionar ao container
-                container.appendChild(particle);
-            }
-        }
-
-        // Keyframes para animação das partículas
-        const styleSheet = document.createElement("style");
-        styleSheet.type = "text/css";
-        styleSheet.innerText = `
-            @keyframes float {
-                0% { transform: translate(0, 0); }
-                50% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px); }
-                100% { transform: translate(0, 0); }
-            }
-        `;
-        document.head.appendChild(styleSheet);
     </script>
 </body>
 </html>
