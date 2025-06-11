@@ -99,8 +99,8 @@
                 <div class="space-y-8">
                     <div class="space-y-4">
                         <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
-                            <span class="text-gradient">60+ Milhões</span><br>
-                            de Clientes Potenciais
+                            <span class="text-gradient">+60 Milhões</span><br>
+                            de clientes em potencial
                         </h1>
                         <p class="text-xl text-gray-300 leading-relaxed">
                             O mais completo gerador de clientes B2B do Brasil. Automatize sua prospecção e multiplique suas vendas com dados de contato e informações de todas as empresas brasileiras.
@@ -129,7 +129,7 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <i class="fas fa-clock text-yellow-400"></i>
-                            <span>Constante atualizações</span>
+                            <span>Atualizações recorrentes</span>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="bg-purple-dark/50 p-4 rounded-lg">
                                     <div class="text-2xl font-bold text-blue-400">Atualizado</div>
-                                    <div class="text-sm text-gray-400">Última atualização 04/06/2025</div>
+                                    <div class="text-sm text-gray-400">Última atualização 11/06/2025</div>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +301,7 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-8 text-center">
                 <div>
-                    <div class="number-counter pulse-animation">60M+</div>
+                    <div class="number-counter pulse-animation">+60 Milhões</div>
                     <div class="text-gray-300">Empresas Cadastradas</div>
                 </div>
                 <div>
@@ -313,7 +313,7 @@
                     <div class="text-gray-300">Municípios</div>
                 </div>
                 <div>
-                    <div class="number-counter pulse-animation">99,9%</div>
+                    <div class="number-counter pulse-animation">100%</div>
                     <div class="text-gray-300">Precisão dos Dados</div>
                 </div>
             </div>
@@ -368,13 +368,10 @@
     <footer class="bg-purple-dark border-t border-purple-light/20 py-12">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-8 h-8 bg-gradient-to-r from-purple-light to-purple-accent rounded-lg flex items-center justify-center">
-                            <i class="fas fa-code text-white text-sm"></i>
-                        </div>
-                        <span class="text-xl font-bold text-gradient">Arkersoft</span>
-                    </div>
+                <div class="flex flex-col"> <!-- Adicionado flex-col para alinhar o logo e o texto abaixo -->
+                    <a href="#" class="mb-4"> <!-- Link para a página inicial, ajuste o href se necessário -->
+                        <img src="arkerlogo1.png" alt="Arkersoft Logo" class="h-8 w-auto"> <!-- Logo do cabeçalho -->
+                    </a>
                     <p class="text-gray-400 text-sm">
                         Transformando ideias em realidade desde 2016. Soluções tecnológicas que impulsionam seu negócio.
                     </p>
@@ -403,7 +400,7 @@
                 <div>
                     <h4 class="text-white font-bold mb-4">Contato</h4>
                     <div class="space-y-2 text-sm text-gray-400">
-                        <p><i class="fas fa-envelope mr-2"></i>arkersoft@arkersoft.com</p>
+                        <p><i class="fas fa-envelope mr-2"></i>arkersoft@arkersoft.com.br</p>
                         <p><i class="fas fa-phone mr-2"></i>+55 (19) 99820-5608</p>
                         <p><i class="fas fa-map-marker-alt mr-2"></i>Campinas, SP</p>
                     </div>
@@ -490,12 +487,6 @@
 
         observer.observe(document.querySelector('.number-counter').closest('section'));
 
-        // Efeito parallax suave no hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('section');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
     </script>
 </body>
 </html>
