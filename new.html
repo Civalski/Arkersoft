@@ -78,13 +78,19 @@
                 <a href="https://www.arkersoft.com" target="_blank" class="flex items-center">
                     <img src="arkerlogo1.png" alt="Arkersoft Logo" class="h-8 w-auto">
                 </a>
-                <nav class="hidden md:flex space-x-8">
+                <!-- Navegação Principal -->
+                <nav id="main-nav"
+                     class="hidden absolute top-full left-0 right-0 bg-purple-dark p-4 z-30 flex flex-col items-center space-y-4
+                            md:relative md:top-auto md:left-auto md:right-auto md:bg-transparent md:p-0 md:z-auto
+                            md:flex md:flex-row md:items-center md:space-x-8">
                     <a href="#home" class="text-gray-300 hover:text-purple-accent transition-colors">Produto</a>
                     <a href="#recursos" class="text-gray-300 hover:text-purple-accent transition-colors">Recursos</a>
                     <a href="#preco" class="text-gray-300 hover:text-purple-accent transition-colors">Preço</a>
                     <a href="#contato" class="text-gray-300 hover:text-purple-accent transition-colors">Contato</a>
                 </nav>
-                <button class="md:hidden text-white">
+                <!-- Botão do Menu Móvel -->
+                <button id="mobile-menu-button" class="md:hidden text-white" aria-expanded="false" aria-controls="main-nav">
+                    <span class="sr-only">Abrir menu principal</span>
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -103,7 +109,7 @@
                             de clientes em potencial
                         </h1>
                         <p class="text-xl text-gray-300 leading-relaxed">
-                            O mais completo gerador de clientes B2B do Brasil. Automatize sua prospecção e multiplique suas vendas com dados de contato e informações de todas as empresas brasileiras.
+                            A melhor opção para aquisição de clientes B2B do Brasil. Automatize sua prospecção e multiplique suas vendas com dados de contato e informações de todas as empresas brasileiras.
                         </p>
                     </div>
                     
@@ -150,7 +156,7 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="bg-purple-dark/50 p-4 rounded-lg">
                                     <div class="text-2xl font-bold text-purple-accent">Sem limite</div>
-                                    <div class="text-sm text-gray-400">Relatórios completos totalmente ilimitados</div>
+                                    <div class="text-sm text-gray-400">Consultas completas totalmente ilimitadas</div>
                                 </div>
                                 <div class="bg-purple-dark/50 p-4 rounded-lg">
                                     <div class="text-2xl font-bold text-green-400">Vitalício</div>
@@ -158,7 +164,7 @@
                                 </div>
                                 <div class="bg-purple-dark/50 p-4 rounded-lg">
                                     <div class="text-2xl font-bold text-blue-400">Rápido</div>
-                                    <div class="text-sm text-gray-400">Resultados em segundos</div>
+                                    <div class="text-sm text-gray-400">Relatórios em poucos segundos</div>
                                 </div>
                                 <div class="bg-purple-dark/50 p-4 rounded-lg">
                                     <div class="text-2xl font-bold text-yellow-400">Atualizado</div>
@@ -367,7 +373,7 @@
                 </button>
 
                 <div class="text-sm text-gray-400 space-y-1">
-                    <p><i class="fas fa-lock mr-2"></i>Compra 100% Segura com Mercado Pago</p>
+                    <p><i class="fas fa-lock mr-2"></i>Compra 100% Segura</p>
                     <p><i class="fas fa-credit-card mr-2"></i>Pix, Cartão ou Boleto</p>
                 </div>
             </div>
@@ -491,6 +497,27 @@
 
         observer.observe(document.querySelector('.number-counter').closest('section'));
 
+        // Lógica do Menu Móvel
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mainNav = document.getElementById('main-nav');
+        const menuIcon = mobileMenuButton.querySelector('i');
+
+        if (mobileMenuButton && mainNav && menuIcon) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isExpanded = mainNav.classList.toggle('hidden');
+                // classList.toggle returns true if the class is now present (so menu is hidden), false otherwise (menu is visible)
+                // So, if 'hidden' is NOT present, menu is open.
+                if (!mainNav.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                    mobileMenuButton.setAttribute('aria-expanded', 'true');
+                } else {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
     </script>
 </body>
 </html>
