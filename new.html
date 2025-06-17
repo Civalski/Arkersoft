@@ -78,19 +78,15 @@
                 <a href="https://www.arkersoft.com" target="_blank" class="flex items-center">
                     <img src="arkerlogo1.png" alt="Arkersoft Logo" class="h-8 w-auto">
                 </a>
-                <!-- Navegação Principal -->
-                <nav id="main-nav"
-                     class="hidden absolute top-full left-0 right-0 bg-purple-dark p-4 z-30 flex flex-col items-center space-y-4
-                            md:relative md:top-auto md:left-auto md:right-auto md:bg-transparent md:p-0 md:z-auto
-                            md:flex md:flex-row md:items-center md:space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-purple-accent transition-colors">Produto</a>
-                    <a href="#recursos" class="text-gray-300 hover:text-purple-accent transition-colors">Recursos</a>
-                    <a href="#preco" class="text-gray-300 hover:text-purple-accent transition-colors">Preço</a>
-                    <a href="#contato" class="text-gray-300 hover:text-purple-accent transition-colors">Contato</a>
+                <nav id="mobile-nav-menu"
+                     class="hidden flex-col space-y-4 py-4 px-6 md:px-0 md:py-0 absolute top-16 left-0 right-0 bg-purple-dark shadow-lg z-40
+                            md:flex md:flex-row md:items-center md:space-y-0 md:space-x-8 md:relative md:top-auto md:left-auto md:right-auto md:bg-transparent md:shadow-none md:z-auto">
+                    <a href="#home" class="block py-2 text-center text-gray-300 hover:text-purple-accent transition-colors md:inline md:py-0 md:text-left">Produto</a>
+                    <a href="#recursos" class="block py-2 text-center text-gray-300 hover:text-purple-accent transition-colors md:inline md:py-0 md:text-left">Recursos</a>
+                    <a href="#preco" class="block py-2 text-center text-gray-300 hover:text-purple-accent transition-colors md:inline md:py-0 md:text-left">Preço</a>
+                    <a href="#contato" class="block py-2 text-center text-gray-300 hover:text-purple-accent transition-colors md:inline md:py-0 md:text-left">Contato</a>
                 </nav>
-                <!-- Botão do Menu Móvel -->
-                <button id="mobile-menu-button" class="md:hidden text-white" aria-expanded="false" aria-controls="main-nav">
-                    <span class="sr-only">Abrir menu principal</span>
+                <button id="mobile-menu-button" class="md:hidden text-white z-50">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -435,6 +431,31 @@
     </footer>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const navMenu = document.getElementById('mobile-nav-menu');
+
+            if (!menuButton || !navMenu) {
+                console.error('Mobile menu button or navigation menu not found!');
+                return;
+            }
+
+            const menuIcon = menuButton.querySelector('i'); // Get the icon element
+
+            menuButton.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+
+                // Toggle icon between bars and times (x)
+                if (navMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            });
+        });
+
         // Smooth scrolling para links de navegação
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -497,27 +518,6 @@
 
         observer.observe(document.querySelector('.number-counter').closest('section'));
 
-        // Lógica do Menu Móvel
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mainNav = document.getElementById('main-nav');
-        const menuIcon = mobileMenuButton.querySelector('i');
-
-        if (mobileMenuButton && mainNav && menuIcon) {
-            mobileMenuButton.addEventListener('click', () => {
-                const isExpanded = mainNav.classList.toggle('hidden');
-                // classList.toggle returns true if the class is now present (so menu is hidden), false otherwise (menu is visible)
-                // So, if 'hidden' is NOT present, menu is open.
-                if (!mainNav.classList.contains('hidden')) {
-                    menuIcon.classList.remove('fa-bars');
-                    menuIcon.classList.add('fa-times');
-                    mobileMenuButton.setAttribute('aria-expanded', 'true');
-                } else {
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
-                    mobileMenuButton.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
     </script>
 </body>
 </html>
