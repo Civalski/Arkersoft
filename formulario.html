@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitação de Pagamento - Arkersoft</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #16213e 100%);
+    }
+
+    .glass-container {
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      background: linear-gradient(135deg, rgba(17, 25, 40, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .step {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(75, 85, 99, 0.5);
+      border: 2px solid #4b5563;
+      color: #9ca3af;
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .step.active {
+      background: linear-gradient(135deg, #ba55d3, #9333ea);
+      border-color: #ba55d3;
+      color: white;
+      box-shadow: 0 0 20px rgba(186, 85, 211, 0.5);
+    }
+
+    .step.completed {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: #10b981;
+      color: white;
+    }
+
+    .form-field {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-field input {
+      width: 100%;
+      background: rgba(31, 41, 55, 0.7);
+      border: 2px solid rgba(75, 85, 99, 0.5);
+      border-radius: 0.75rem;
+      padding: 1rem 1rem 1rem 3rem;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-field input:focus {
+      border-color: #ba55d3;
+      box-shadow: 0 0 0 3px rgba(186, 85, 211, 0.1);
+      background: rgba(31, 41, 55, 0.9);
+    }
+
+    .form-field input:valid {
+      border-color: #10b981;
+    }
+
+    .form-field .field-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      transition: color 0.3s ease;
+    }
+
+    .form-field input:focus + .field-icon {
+      color: #ba55d3;
+    }
+
+    .form-field input:valid + .field-icon {
+      color: #10b981;
+    }
+
+    .payment-option {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .payment-option input[type="radio"] {
+      display: none;
+    }
+
+    .payment-option label {
+      display: block;
+      padding: 1.5rem;
+      background: rgba(31, 41, 55, 0.7);
+      border: 2px solid rgba(75, 85, 99, 0.5);
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .payment-option label::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(186, 85, 211, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .payment-option label:hover::before {
+      left: 100%;
+    }
+
+    .payment-option label:hover {
+      border-color: #ba55d3;
+      background: rgba(186, 85, 211, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(186, 85, 211, 0.2);
+    }
+
+    .payment-option input[type="radio"]:checked + label {
+      background: linear-gradient(135deg, rgba(186, 85, 211, 0.2), rgba(147, 51, 234, 0.2));
+      border-color: #ba55d3;
+      box-shadow: 0 0 20px rgba(186, 85, 211, 0.3);
+    }
+
+    .payment-option .payment-icon {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      color: #ba55d3;
+    }
+
+    .payment-option .payment-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.25rem;
+    }
+
+    .payment-option .payment-desc {
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ba55d3, #9333ea);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(186, 85, 211, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(75, 85, 99, 0.7);
+      border: 2px solid rgba(75, 85, 99, 0.5);
+      color: white;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(75, 85, 99, 0.9);
+      border-color: #6b7280;
+      transform: translateY(-2px);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .slide-in {
+      animation: slideIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .success-message {
+      color: #10b981;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(186, 85, 211, 0.3);
+      border-top: 5px solid #ba55d3;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(75, 85, 99, 0.3);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ba55d3, #9333ea);
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    @media (max-width: 640px) {
+      .glass-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      
+      .step-indicator {
+        margin-bottom: 1.5rem;
+      }
+      
+      .step {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+  <div id="particles-js"></div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="text-center">
+      <div class="loading-spinner mx-auto mb-4"></div>
+      <p class="text-white text-lg">Processando sua solicitação...</p>
+    </div>
+  </div>
+
+  <div class="glass-container p-6 sm:p-8 max-w-3xl w-full mx-4 shadow-xl">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width: 50%"></div>
+    </div>
+
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+      <div class="step active" id="step1Indicator">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="step" id="step2Indicator">
+        <i class="fas fa-credit-card"></i>
+      </div>
+    </div>
+
+    <form id="paymentForm" class="space-y-6">
+      <div class="form-step active fade-in" id="step1">
+        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6 text-center">
+          <i class="fas fa-user-circle mr-3 text-purple-400"></i>
+          Informações Pessoais
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="form-field">
+            <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" required>
+            <i class="fas fa-user field-icon"></i>
+            <div class="error-message" id="nome_completo_error">Nome completo é obrigatório</div>
+          </div>
+          
+          <div class="form-field">
+            <input type="email" name="email" id="email" placeholder="E-mail" required>
+            <i class="fas fa-envelope field-icon"></i>
+            <div class="error-message" id="email_error">E-mail válido é obrigatório</div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <input type="text" name="nome_empresa" id="nome_empresa" placeholder="Nome da Empresa" required>
+          <i class="fas fa-building field-icon"></i>
+          <div class="error-message" id="nome_empresa_error">Nome da empresa é obrigatório</div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="form-field">
+            <input type="tel" name="celular_whatsapp" id="celular_whatsapp" placeholder="Celular (WhatsApp)" required>
+            <i class="fab fa-whatsapp field-icon"></i>
+            <div class="error-message" id="celular_whatsapp_error">Celular é obrigatório</div>
+          </div>
+
+          <div class="form-field">
+            <input type="text" name="codigo_cupom" id="codigo_cupom" placeholder="Código do Cupom (Opcional)">
+            <i class="fas fa-tag field-icon"></i>
+            <div class="success-message" id="cupom_success">Cupom aplicado com sucesso!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-step hidden" id="step2">
+        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6 text-center">
+          <i class="fas fa-credit-card mr-3 text-purple-400"></i>
+          Forma de Pagamento
+        </h3>
+        
+        <div class="space-y-4">
+          <div class="payment-option">
+            <input type="radio" name="forma_pagamento" value="pix" id="pay_pix">
+            <label for="pay_pix" class="flex items-center">
+              <i class="fas fa-qrcode payment-icon"></i>
+              <div>
+                <div class="payment-title">PIX</div>
+                <div class="payment-desc">Pagamento instantâneo e seguro</div>
+              </div>
+            </label>
+          </div>
+          
+          <div class="payment-option">
+            <input type="radio" name="forma_pagamento" value="link_pagamento" id="pay_link">
+            <label for="pay_link" class="flex items-center">
+              <i class="fas fa-link payment-icon"></i>
+              <div>
+                <div class="payment-title">Link de Pagamento</div>
+                <div class="payment-desc">Cartão de crédito, débito e outras opções</div>
+              </div>
+            </label>
+          </div>
+          
+          <div class="payment-option">
+            <input type="radio" name="forma_pagamento" value="anuncio_mercado_livre" id="pay_ml">
+            <label for="pay_ml" class="flex items-center">
+              <i class="fas fa-shopping-cart payment-icon"></i>
+              <div>
+                <div class="payment-title">Mercado Livre</div>
+                <div class="payment-desc">Anúncio seguro com proteção ao comprador</div>
+              </div>
+            </label>
+          </div>
+          
+          <div class="payment-option">
+            <input type="radio" name="forma_pagamento" value="whatsapp" id="pay_whatsapp">
+            <label for="pay_whatsapp" class="flex items-center">
+              <i class="fab fa-whatsapp payment-icon"></i>
+              <div>
+                <div class="payment-title">WhatsApp</div>
+                <div class="payment-desc">Negociação direta via WhatsApp</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        
+        <div class="error-message text-center mt-4" id="pagamento_error">
+          Selecione uma forma de pagamento
+        </div>
+      </div>
+
+      <div class="flex space-x-4 pt-6">
+        <button type="button" id="prevBtn" 
+                class="btn-secondary hidden w-1/2">
+          <i class="fas fa-arrow-left mr-2"></i>
+          Voltar
+        </button>
+        <button type="button" id="nextSubmitBtn" 
+                class="btn-primary w-full">
+          Próximo
+          <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 100, density: { enable: true, value_area: 800 } },
+        color: { value: ['#ba55d3', '#9333ea', '#06b6d4'] },
+        shape: { type: 'circle' },
+        opacity: { value: 0.6, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 200,
+          color: '#ba55d3',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 0.5,
+          direction: 'none',
+          random: true,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: false, mode: 'bubble' },
+          onclick: { enable: false, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          bubble: { distance: 150, size: 6, duration: 2, opacity: 0.8 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    let currentStep = 1;
+    const totalSteps = 2;
+    const formSteps = document.querySelectorAll('.form-step');
+    const nextSubmitBtn = document.getElementById('nextSubmitBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const progressFill = document.getElementById('progressFill');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    function setupRealTimeValidation() {
+      const inputs = document.querySelectorAll('input[required]');
+      inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          validateField(this);
+        });
+        
+        input.addEventListener('input', function() {
+          if (this.classList.contains('error')) {
+            validateField(this);
+          }
+        });
+      });
+    }
+
+    function validateField(field) {
+      const errorElement = document.getElementById(field.id + '_error');
+      let isValid = true;
+
+      field.classList.remove('error');
+      if (errorElement) {
+        errorElement.style.display = 'none';
+      }
+      if (field.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+          isValid = false;
+        }
+      } else if (field.type === 'tel') {
+        const phoneRegex = /^[\d\s\(\)\-\+]{10,}$/;
+        if (!phoneRegex.test(field.value)) {
+          isValid = false;
+        }
+      } else if (field.required && !field.value.trim()) {
+        isValid = false;
+      }
+
+      if (!isValid) {
+        field.classList.add('error');
+        field.style.borderColor = '#ef4444';
+        if (errorElement) {
+          errorElement.style.display = 'block';
+        }
+      } else {
+        field.style.borderColor = '#10b981';
+      }
+
+      return isValid;
+    }
+
+    function validateStep1() {
+      const fields = ['nome_completo', 'email', 'nome_empresa', 'celular_whatsapp'];
+      let allValid = true;
+
+      fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (!validateField(field)) {
+          allValid = false;
+        }
+      });
+
+      return allValid;
+    }
+
+    function validateStep2() {
+      const formaPagamento = document.querySelector('input[name="forma_pagamento"]:checked');
+      const errorElement = document.getElementById('pagamento_error');
+
+      if (!formaPagamento) {
+        errorElement.style.display = 'block';
+        return false;
+      }
+      
+      if (errorElement) errorElement.style.display = 'none';
+      return true;
+    }
+
+    function updateProgress() {
+      const progress = (currentStep / totalSteps) * 100;
+      progressFill.style.width = progress + '%';
+    }
+
+    function updateStepIndicators() {
+      const step1Indicator = document.getElementById('step1Indicator');
+      const step2Indicator = document.getElementById('step2Indicator');
+
+      step1Indicator.className = 'step';
+      step2Indicator.className = 'step';
+
+      if (currentStep === 1) {
+        step1Indicator.classList.add('active');
+      } else if (currentStep === 2) {
+        step1Indicator.classList.add('completed');
+        step1Indicator.innerHTML = '<i class="fas fa-check"></i>';
+        step2Indicator.classList.add('active');
+      }
+    }
+
+    function updateButtonStates() {
+      if (currentStep === 1) {
+        prevBtn.classList.add('hidden');
+        nextSubmitBtn.classList.remove('w-1/2');
+        nextSubmitBtn.classList.add('w-full');
+        nextSubmitBtn.innerHTML = 'Próximo <i class="fas fa-arrow-right ml-2"></i>';
+      } else {
+        prevBtn.classList.remove('hidden');
+        nextSubmitBtn.classList.add('w-1/2');
+        nextSubmitBtn.classList.remove('w-full');
+        nextSubmitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Enviar Solicitação';
+      }
+    }
+
+    function showStep(stepNumber) {
+      formSteps.forEach((step, index) => {
+        step.classList.add('hidden');
+        step.classList.remove('active');
+      });
+
+      const targetStep = formSteps[stepNumber - 1];
+      targetStep.classList.remove('hidden');
+      targetStep.classList.add('active', 'fade-in');
+
+      updateProgress();
+      updateStepIndicators();
+      updateButtonStates();
+    }
+
+    function showLoading() {
+      loadingOverlay.style.display = 'flex';
+    }
+
+    function hideLoading() {
+      loadingOverlay.style.display = 'none';
+    }
+
+    async function submitForm() {
+      showLoading();
+
+      const formaPagamentoSelecionada = document.querySelector('input[name="forma_pagamento"]:checked')?.value;
+      const originalFormData = {
+        nome_completo: document.getElementById('nome_completo').value,
+        email: document.getElementById('email').value,
+        nome_empresa: document.getElementById('nome_empresa').value,
+        celular_whatsapp: document.getElementById('celular_whatsapp').value,
+        codigo_cupom: document.getElementById('codigo_cupom').value,
+        forma_pagamento: formaPagamentoSelecionada,
+      };
+
+      console.log('Dados coletados:', originalFormData);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      hideLoading();
+      alert('✅ Solicitação enviada com sucesso! Você será redirecionado em instantes.');
+      setTimeout(() => {
+          window.location.href = "https://www.arkersoft.com";
+      }, 1000);
+    }
+
+    nextSubmitBtn.addEventListener('click', async function() {
+      if (currentStep === 1) {
+        if (validateStep1()) {
+          currentStep = 2;
+          showStep(currentStep);
+        }
+      } else if (currentStep === 2) {
+        if (validateStep2()) {
+          await submitForm();
+        }
+      }
+    });
+
+    prevBtn.addEventListener('click', function() {
+      if (currentStep > 1) {
+        currentStep = 1;
+        showStep(currentStep);
+      }
+    });
+
+    document.getElementById('codigo_cupom').addEventListener('blur', function() {
+      const cupom = this.value.trim();
+      const successElement = document.getElementById('cupom_success');
+      
+      if (cupom && cupom.toLowerCase() === 'desconto10') {
+        successElement.style.display = 'block';
+        this.style.borderColor = '#10b981';
+      } else {
+        successElement.style.display = 'none';
+      }
+    });
+
+    document.getElementById('celular_whatsapp').addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, '');
+      
+      if (value.length <= 11) {
+        value = value.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        value = value.replace(/^(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+        value = value.replace(/^(\d{2})(\d{1,5})/, '($1) $2');
+        value = value.replace(/^(\d{1,2})/, '($1');
+      }
+      
+      this.value = value;
+    });
+
+    function setupPaymentOptionListeners() {
+      document.querySelectorAll('input[name="forma_pagamento"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          const paymentErrorElement = document.getElementById('pagamento_error');
+          if (paymentErrorElement) {
+            paymentErrorElement.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setupRealTimeValidation();
+      setupPaymentOptionListeners();
+      showStep(currentStep);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        nextSubmitBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
