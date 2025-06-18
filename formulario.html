@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solicitação de Pagamento - Arkersoft</title>
+  <script type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+        emailjs.init("YOUR_USER_ID"); // Substitua pelo seu User ID (Public Key) do EmailJS
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -627,22 +634,33 @@
       showLoading();
 
       const formaPagamentoSelecionada = document.querySelector('input[name="forma_pagamento"]:checked')?.value;
-      const originalFormData = {
+      const templateParams = {
         nome_completo: document.getElementById('nome_completo').value,
         email: document.getElementById('email').value,
         nome_empresa: document.getElementById('nome_empresa').value,
         celular_whatsapp: document.getElementById('celular_whatsapp').value,
-        codigo_cupom: document.getElementById('codigo_cupom').value,
+        codigo_cupom: document.getElementById('codigo_cupom').value || 'Nenhum', // Envia 'Nenhum' se o cupom estiver vazio
         forma_pagamento: formaPagamentoSelecionada,
       };
 
-      console.log('Dados coletados:', originalFormData);
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      hideLoading();
-      alert('✅ Solicitação enviada com sucesso! Você será redirecionado em instantes.');
-      setTimeout(() => {
-          window.location.href = "https://www.arkersoft.com";
-      }, 1000);
+      console.log('Dados para enviar via EmailJS:', templateParams);
+
+      // Substitua 'YOUR_SERVICE_ID' e 'YOUR_TEMPLATE_ID' pelos seus IDs do EmailJS
+      const serviceID = 'service_91tkvof';
+      const templateID = 'template_trf9zfa';
+
+      try {
+        await emailjs.send(serviceID, templateID, templateParams);
+        hideLoading();
+        alert('✅ Solicitação enviada com sucesso! Você será redirecionado em instantes.');
+        setTimeout(() => {
+            window.location.href = "https://www.arkersoft.com"; // Ou uma página de agradecimento
+        }, 2000);
+      } catch (error) {
+        hideLoading();
+        console.error('Erro ao enviar e-mail:', error);
+        alert('❌ Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente.\nDetalhes: ' + JSON.stringify(error));
+      }
     }
 
     nextSubmitBtn.addEventListener('click', async function() {
