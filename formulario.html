@@ -6,11 +6,6 @@
   <title>Solicitação de Pagamento - Arkersoft</title>
   <script type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function(){
-        emailjs.init("YOUR_USER_ID"); // Substitua pelo seu User ID (Public Key) do EmailJS
-    })();
-  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -381,6 +376,61 @@
           <i class="fas fa-credit-card mr-3 text-purple-400"></i>
           Forma de Pagamento
         </h3>
+
+        <!-- Seção de Resumo do Pedido (copiada e adaptada de new.html) -->
+        <div class="my-6 p-4 sm:p-6 bg-gray-800/50 rounded-lg border border-gray-700">
+          <h4 class="text-xl font-semibold text-white mb-4 sm:mb-6 text-center">Resumo da Solicitação</h4>
+          <div class="grid md:grid-cols-2 gap-4 sm:gap-6 items-start">
+            <!-- Itens de Bônus/Serviços -->
+            <div class="space-y-4 sm:space-y-6">
+              <!-- Item 1: Automatizador de WhatsApp -->
+              <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
+                <div class="flex items-start gap-3 sm:gap-4">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fab fa-whatsapp text-lg sm:text-xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Automatizador de WhatsApp</h3>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-1">Envie mensagens em massa de forma automatizada.</p>
+                    <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Item 2: Manual de Prospecção -->
+              <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
+                <div class="flex items-start gap-3 sm:gap-4">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-book text-lg sm:text-xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Manual de Prospecção</h3>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-1">Técnica para obter até 30x mais respostas.</p>
+                    <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Valor Total do Pacote -->
+            <div class="bg-slate-700/70 rounded-xl p-4 border border-purple-500/30 text-center md:mt-0 mt-4 sm:mt-6">
+              <h3 class="text-md sm:text-lg font-semibold text-white mb-3 sm:mb-4">Valor Total Estimado</h3>
+              <div class="space-y-2 text-xs sm:text-sm">
+                <div class="flex justify-between items-center text-gray-300">
+                  <span>Software/Serviço Principal</span>
+                  <span class="text-purple-400 font-semibold">R$ X.XXX,XX</span>
+                </div>
+                <div class="flex justify-between items-center text-gray-300">
+                  <span>Itens Adicionais</span>
+                  <span class="text-purple-400 font-semibold">GRÁTIS</span>
+                </div>
+                <hr class="border-gray-600 my-1 sm:my-2">
+                <div class="text-center mt-2 sm:mt-3">
+                  <div class="text-lg sm:text-xl font-bold text-purple-400 mb-1">R$ X.XXX,XX</div>
+                  <div class="text-xxs sm:text-xs text-gray-400">(Valor a ser confirmado)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div class="space-y-4">
           <div class="payment-option">
@@ -639,13 +689,13 @@
         email: document.getElementById('email').value,
         nome_empresa: document.getElementById('nome_empresa').value,
         celular_whatsapp: document.getElementById('celular_whatsapp').value,
-        codigo_cupom: document.getElementById('codigo_cupom').value || 'Nenhum', // Envia 'Nenhum' se o cupom estiver vazio
+        codigo_cupom: document.getElementById('codigo_cupom').value || 'Nenhum',
         forma_pagamento: formaPagamentoSelecionada,
       };
 
       console.log('Dados para enviar via EmailJS:', templateParams);
 
-      // Substitua 'YOUR_SERVICE_ID' e 'YOUR_TEMPLATE_ID' pelos seus IDs do EmailJS
+      
       const serviceID = 'service_91tkvof';
       const templateID = 'template_trf9zfa';
 
@@ -654,7 +704,7 @@
         hideLoading();
         alert('✅ Solicitação enviada com sucesso! Você será redirecionado em instantes.');
         setTimeout(() => {
-            window.location.href = "https://www.arkersoft.com"; // Ou uma página de agradecimento
+            window.location.href = "https://www.arkersoft.com";
         }, 2000);
       } catch (error) {
         hideLoading();
@@ -731,6 +781,11 @@
         nextSubmitBtn.click();
       }
     });
+  </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init("ZcLVZ_f6Jh1JYA-0D");
+    })();
   </script>
 </body>
 </html>
