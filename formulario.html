@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solicitação de Pagamento - Arkersoft</title>
@@ -10,12 +11,16 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
+    body {
+      background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #16213e 100%);
+      background-attachment: fixed;
+    }
+
     #particles-js {
       position: fixed;
       width: 100%;
       height: 100%;
       z-index: 0;
-      background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #16213e 100%);
     }
 
     .glass-container {
@@ -108,7 +113,6 @@
 
     .payment-option {
       position: relative;
-      margin-bottom: 1rem;
     }
 
     .payment-option input[type="radio"] {
@@ -304,7 +308,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+<body class="min-h-screen flex items-center justify-center p-4">
   <div id="particles-js"></div>
 
   <div class="loading-overlay" id="loadingOverlay">
@@ -336,7 +340,7 @@
           Informações Pessoais
         </h3>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
           <div class="form-field">
             <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" required>
             <i class="fas fa-user field-icon"></i>
@@ -350,13 +354,14 @@
           </div>
         </div>
 
-        <div class="form-field">
-          <input type="text" name="nome_empresa" id="nome_empresa" placeholder="Nome da Empresa" required>
-          <i class="fas fa-building field-icon"></i>
-          <div class="error-message" id="nome_empresa_error">Nome da empresa é obrigatório</div>
+        <div>
+          <div class="form-field">
+            <input type="text" name="nome_empresa" id="nome_empresa" placeholder="Nome da Empresa" required>
+            <i class="fas fa-building field-icon"></i>
+            <div class="error-message" id="nome_empresa_error">Nome da empresa é obrigatório</div>
+          </div>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
           <div class="form-field">
             <input type="tel" name="celular_whatsapp" id="celular_whatsapp" placeholder="Celular (WhatsApp)" required>
             <i class="fab fa-whatsapp field-icon"></i>
@@ -374,112 +379,108 @@
       <div class="form-step hidden" id="step2">
         <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6 text-center">
           <i class="fas fa-credit-card mr-3 text-purple-400"></i>
-          Forma de Pagamento
+          Pagamento
         </h3>
 
-        <!-- Seção de Resumo do Pedido (copiada e adaptada de new.html) -->
-        <div class="my-6 p-4 sm:p-6 bg-gray-800/50 rounded-lg border border-gray-700">
-          <h4 class="text-xl font-semibold text-white mb-4 sm:mb-6 text-center">Resumo da Solicitação</h4>
-          <div class="grid md:grid-cols-2 gap-4 sm:gap-6 items-start">
-            <!-- Itens de Bônus/Serviços -->
-            <div class="space-y-4 sm:space-y-6">
-              <!-- Item 1: Automatizador de WhatsApp -->
-              <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
-                <div class="flex items-start gap-3 sm:gap-4">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i class="fab fa-whatsapp text-lg sm:text-xl text-white"></i>
+        <!-- Container principal para layout lado a lado -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            
+          <!-- Coluna 1: Resumo do Pedido -->
+          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6">
+            <h4 class="text-xl font-semibold text-white text-center mb-2">Resumo da Solicitação</h4>
+              <!-- Itens de Bônus/Serviços -->
+              <div class="space-y-4">
+                <!-- Item 1: Automatizador de WhatsApp -->
+                <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
+                  <div class="flex items-start gap-3 sm:gap-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="fab fa-whatsapp text-lg sm:text-xl text-white"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Automatizador de WhatsApp</h3>
+                      <p class="text-gray-300 text-xs sm:text-sm mb-1">Envie mensagens em massa de forma automatizada.</p>
+                      <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Automatizador de WhatsApp</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm mb-1">Envie mensagens em massa de forma automatizada.</p>
-                    <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
+                </div>
+                <!-- Item 2: Manual de Prospecção -->
+                <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
+                  <div class="flex items-start gap-3 sm:gap-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="fas fa-book text-lg sm:text-xl text-white"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Manual de Prospecção</h3>
+                      <p class="text-gray-300 text-xs sm:text-sm mb-1">Técnica para obter até 30x mais respostas.</p>
+                      <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- Item 2: Manual de Prospecção -->
-              <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
-                <div class="flex items-start gap-3 sm:gap-4">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-book text-lg sm:text-xl text-white"></i>
+              <!-- Valor Total do Pacote -->
+              <div class="bg-slate-700/70 rounded-xl p-4 border border-purple-500/30 text-center">
+                <h3 class="text-md sm:text-lg font-semibold text-white mb-3 sm:mb-4">Valor Total Estimado</h3>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between items-center text-gray-300">
+                    <span>Software/Serviço Principal</span>
+                    <span class="text-purple-400 font-semibold">R$ 99,90</span>
                   </div>
-                  <div>
-                    <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Manual de Prospecção</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm mb-1">Técnica para obter até 30x mais respostas.</p>
-                    <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
+                  <div class="flex justify-between items-center text-gray-300">
+                    <span>Automatizador WhatsApp</span>
+                    <span class="text-purple-400 font-semibold">R$ 29,90</span>
+                  </div>
+                  <div class="flex justify-between items-center text-gray-300">
+                    <span>Manual de Prospecção</span>
+                    <span class="text-purple-400 font-semibold">R$ 19,90</span>
+                  </div>
+                  <hr class="border-gray-600 my-1 sm:my-2">
+                  <div class="text-center mt-2 sm:mt-3">
+                    <div class="text-lg sm:text-xl font-bold text-purple-400 mb-1">R$ 149,70</div>
                   </div>
                 </div>
+              </div>
+          </div>
+          <!-- Coluna 2: Formas de Pagamento -->
+          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6">
+            <h4 class="text-xl font-semibold text-white text-center mb-2">Escolha como Pagar</h4>
+            <div class="space-y-4">
+              <div class="payment-option">
+                <input type="radio" name="forma_pagamento" value="pix" id="pay_pix">
+                <label for="pay_pix" class="flex items-center">
+                  <i class="fas fa-qrcode payment-icon"></i>
+                  <div>
+                    <div class="payment-title">PIX</div>
+                    <div class="payment-desc">Pagamento instantâneo e seguro</div>
+                  </div>
+                </label>
+              </div>
+              
+              <div class="payment-option">
+                <input type="radio" name="forma_pagamento" value="link_pagamento" id="pay_link">
+                <label for="pay_link" class="flex items-center">
+                  <i class="fas fa-link payment-icon"></i>
+                  <div>
+                    <div class="payment-title">Link de Pagamento</div>
+                    <div class="payment-desc">Cartão de crédito, débito e outras opções</div>
+                  </div>
+                </label>
+              </div>
+              
+              <div class="payment-option">
+                <input type="radio" name="forma_pagamento" value="whatsapp" id="pay_whatsapp">
+                <label for="pay_whatsapp" class="flex items-center">
+                  <i class="fab fa-whatsapp payment-icon"></i>
+                  <div>
+                    <div class="payment-title">WhatsApp</div>
+                    <div class="payment-desc">Negociação direta via WhatsApp</div>
+                  </div>
+                </label>
               </div>
             </div>
-            <!-- Valor Total do Pacote -->
-            <div class="bg-slate-700/70 rounded-xl p-4 border border-purple-500/30 text-center md:mt-0 mt-4 sm:mt-6">
-              <h3 class="text-md sm:text-lg font-semibold text-white mb-3 sm:mb-4">Valor Total Estimado</h3>
-              <div class="space-y-2 text-xs sm:text-sm">
-                <div class="flex justify-between items-center text-gray-300">
-                  <span>Software/Serviço Principal</span>
-                  <span class="text-purple-400 font-semibold">R$ X.XXX,XX</span>
-                </div>
-                <div class="flex justify-between items-center text-gray-300">
-                  <span>Itens Adicionais</span>
-                  <span class="text-purple-400 font-semibold">GRÁTIS</span>
-                </div>
-                <hr class="border-gray-600 my-1 sm:my-2">
-                <div class="text-center mt-2 sm:mt-3">
-                  <div class="text-lg sm:text-xl font-bold text-purple-400 mb-1">R$ X.XXX,XX</div>
-                  <div class="text-xxs sm:text-xs text-gray-400">(Valor a ser confirmado)</div>
-                </div>
-              </div>
+            <div class="error-message text-center pt-2" id="pagamento_error">
+              Selecione uma forma de pagamento
             </div>
           </div>
-        </div>
-        
-        <div class="space-y-4">
-          <div class="payment-option">
-            <input type="radio" name="forma_pagamento" value="pix" id="pay_pix">
-            <label for="pay_pix" class="flex items-center">
-              <i class="fas fa-qrcode payment-icon"></i>
-              <div>
-                <div class="payment-title">PIX</div>
-                <div class="payment-desc">Pagamento instantâneo e seguro</div>
-              </div>
-            </label>
-          </div>
-          
-          <div class="payment-option">
-            <input type="radio" name="forma_pagamento" value="link_pagamento" id="pay_link">
-            <label for="pay_link" class="flex items-center">
-              <i class="fas fa-link payment-icon"></i>
-              <div>
-                <div class="payment-title">Link de Pagamento</div>
-                <div class="payment-desc">Cartão de crédito, débito e outras opções</div>
-              </div>
-            </label>
-          </div>
-          
-          <div class="payment-option">
-            <input type="radio" name="forma_pagamento" value="anuncio_mercado_livre" id="pay_ml">
-            <label for="pay_ml" class="flex items-center">
-              <i class="fas fa-shopping-cart payment-icon"></i>
-              <div>
-                <div class="payment-title">Mercado Livre</div>
-                <div class="payment-desc">Anúncio seguro com proteção ao comprador</div>
-              </div>
-            </label>
-          </div>
-          
-          <div class="payment-option">
-            <input type="radio" name="forma_pagamento" value="whatsapp" id="pay_whatsapp">
-            <label for="pay_whatsapp" class="flex items-center">
-              <i class="fab fa-whatsapp payment-icon"></i>
-              <div>
-                <div class="payment-title">WhatsApp</div>
-                <div class="payment-desc">Negociação direta via WhatsApp</div>
-              </div>
-            </label>
-          </div>
-        </div>
-        
-        <div class="error-message text-center mt-4" id="pagamento_error">
-          Selecione uma forma de pagamento
         </div>
       </div>
 
@@ -544,6 +545,7 @@
     const nextSubmitBtn = document.getElementById('nextSubmitBtn');
     const prevBtn = document.getElementById('prevBtn');
     const progressFill = document.getElementById('progressFill');
+    const glassContainer = document.querySelector('.glass-container');
     const loadingOverlay = document.getElementById('loadingOverlay');
     function setupRealTimeValidation() {
       const inputs = document.querySelectorAll('input[required]');
@@ -667,6 +669,14 @@
       targetStep.classList.remove('hidden');
       targetStep.classList.add('active', 'fade-in');
 
+      if (stepNumber === 1) {
+        glassContainer.classList.remove('max-w-5xl');
+        glassContainer.classList.add('max-w-3xl');
+      } else {
+        glassContainer.classList.remove('max-w-3xl', 'max-w-5xl');
+        glassContainer.classList.add('max-w-4xl');
+      }
+
       updateProgress();
       updateStepIndicators();
       updateButtonStates();
@@ -702,14 +712,55 @@
       try {
         await emailjs.send(serviceID, templateID, templateParams);
         hideLoading();
-        alert('✅ Solicitação enviada com sucesso! Você será redirecionado em instantes.');
-        setTimeout(() => {
-            window.location.href = "https://www.arkersoft.com";
-        }, 2000);
+        
+        let swalTitle = '✅ Solicitação Enviada!';
+        let swalText = 'Dentro de alguns minutos um atendente entrará em contato com você para finalizar seu pedido.';
+        let swalIcon = 'success';
+        let redirectUrl = "https://www.arkersoft.com";
+
+        if (formaPagamentoSelecionada === 'whatsapp') {
+          swalText = 'Você será redirecionado para o WhatsApp para finalizar o contato.';
+          redirectUrl = "https://wa.me/message/C5DVY3D54O64L1";
+        }
+
+        Swal.fire({
+          title: swalTitle,
+          text: swalText,
+          icon: swalIcon,
+          confirmButtonText: 'OK',
+          background: 'linear-gradient(135deg, rgba(17, 25, 40, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%)',
+          color: 'white',
+          confirmButtonColor: '#ba55d3',
+          customClass: {
+            popup: 'glass-container', // Reutiliza o estilo glass-container para o popup
+            title: 'text-white',
+            content: 'text-gray-300',
+            confirmButton: 'btn-primary'
+          }
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = redirectUrl;
+          }
+        });
+
       } catch (error) {
         hideLoading();
         console.error('Erro ao enviar e-mail:', error);
-        alert('❌ Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente.\nDetalhes: ' + JSON.stringify(error));
+        Swal.fire({
+          title: '❌ Erro!',
+          text: 'Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente.\nDetalhes: ' + JSON.stringify(error),
+          icon: 'error',
+          confirmButtonText: 'OK',
+          background: 'linear-gradient(135deg, rgba(17, 25, 40, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%)',
+          color: 'white',
+          confirmButtonColor: '#ba55d3',
+          customClass: {
+            popup: 'glass-container',
+            title: 'text-white',
+            content: 'text-gray-300',
+            confirmButton: 'btn-primary'
+          }
+        });
       }
     }
 
