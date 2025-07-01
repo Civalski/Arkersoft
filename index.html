@@ -207,11 +207,6 @@
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .stats-counter {
-            font-weight: 700;
-            font-size: 2.5rem;
-        }
-
         .navbar-link {
             position: relative;
         }
@@ -397,30 +392,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-12 bg-gradient-to-b from-dark-bg to-dark-surface">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                <div class="text-center scroll-reveal opacity-0 translate-y-8">
-                    <div class="stats-counter text-gradient" data-count="327">0</div>
-                    <p class="text-gray-300 mt-2">Projetos Entregues</p>
-                </div>
-                <div class="text-center scroll-reveal opacity-0 translate-y-8">
-                    <div class="stats-counter text-gradient" data-count="98">0</div>
-                    <p class="text-gray-300 mt-2">Clientes Satisfeitos</p>
-                </div>
-                <div class="text-center scroll-reveal opacity-0 translate-y-8">
-                    <div class="stats-counter text-gradient" data-count="9">0</div>
-                    <p class="text-gray-300 mt-2">Anos de Experiência</p>
-                </div>
-                <div class="text-center scroll-reveal opacity-0 translate-y-8">
-                    <div class="stats-counter text-gradient" data-count="17">0</div>
-                    <p class="text-gray-300 mt-2">Tecnologias Dominadas</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Services Section -->
     <section id="services" class="py-20 bg-dark-bg relative">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(139,92,246,0.08)_0%,transparent_50%)] pointer-events-none"></div>
@@ -447,7 +418,7 @@
                         <i class="fas fa-robot text-4xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Automações</h3>
-                    <p class="text-gray-300 mb-4">Otimize seu fluxo de trabalho com automações inteligentes e reduza tarefas repetitivas</p>
+                    <p class="text-gray-300 mb-4">Otimize seu fluxo de trabalho com automações inteligentes e reduza tarefas repetitivas.</p>
                     <a href="automacao.html" class="inline-block mt-2 text-purple-400 hover:text-purple-300 font-medium">
                         Saiba mais <i class="fas fa-arrow-right ml-1"></i>
                     </a>
@@ -458,7 +429,7 @@
                         <i class="fas fa-cloud text-4xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Tratamento de Dados</h3>
-                    <p class="text-gray-300 mb-4">Análises, ETL, automações de relatórios, backup e gerenciamento completo de dados para decisões estratégicas</p>
+                    <p class="text-gray-300 mb-4">Análises, ETL, automações de relatórios, backup, auditoria, gerenciamento completo de dados para decisões estratégicas</p>
                     <a href="dados.html" class="inline-block mt-2 text-purple-400 hover:text-purple-300 font-medium">
                         Saiba mais <i class="fas fa-arrow-right ml-1"></i>
                     </a>
@@ -578,7 +549,7 @@
                         <i class="fas fa-chart-line text-4xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Tomada de Decisão Inteligente</h3>
-                    <p class="text-gray-300 mb-4 leading-relaxed">Utilize a análise de dados avançada e insights preditivos da IA para tomar decisões mais assertivas e estratégicas, identificando oportunidades e minimizando riscos.</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed">Análise de dados e insights preditivos da IA para tomar decisões mais assertivas e estratégicas, identificando oportunidades e minimizando riscos.</p>
                 </div>
 
                 <!-- Benefit 3: Experiência do Cliente Personalizada -->
@@ -908,40 +879,6 @@
                 }
             }, 50);
         });
-
-        // Stats Counter Animation
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-count'));
-            const duration = 2000;
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(start);
-                }
-            }, 16);
-        }
-        
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    document.querySelectorAll('.stats-counter').forEach(counter => {
-                        animateCounter(counter);
-                    });
-                    statsObserver.disconnect();
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        const statsSection = document.querySelector('.stats-counter').closest('section');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
 
         // Exit Intent
         let hasShownExitAlert = localStorage.getItem('exitAlertShown') === 'true';

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads Qualificados B2B - Multiplique suas Vendas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'purple-dark': '#1a0a2e',
+                        'purple-medium': '#16213e',
+                        'purple-light': '#7b2cbf',
+                        'purple-accent': '#9d4edd',
+                        'purple-gradient': '#c77dff'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f0f23 100%);
+        }
+        .purple-gradient {
+            background: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 50%, #c77dff 100%);
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #9d4edd, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .number-counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #c77dff;
+        }
+        .light-grid {
+            background:
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: moveGrid 20s linear infinite;
+        }
+        @keyframes moveGrid {
+            0% { background-position: 0 0, 0 0; }
+            50% { background-position: 10px 10px, 10px 10px; }
+            100% { background-position: 0 0, 0 0; }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .whatsapp-pulse {
+            animation: whatsappPulse 2s infinite;
+        }
+        @keyframes whatsappPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a12] text-white">
+    <!-- Efeito de Grade -->
+    <div class="fixed inset-0 light-grid pointer-events-none z-0"></div>
+
+    <!-- Header -->
+    <header class="backdrop-blur-md border-b border-purple-light/20 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-chart-line text-2xl text-purple-accent mr-3"></i>
+                    <span class="text-xl font-bold text-gradient">Leads Premium B2B</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#servico" class="text-gray-300 hover:text-purple-accent transition-colors">Serviço</a>
+                    <a href="#leads" class="text-gray-300 hover:text-purple-accent transition-colors">Tipos de Leads</a>
+                    <a href="#pacotes" class="text-gray-300 hover:text-purple-accent transition-colors">Pacotes</a>
+                    <a href="#contato" class="text-gray-300 hover:text-purple-accent transition-colors">Contato</a>
+                </nav>
+                <button class="md:hidden text-white" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <a href="#servico" class="block py-2 text-gray-300 hover:text-purple-accent transition-colors">Serviço</a>
+                <a href="#leads" class="block py-2 text-gray-300 hover:text-purple-accent transition-colors">Tipos de Leads</a>
+                <a href="#pacotes" class="block py-2 text-gray-300 hover:text-purple-accent transition-colors">Pacotes</a>
+                <a href="#contato" class="block py-2 text-gray-300 hover:text-purple-accent transition-colors">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section id="servico" class="relative py-20 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-dark/50 to-transparent"></div>
+            <div class="container mx-auto px-6 relative">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="space-y-4">
+                            <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
+                                <span class="text-gradient">Leads Qualificados</span><br>
+                                Prontos para Vendas
+                            </h1>
+                            <p class="text-xl text-gray-300 leading-relaxed">
+                                Receba milhares de contatos de empresas brasileiras organizados por segmento, com telefone, email e dados completos. Pare de perder tempo prospectando e foque em vender.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="https://api.whatsapp.com/send/?phone=5519998205608&text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20leads%20qualificados%21" target="_blank" class="purple-gradient text-white font-bold py-4 px-8 rounded-lg hover-glow transition-all duration-300 transform hover:scale-105 text-center">
+                                <i class="fab fa-whatsapp mr-2"></i>
+                                Solicitar Orçamento Agora
+                            </a>
+                            <a href="#pacotes" class="border-2 border-purple-accent text-purple-accent font-bold py-4 px-8 rounded-lg hover:bg-purple-accent hover:text-white transition-all duration-300 text-center">
+                                <i class="fas fa-download mr-2"></i>
+                                Ver Pacotes
+                            </a>
+                        </div>
+
+                        <div class="flex items-center gap-6 text-sm text-gray-400">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-green-400"></i>
+                                <span>Dados Verificados</span>
+                            </div>
+                            <div class="flex items-center gap-2">   
+                                <i class="fas fa-file-excel text-blue-400"></i>
+                                <span>Formato Excel</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-clock text-yellow-400"></i>
+                                <span>Entrega Imediata</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="bg-purple-medium/30 backdrop-blur-md rounded-2xl p-8 border border-purple-light/20">
+                            <div class="space-y-6">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-xl font-bold">Seus Leads Prontos para Uso
+                                       <p class="text-sm text-gray-400">Dados organizados e segmentados para máxima conversão</p> </h3>
+                                    <div class="flex space-x-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                        <div class="text-2xl font-bold text-purple-accent">Segmentado</div>
+                                        <div class="text-sm text-gray-400">Por região, atividade e porte</div>
+                                    </div>
+                                    <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                        <div class="text-2xl font-bold text-green-400">Atualizado</div>
+                                        <div class="text-sm text-gray-400">Base de dados recente</div>
+                                    </div>
+                                    <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                        <div class="text-2xl font-bold text-blue-400">Completo</div>
+                                        <div class="text-sm text-gray-400">Telefone, email e endereço</div>
+                                    </div>
+                                    <div class="bg-purple-dark/50 p-4 rounded-lg">
+                                        <div class="text-2xl font-bold text-yellow-400">Pronto</div>
+                                        <div class="text-sm text-gray-400">Formato Excel organizado</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tipos de Leads Section -->
+        <section id="leads" class="py-20 bg-purple-medium/30">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">
+                        <span class="text-gradient">Tipos de Leads Disponíveis</span>
+                    </h2>
+                    <p class="text-xl text-gray-300">Escolha o segmento ideal para seu negócio</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cards de Tipos de Leads... -->
+                    <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                        <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-store text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Comércio e Varejo</h3>
+                        <p class="text-gray-300 mb-4">Lojas, mercados, farmácias e estabelecimentos comerciais de todos os portes.</p>
+                    </div>
+                    <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                        <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-briefcase text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Serviços Profissionais</h3>
+                        <p class="text-gray-300 mb-4">Escritórios, consultorias, clínicas e prestadores de serviços especializados.</p>
+                    </div>
+                    <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                        <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-industry text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Indústria e Manufatura</h3>
+                        <p class="text-gray-300 mb-4">Fábricas, indústrias de transformação e empresas do setor secundário.</p>
+                    </div>
+                    <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                        <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-laptop text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Tecnologia e Inovação</h3>
+                        <p class="text-gray-300 mb-4">Empresas de TI, startups, desenvolvimento de software e serviços digitais.</p>
+                    </div>
+                    <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                        <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-utensils text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Alimentação e Bebidas</h3>
+                        <p class="text-gray-300 mb-4">Restaurantes, bares, lanchonetes e estabelecimentos do setor gastronômico.</p>
+                    </div>
+                    <div class="bg-purple-dark/50 p-8 rounded-xl border border-purple-light/20 card-hover transition-all duration-300">
+                        <div class="w-16 h-16 purple-gradient rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Segmentação Regional</h3>
+                        <p class="text-gray-300 mb-4">Leads organizados por estado, cidade ou região específica do Brasil.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pacotes Section -->
+        <section id="pacotes" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">
+                        <span class="text-gradient">Pacotes de Leads</span>
+                    </h2>
+                    <p class="text-xl text-gray-300">Escolha o pacote ideal para o seu volume de prospecção</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Pacote Starter -->
+                    <div class="bg-purple-dark/50 rounded-2xl p-8 border border-purple-light/20 hover:border-purple-accent/50 transition-all duration-300 flex flex-col">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                            <div class="text-4xl font-bold text-purple-accent mb-2">R$ 97</div>
+                            <div class="text-gray-400">Ideal para começar</div>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            <!-- Itens do pacote... -->
+                        </ul>
+                        <a href="https://api.whatsapp.com/send/?phone=5519998205608&text=Tenho%20interesse%20no%20pacote%20Starter%20-%201.000%20leads%20por%20R%24%2097" target="_blank" class="block w-full text-center border-2 border-purple-accent text-purple-accent font-bold py-3 px-6 rounded-lg hover:bg-purple-accent hover:text-white transition-all duration-300">Solicitar Starter</a>
+                    </div>
+                    <!-- Pacote Professional -->
+                    <div class="bg-purple-dark/50 rounded-2xl p-8 border-2 border-purple-accent relative transform scale-105 flex flex-col">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                            <span class="bg-purple-accent text-white px-4 py-1 rounded-full text-sm font-bold">MAIS POPULAR</span>
+                        </div>
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-2">Professional</h3>
+                            <div class="text-4xl font-bold text-purple-accent mb-2">R$ 197</div>
+                            <div class="text-gray-400">Máximo resultado</div>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                             <!-- Itens do pacote... -->
+                        </ul>
+                        <a href="https://api.whatsapp.com/send/?phone=5519998205608&text=Tenho%20interesse%20no%20pacote%20Professional%20-%205.000%20leads%20por%20R%24%20197" target="_blank" class="block w-full text-center purple-gradient text-white font-bold py-3 px-6 rounded-lg hover-glow transition-all duration-300">Solicitar Professional</a>
+                    </div>
+                    <!-- Pacote Enterprise -->
+                    <div class="bg-purple-dark/50 rounded-2xl p-8 border border-purple-light/20 hover:border-purple-accent/50 transition-all duration-300 flex flex-col">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                            <div class="text-4xl font-bold text-purple-accent mb-2">R$ 397</div>
+                            <div class="text-gray-400">Volume industrial</div>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                             <!-- Itens do pacote... -->
+                        </ul>
+                        <a href="https://api.whatsapp.com/send/?phone=5519998205608&text=Tenho%20interesse%20no%20pacote%20Enterprise%20-%2015.000%20leads%20por%20R%24%20397" target="_blank" class="block w-full text-center border-2 border-purple-accent text-purple-accent font-bold py-3 px-6 rounded-lg hover:bg-purple-accent hover:text-white transition-all duration-300">Solicitar Enterprise</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estatísticas -->
+        <section class="py-20 bg-purple-medium/30">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="number-counter pulse-animation">+60M</div>
+                        <div class="text-gray-300">Empresas na Base</div>
+                    </div>
+                    <div>
+                        <div class="number-counter pulse-animation">98%</div>
+                        <div class="text-gray-300">Taxa de Precisão</div>
+                    </div>
+                    <div>
+                        <div class="number-counter pulse-animation">24h</div>
+                        <div class="text-gray-300">Entrega Máxima</div>
+                    </div>
+                    <div>
+                        <div class="number-counter pulse-animation">100%</div>
+                        <div class="text-gray-300">Satisfação Garantida</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold mb-6">
+                        <span class="text-gradient">Multiplique Suas Vendas Hoje</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Pare de perder tempo prospectando. Comece a vender agora com leads qualificados e verificados.
+                    </p>
+                    
+                    <div class="bg-purple-dark/50 rounded-2xl p-8 border border-purple-light/20 mb-8">
+                        <div class="grid md:grid-cols-3 gap-6 text-center">
+                            <div>
+                                <i class="fas fa-shield-alt text-3xl text-green-400 mb-3"></i>
+                                <h4 class="font-bold mb-2">Garantia de Qualidade</h4>
+                                <p class="text-gray-400 text-sm">Leads verificados para garantir a máxima precisão.</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-bolt text-3xl text-yellow-400 mb-3"></i>
+                                <h4 class="font-bold mb-2">Entrega Rápida</h4>
+                                <p class="text-gray-400 text-sm">Receba sua lista de contatos em poucas horas.</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-headset text-3xl text-blue-400 mb-3"></i>
+                                <h4 class="font-bold mb-2">Suporte Dedicado</h4>
+                                <p class="text-gray-400 text-sm">Nossa equipe está pronta para ajudar você.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://api.whatsapp.com/send/?phone=5519998205608&text=Ol%C3%A1%2C%20quero%20multiplicar%20minhas%20vendas%20com%20leads%20qualificados%21" target="_blank" class="purple-gradient text-white font-bold py-4 px-10 rounded-lg hover-glow transition-all duration-300 transform hover:scale-105 text-lg">
+                        Falar com um Especialista
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section class="py-20 bg-purple-medium/30">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">
+                        <span class="text-gradient">Perguntas Frequentes (FAQ)</span>
+                    </h2>
+                    <p class="text-xl text-gray-300">Tire suas principais dúvidas sobre nossos serviços.</p>
+                </div>
+                <div class="space-y-4">
+                    <details class="bg-purple-dark/50 p-6 rounded-lg border border-purple-light/20 cursor-pointer">
+                        <summary class="font-bold text-lg flex justify-between items-center">
+                            Como os leads são coletados?
+                            <i class="fas fa-chevron-down transform transition-transform"></i>
+                        </summary>
+                        <p class="text-gray-300 mt-4">Nossos leads são coletados de fontes públicas e parceiros de dados, passando por um rigoroso processo de verificação e enriquecimento para garantir a qualidade e precisão das informações.</p>
+                    </details>
+                    <details class="bg-purple-dark/50 p-6 rounded-lg border border-purple-light/20 cursor-pointer">
+                        <summary class="font-bold text-lg flex justify-between items-center">
+                            Qual é a taxa de atualização dos dados?
+                            <i class="fas fa-chevron-down transform transition-transform"></i>
+                        </summary>
+                        <p class="text-gray-300 mt-4">Nossa base de dados é atualizada constantemente. Garantimos que os leads entregues foram verificados nos últimos 90 dias para maximizar a taxa de contato.</p>
+                    </details>
+                    <details class="bg-purple-dark/50 p-6 rounded-lg border border-purple-light/20 cursor-pointer">
+                        <summary class="font-bold text-lg flex justify-between items-center">
+                            Posso pedir uma segmentação personalizada?
+                            <i class="fas fa-chevron-down transform transition-transform"></i>
+                        </summary>
+                        <p class="text-gray-300 mt-4">Sim! Além dos segmentos prontos, oferecemos a possibilidade de criar uma lista totalmente personalizada de acordo com suas necessidades. Entre em contato para um orçamento customizado.</p>
+                    </details>
+                    <details class="bg-purple-dark/50 p-6 rounded-lg border border-purple-light/20 cursor-pointer">
+                        <summary class="font-bold text-lg flex justify-between items-center">
+                            Em qual formato recebo os leads?
+                            <i class="fas fa-chevron-down transform transition-transform"></i>
+                        </summary>
+                        <p class="text-gray-300 mt-4">Você receberá uma planilha em formato Excel (.xlsx) ou CSV, organizada e pronta para ser importada em seu CRM ou ferramenta de prospecção.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer id="contato" class="bg-purple-dark/50 border-t border-purple-light/20 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-line text-2xl text-purple-accent mr-3"></i>
+                        <span class="text-xl font-bold text-gradient">Leads Premium B2B</span>
+                    </div>
+                    <p class="text-gray-400">Acelerando suas vendas com dados inteligentes.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#servico" class="text-gray-400 hover:text-purple-accent">Serviço</a></li>
+                        <li><a href="#leads" class="text-gray-400 hover:text-purple-accent">Tipos de Leads</a></li>
+                        <li><a href="#pacotes" class="text-gray-400 hover:text-purple-accent">Pacotes</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-purple-accent">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Contato</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center"><i class="fab fa-whatsapp text-purple-accent mr-3"></i> (19) 99820-5608</li>
+                        <li class="flex items-center"><i class="fas fa-envelope text-purple-accent mr-3"></i> contato@leadspremiumb2b.com</li>
+                    </ul>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-accent"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-accent"><i class="fab fa-linkedin text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 border-t border-purple-light/10 pt-8">
+                &copy; 2024 Leads Premium B2B. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://api.whatsapp.com/send/?phone=5519998205608&text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20leads%21" target="_blank" class="whatsapp-float">
+        <div class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg whatsapp-pulse">
+            <i class="fab fa-whatsapp text-4xl"></i>
+        </div>
+    </a>
+    
+    <script>
+        // Script para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Script para ícone do FAQ
+        document.querySelectorAll('details').forEach((detail) => {
+            detail.addEventListener('toggle', (event) => {
+                const icon = event.target.querySelector('summary i');
+                if (event.target.open) {
+                    icon.classList.add('rotate-180');
+                } else {
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
