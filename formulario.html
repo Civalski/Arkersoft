@@ -383,65 +383,37 @@
         </h3>
 
         <!-- Container principal para layout lado a lado -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
             
           <!-- Coluna 1: Resumo do Pedido -->
-          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6">
+          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6 flex-1 min-h-[380px]">
             <h4 class="text-xl font-semibold text-white text-center mb-2">Resumo da Solicitação</h4>
               <!-- Itens de Bônus/Serviços -->
               <div class="space-y-4">
-                <!-- Item 1: Automatizador de WhatsApp -->
-                <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
-                  <div class="flex items-start gap-3 sm:gap-4">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <i class="fab fa-whatsapp text-lg sm:text-xl text-white"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Automatizador de WhatsApp</h3>
-                      <p class="text-gray-300 text-xs sm:text-sm mb-1">Envie mensagens em massa de forma automatizada.</p>
-                      <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Item 2: Manual de Prospecção -->
-                <div class="bg-slate-700/50 rounded-xl p-4 border border-purple-500/30">
-                  <div class="flex items-start gap-3 sm:gap-4">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <i class="fas fa-book text-lg sm:text-xl text-white"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-md sm:text-lg font-semibold text-white mb-1">Manual de Prospecção</h3>
-                      <p class="text-gray-300 text-xs sm:text-sm mb-1">Técnica para obter até 30x mais respostas.</p>
-                      <div class="text-xs sm:text-sm text-purple-400 font-semibold">Incluso na Proposta</div>
-                    </div>
-                  </div>
-                </div>
+                <!-- Removido: Automatizador de WhatsApp -->
+                <!-- Removido: Manual de Prospecção -->
               </div>
               <!-- Valor Total do Pacote -->
-              <div class="bg-slate-700/70 rounded-xl p-4 border border-purple-500/30 text-center">
-                <h3 class="text-md sm:text-lg font-semibold text-white mb-3 sm:mb-4">Valor Total Estimado</h3>
+              <div class="bg-slate-700/70 rounded-xl p-4 border border-purple-500/30 text-center min-h-[120px]">
+                <h3 class="text-md sm:text-lg font-semibold text-white mb-3 sm:mb-4">Valor Total</h3>
                 <div class="space-y-2 text-sm">
                   <div class="flex justify-between items-center text-gray-300">
-                    <span>Software/Serviço Principal</span>
-                    <span class="text-purple-400 font-semibold">R$ 99,90</span>
+                    <span>Software Master Lead- Acesso Vitalício</span>
+                    <span class="text-purple-400 font-semibold" id="valorPrincipal">R$ 129,90</span>
                   </div>
-                  <div class="flex justify-between items-center text-gray-300">
-                    <span>Automatizador WhatsApp</span>
-                    <span class="text-purple-400 font-semibold">R$ 29,90</span>
-                  </div>
-                  <div class="flex justify-between items-center text-gray-300">
-                    <span>Manual de Prospecção</span>
-                    <span class="text-purple-400 font-semibold">R$ 19,90</span>
+                  <div class="flex justify-between items-center text-green-400" id="descontoCupomRow" style="display:none;">
+                    <span id="labelDesconto">Desconto Cupom</span>
+                    <span class="font-semibold" id="valorDesconto">-R$ 0,00</span>
                   </div>
                   <hr class="border-gray-600 my-1 sm:my-2">
                   <div class="text-center mt-2 sm:mt-3">
-                    <div class="text-lg sm:text-xl font-bold text-purple-400 mb-1">R$ 149,70</div>
+                    <div class="text-lg sm:text-xl font-bold text-purple-400 mb-1" id="valorTotal">R$ 129,90</div>
                   </div>
                 </div>
               </div>
           </div>
           <!-- Coluna 2: Formas de Pagamento -->
-          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6">
+          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6 flex-1 min-h-[380px]">
             <h4 class="text-xl font-semibold text-white text-center mb-2">Escolha como Pagar</h4>
             <div class="space-y-4">
               <div class="payment-option">
@@ -462,17 +434,6 @@
                   <div>
                     <div class="payment-title">Link de Pagamento</div>
                     <div class="payment-desc">Cartão de crédito, débito e outras opções</div>
-                  </div>
-                </label>
-              </div>
-              
-              <div class="payment-option">
-                <input type="radio" name="forma_pagamento" value="whatsapp" id="pay_whatsapp">
-                <label for="pay_whatsapp" class="flex items-center">
-                  <i class="fab fa-whatsapp payment-icon"></i>
-                  <div>
-                    <div class="payment-title">WhatsApp</div>
-                    <div class="payment-desc">Negociação direta via WhatsApp</div>
                   </div>
                 </label>
               </div>
@@ -718,11 +679,6 @@
         let swalIcon = 'success';
         let redirectUrl = "https://www.arkersoft.com";
 
-        if (formaPagamentoSelecionada === 'whatsapp') {
-          swalText = 'Você será redirecionado para o WhatsApp para finalizar o contato.';
-          redirectUrl = "https://wa.me/message/C5DVY3D54O64L1";
-        }
-
         Swal.fire({
           title: swalTitle,
           text: swalText,
@@ -832,6 +788,29 @@
         nextSubmitBtn.click();
       }
     });
+
+    function atualizarResumoCupom() {
+      const valorBase = 129.90;
+      const valorFinal = 99.90;
+      const cupom = document.getElementById('codigo_cupom').value.trim();
+      const descontoRow = document.getElementById('descontoCupomRow');
+      const valorDesconto = document.getElementById('valorDesconto');
+      const valorTotal = document.getElementById('valorTotal');
+      const labelDesconto = document.getElementById('labelDesconto');
+      if (cupom) {
+        const desconto = valorBase - valorFinal;
+        const percentual = Math.round((desconto / valorBase) * 100);
+        descontoRow.style.display = 'flex';
+        valorDesconto.textContent = `-R$ ${desconto.toFixed(2).replace('.', ',')}`;
+        valorTotal.textContent = `R$ ${valorFinal.toFixed(2).replace('.', ',')}`;
+        labelDesconto.textContent = `Desconto Cupom (${percentual}%)`;
+      } else {
+        descontoRow.style.display = 'none';
+        valorTotal.textContent = `R$ ${valorBase.toFixed(2).replace('.', ',')}`;
+      }
+    }
+    document.getElementById('codigo_cupom').addEventListener('input', atualizarResumoCupom);
+    document.addEventListener('DOMContentLoaded', atualizarResumoCupom);
   </script>
     <script type="text/javascript">
     (function(){
