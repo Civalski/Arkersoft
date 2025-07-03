@@ -382,65 +382,58 @@
           Pagamento
         </h3>
 
-        <!-- Container principal para layout lado a lado -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            
-          <!-- Coluna 1: Resumo do Pedido -->
-          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6 flex-1 min-h-[380px]">
-            <h4 class="text-xl font-semibold text-white text-center mb-2">Resumo da Solicitação</h4>
-              <!-- Itens de Bônus/Serviços -->
-              <div class="space-y-4">
-                <!-- Removido: Automatizador de WhatsApp -->
-                <!-- Removido: Manual de Prospecção -->
-              </div>
-              <!-- Valor Total do Pacote -->
-              <div class="bg-slate-700/70 rounded-xl p-4 border border-purple-500/30 text-center min-h-[120px]">
-                <h3 class="text-md sm:text-lg font-semibold text-white mb-3 sm:mb-4">Valor Total</h3>
-                <div class="space-y-2 text-sm">
-                  <div class="flex justify-between items-center text-gray-300">
-                    <span>Software Master Lead- Acesso Vitalício</span>
-                    <span class="text-purple-400 font-semibold" id="valorPrincipal">R$ 129,90</span>
-                  </div>
-                  <div class="flex justify-between items-center text-green-400" id="descontoCupomRow" style="display:none;">
-                    <span id="labelDesconto">Desconto Cupom</span>
-                    <span class="font-semibold" id="valorDesconto">-R$ 0,00</span>
-                  </div>
-                  <hr class="border-gray-600 my-1 sm:my-2">
-                  <div class="text-center mt-2 sm:mt-3">
-                    <div class="text-lg sm:text-xl font-bold text-purple-400 mb-1" id="valorTotal">R$ 129,90</div>
-                  </div>
-                </div>
-              </div>
+        <!-- Bloco Único: Resumo + Pagamento -->
+        <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6 flex-1 min-h-[380px] max-w-2xl mx-auto">
+          <h4 class="text-xl font-semibold text-white text-center mb-2">Resumo da Solicitação</h4>
+          <!-- Itens de Bônus/Serviços -->
+          <div class="space-y-4">
+            <!-- Removido: Automatizador de WhatsApp -->
+            <!-- Removido: Manual de Prospecção -->
           </div>
-          <!-- Coluna 2: Formas de Pagamento -->
-          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-6 space-y-6 flex-1 min-h-[380px]">
-            <h4 class="text-xl font-semibold text-white text-center mb-2">Escolha como Pagar</h4>
-            <div class="space-y-4">
-              <div class="payment-option">
-                <input type="radio" name="forma_pagamento" value="pix" id="pay_pix">
-                <label for="pay_pix" class="flex items-center">
-                  <i class="fas fa-qrcode payment-icon"></i>
-                  <div>
-                    <div class="payment-title">PIX</div>
-                    <div class="payment-desc">Pagamento instantâneo e seguro</div>
-                  </div>
-                </label>
+          <!-- Valor Total do Pacote -->
+          <div class="bg-slate-700/70 rounded-xl p-4 border border-purple-500/30 text-center min-h-[120px] mb-4">
+            <h3 class="text-md sm:text-lg font-semibold text-white mb-3 sm:mb-4">Valor Total</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between items-center text-gray-300">
+                <span>Software Master Lead - Acesso Vitalício</span>
+                <span class="text-purple-400 font-semibold" id="valorPrincipal">R$ 129,90</span>
               </div>
-              
-              <div class="payment-option">
-                <input type="radio" name="forma_pagamento" value="link_pagamento" id="pay_link">
-                <label for="pay_link" class="flex items-center">
-                  <i class="fas fa-link payment-icon"></i>
-                  <div>
-                    <div class="payment-title">Link de Pagamento</div>
-                    <div class="payment-desc">Cartão de crédito, débito e outras opções</div>
-                  </div>
-                </label>
+              <div class="flex justify-between items-center text-green-400" id="descontoCupomRow" style="display:none;">
+                <span id="labelDesconto">Desconto Cupom</span>
+                <span class="font-semibold" id="valorDesconto">-R$ 0,00</span>
+              </div>
+              <hr class="border-gray-600 my-1 sm:my-2">
+              <div class="text-center mt-2 sm:mt-3">
+                <div class="text-lg sm:text-xl font-bold text-purple-400 mb-1" id="valorTotal">R$ 129,90</div>
               </div>
             </div>
-            <div class="error-message text-center pt-2" id="pagamento_error">
-              Selecione uma forma de pagamento
+          </div>
+
+          <h4 class="text-xl font-semibold text-white text-center mb-2">Escolha como Pagar</h4>
+          <div class="space-y-4">
+            <div class="payment-option">
+              <input type="radio" name="forma_pagamento" value="pix" id="pay_pix">
+              <label for="pay_pix" class="flex items-center">
+                <i class="fas fa-qrcode payment-icon"></i>
+                <div>
+                  <div class="payment-title">PIX</div>
+                  <div class="payment-desc">Pagamento instantâneo e seguro</div>
+                </div>
+              </label>
             </div>
+            <div class="payment-option">
+              <input type="radio" name="forma_pagamento" value="link_pagamento" id="pay_link">
+              <label for="pay_link" class="flex items-center">
+                <i class="fas fa-link payment-icon"></i>
+                <div>
+                  <div class="payment-title">Link de Pagamento</div>
+                  <div class="payment-desc">Cartão de crédito, débito e outras opções</div>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="error-message text-center pt-2" id="pagamento_error">
+            Selecione uma forma de pagamento
           </div>
         </div>
       </div>
