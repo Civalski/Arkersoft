@@ -196,6 +196,13 @@
         </div>
         <div>
           <div class="form-field">
+            <input type="text" name="atividade_empresa" id="atividade_empresa" placeholder="Atividade da empresa/CNAE" required>
+            <i class="fas fa-briefcase field-icon"></i>
+            <div class="error-message" id="atividade_empresa_error">Atividade da empresa/CNAE é obrigatória</div>
+          </div>
+        </div>
+        <div>
+          <div class="form-field">
             <input type="tel" name="celular_whatsapp" id="celular_whatsapp" placeholder="Celular (WhatsApp)" required>
             <i class="fab fa-whatsapp field-icon"></i>
             <div class="error-message" id="celular_whatsapp_error">Celular é obrigatório</div>
@@ -308,7 +315,7 @@
     }
 
     function validateForm() {
-      const fields = ['nome_completo', 'email', 'nome_empresa', 'celular_whatsapp'];
+      const fields = ['nome_completo', 'email', 'nome_empresa', 'atividade_empresa', 'celular_whatsapp'];
       let allValid = true;
 
       fields.forEach(fieldId => {
@@ -337,6 +344,7 @@
         nome_completo: document.getElementById('nome_completo').value,
         email: document.getElementById('email').value,
         nome_empresa: document.getElementById('nome_empresa').value,
+        atividade_empresa: document.getElementById('atividade_empresa').value,
         celular_whatsapp: document.getElementById('celular_whatsapp').value,
         codigo_cupom: document.getElementById('codigo_cupom').value || 'Nenhum',
       };
