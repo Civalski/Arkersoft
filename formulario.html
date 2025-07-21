@@ -214,6 +214,18 @@
             <div class="success-message" id="cupom_success">Cupom aplicado com sucesso!</div>
           </div>
         </div>
+        <div>
+          <div class="form-field">
+            <select name="pacote_escolhido" id="pacote_escolhido" required style="width: 100%; background: rgba(31, 41, 55, 0.7); border: 2px solid rgba(75, 85, 99, 0.5); border-radius: 0.75rem; padding: 1rem 1rem 1rem 3rem; color: white; font-size: 1rem;">
+              <option value="" disabled selected>Selecione o Pacote</option>
+              <option value="Iniciante">Iniciante</option>
+              <option value="Profissional">Profissional</option>
+              <option value="Industrial">Industrial</option>
+            </select>
+            <i class="fas fa-box field-icon"></i>
+            <div class="error-message" id="pacote_escolhido_error">Selecione um pacote</div>
+          </div>
+        </div>
       </div>
 
       <div class="flex pt-6">
@@ -315,7 +327,7 @@
     }
 
     function validateForm() {
-      const fields = ['nome_completo', 'email', 'nome_empresa', 'atividade_empresa', 'celular_whatsapp'];
+      const fields = ['nome_completo', 'email', 'nome_empresa', 'atividade_empresa', 'celular_whatsapp', 'pacote_escolhido'];
       let allValid = true;
 
       fields.forEach(fieldId => {
@@ -347,6 +359,7 @@
         atividade_empresa: document.getElementById('atividade_empresa').value,
         celular_whatsapp: document.getElementById('celular_whatsapp').value,
         codigo_cupom: document.getElementById('codigo_cupom').value || 'Nenhum',
+        pacote_escolhido: document.getElementById('pacote_escolhido').value || 'Não selecionado',
       };
       const serviceID = 'service_91tkvof';
       const templateID = 'template_trf9zfa';
@@ -430,6 +443,22 @@
     (function(){
         emailjs.init("ZcLVZ_f6Jh1JYA-0D");
     })();
+  </script>
+  <script>
+    // Script para pré-selecionar o pacote baseado no parâmetro da URL
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pacote = urlParams.get('pacote');
+      if (pacote) {
+        const select = document.getElementById('pacote_escolhido');
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.toLowerCase() === pacote.toLowerCase()) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>
