@@ -230,6 +230,15 @@
             background: linear-gradient(135deg, #25D366, #128C7E);
             box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .whatsapp-button.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .whatsapp-button:hover {
@@ -714,10 +723,6 @@
             </div>
         </div>
         
-        <!-- WhatsApp Button -->
-        <a id="whatsapp-icon" href="https://wa.me/+5519998205608" target="_blank" class="whatsapp-button fixed bottom-8 right-8 w-16 h-16 rounded-full flex items-center justify-center z-50 hover:scale-105 transition-transform">
-            <img src="logowp.png" alt="WhatsApp" class="w-10 h-10">
-        </a>
     </section>
 
     <!-- Footer -->
@@ -772,6 +777,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Button -->
+    <a id="whatsapp-icon" href="https://wa.me/+5519998205608" target="_blank" class="whatsapp-button fixed bottom-8 right-8 w-16 h-16 rounded-full flex items-center justify-center z-50 hover:scale-105 transition-transform">
+        <img src="logowp.png" alt="WhatsApp" class="w-10 h-10">
+    </a>
 
     <script>
         // Menu Toggle
@@ -901,6 +911,30 @@
                 document.getElementById("contatoForm").reset();
             }, 1500);
         });
+
+        // WhatsApp Button Scroll Control
+        function toggleWhatsAppButton() {
+            const whatsappButton = document.getElementById('whatsapp-icon');
+            const footer = document.querySelector('footer');
+            
+            if (footer) {
+                const footerTop = footer.offsetTop;
+                const scrollPosition = window.scrollY + window.innerHeight;
+                
+                // Show button when user scrolls to 80% of the footer
+                if (scrollPosition >= footerTop - (footer.offsetHeight * 0.2)) {
+                    whatsappButton.classList.add('show');
+                } else {
+                    whatsappButton.classList.remove('show');
+                }
+            }
+        }
+
+        // Add scroll event listener
+        window.addEventListener('scroll', toggleWhatsAppButton);
+        
+        // Check on page load
+        document.addEventListener('DOMContentLoaded', toggleWhatsAppButton);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
