@@ -847,34 +847,6 @@
             }, 50);
         });
 
-        // Exit Intent
-        let hasShownExitAlert = localStorage.getItem('exitAlertShown') === 'true';
-
-        document.addEventListener("mouseleave", function (e) {
-            if (e.clientY <= 0 && !hasShownExitAlert) {
-                hasShownExitAlert = true;
-                localStorage.setItem('exitAlertShown', 'true');
-
-                Swal.fire({
-                    title: "Espere...",
-                    icon: "warning",
-                    confirmButtonText: "Ficar no site",
-                    background: "#1a1a2e",
-                    color: "#fff",
-                    confirmButtonColor: "rgba(139, 92, 246, 0.8)",
-                    html: "Você está perdendo a oportunidade de fazer sua empresa multiplicar seus lucros! Clique no ícone do WhatsApp e descubra como...",
-                    iconColor: "#f87171",
-                    width: 'auto',
-                    heightAuto: false,
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
-                });
-            }
-        });
 
         // Contact Form Submission
         document.getElementById("contatoForm").addEventListener("submit", function(event) {
